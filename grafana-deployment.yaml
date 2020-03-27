@@ -22,7 +22,7 @@ spec:
         name: grafana
     spec:
       containers:
-      - image: grafana/grafana
+      - image: grafana/grafana:6.5.3
         imagePullPolicy: IfNotPresent
         name: grafana
         ports:

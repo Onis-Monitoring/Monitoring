@@ -31,7 +31,7 @@ spec:
         - --storage.tsdb.retention=24h
         command:
         - /bin/prometheus
-        image: quay.io/prometheus/prometheus:v2.0.0
+        image: quay.io/prometheus/prometheus:v2.15.2
         imagePullPolicy: IfNotPresent
         name: prometheus
         ports:

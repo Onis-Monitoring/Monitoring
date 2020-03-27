@@ -22,7 +22,7 @@ spec:
         name: alertmanager
     spec:
       containers:
-      - image: prom/alertmanager
+      - image: prom/alertmanager:v0.20.0
         imagePullPolicy: IfNotPresent
         name: alertmanager
         ports:
