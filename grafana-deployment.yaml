@@ -40,8 +40,10 @@ spec:
           name: data
         - mountPath: /etc/grafana/provisioning/datasources/
           name: datasources
-        - mountPath: /etc/grafana/provisioning/dashboards/
-          name: dashboards
+        - mountPath: /grafana-dashboard-definitions/0/statefulset
+          name: grafana-dashboard-definitions
+        - mountPath: /etc/grafana/provisioning/dashboards
+          name: grafana-dashboards
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
@@ -52,5 +54,8 @@ spec:
           name: grafana-datasources
         name: datasources
       - configMap:
+          name: grafana-dashboard-definitions
+        name: grafana-dashboard-definitions
+      - configMap:
           name: grafana-dashboards
-        name: dashboards
+        name: grafana-dashboards
