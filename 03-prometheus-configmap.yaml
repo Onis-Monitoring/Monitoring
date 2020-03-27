@@ -30,6 +30,10 @@ data:
         - "alert_rules.yml"
 
     scrape_configs:
+    # Kube-state metrics
+    - job_name: 'kube-state-metrics'
+      static_configs:
+        - targets: ['kube-state-metrics.kube-system.svc.cluster.local:8080']
     - job_name: 'kubernetes-apiservers'
 
       kubernetes_sd_configs:
