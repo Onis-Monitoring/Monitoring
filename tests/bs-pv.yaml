@@ -1,15 +1,13 @@
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  name: test-pv-volume
+  name: test-pv-claim
   labels:
-    type: local
-  namespace: test-monitoring
+    app: test-storage-claim
 spec:
-  storageClassName: test-failed
-  capacity:
-    storage: 5Gi
+  storageClassName: test
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/"
+  resources:
+    requests:
+      storage: 2Gi
