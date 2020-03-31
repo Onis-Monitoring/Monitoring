@@ -14,5 +14,10 @@ echo config maps deleted
 
 # cluster roles
 #kubectl delete clusterroles prometheus
+#kubectl delete clusterrolebindings prometheus
+#kubectl delete serviceaccounts default
+
+#namespace
+#kubectl delete namespace monitoring
 
 #echo cluster roles deleted
