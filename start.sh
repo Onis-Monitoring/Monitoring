@@ -14,3 +14,6 @@ kubectl create -f grafana-service.yaml
 #alertmanager-configmap.yaml
 kubectl create -f alertmanager-deployment.yaml
 kubectl create -f alertmanager-service.yaml
+
+#kube-state
+kubectl create -f kube-state/
