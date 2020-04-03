@@ -46,24 +46,60 @@ data:
       - interval: 1m
         # Series data.
         input_series:
-          - series: 'up{job="prometheus", instance="localhost:9090"}'
-            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'
+          - series: 'increase(mongodb_metrics_cursor_timed_out_total[10m])'
+            values: '101 101 101 101 101'
+        # Test 2.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: 'mongodb_connections{state="current"}'
+            values: '501 501 501 501 501'
+        #Test 3.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: '(sum(mongodb_memory{type="virtual"}) BY (ip) / sum(mongodb_memory{type="mapped"}) BY (ip))'
+            values: '4 4 4 4 4'
 
-    # Unit test for alerting rules.
-    alert_rule_test:
-        # Unit test 1.
-        - eval_time: 10m
-        alertname: InstanceDown
-        exp_alerts:
-            # Alert 1.
-            - exp_labels:
-                severity: page
-                instance: localhost:9090
-                job: prometheus
-            exp_annotations:
-                summary: "Instance localhost:9090 down"
-                description: "localhost:9090 of job prometheus has been down for more than 5 minutes."
-    # Unit tests for promql expressions.
+        # Unit test for alerting rules.
+        alert_rule_test:
+          # Unit test 1.
+          - eval_time: 5m
+            alertname: MongodbCursorsTimeouts
+            exp_alerts: 
+              # Alert 1.
+              - exp_labels:
+                  severity: warning
+                  instance: localhost:9090
+                  job: mongodb
+                exp_annotations:
+                  summary: "MongoDB cursors timeouts"
+                  description: "Too many cursors are timing out"
+          # Unit test 2.
+          - eval_time: 5m
+            alertname: MongodbTooManyConnections
+            exp_alerts: 
+              # Alert 1.
+              - exp_labels:
+                  severity: warning
+                  instance: localhost:9090
+                  job: mongodb
+                exp_annotations:
+                  summary: "MongoDB too many connections"
+                  description: "Too many connections"
+          # Unit test 3.
+          - eval_time: 5m
+            alertname: MongodbVirtualMemoryUsage
+            exp_alerts: 
+              # Alert 1.
+              - exp_labels:
+                  severity: warning
+                  instance: localhost:9090
+                  job: mongodb
+                exp_annotations:
+                  summary: "MongoDB virtual memory usage "
+                  description: "High memory usage\n"
+      # Unit tests for promql expressions.
   kafka_test.yml: |
     # This is the main input for unit testing. 
     # Only this file is passed as command line argument.
@@ -78,24 +114,92 @@ data:
       - interval: 1m
         # Series data.
         input_series:
-          - series: 'up{job="prometheus", instance="localhost:9090"}'
-            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'
+          - series: 'sum(kafka_topic_partition_in_sync_replica) by (topic)'
+            values: '2 2 2 2 2'
+        # Test 2.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: 'sum(kafka_consumergroup_lag) by (consumergroup)'
+            values: '60 60 60 60 60'
 
         # Unit test for alerting rules.
         alert_rule_test:
         # Unit test 1.
-          - eval_time: 10m
-            alertname: InstanceDown
+          - eval_time: 5m
+            alertname: KafkaTopicsReplicas
             exp_alerts:
               # Alert 1.
               - exp_labels:
-                  severity: page
+                  severity: error
                   instance: localhost:9090
-                  job: prometheus
+                  job: kafka
                 exp_annotations:
-                  summary: "Instance localhost:9090 down"
-                  description: "localhost:9090 of job prometheus has been down for more than 5 minutes."
+                  summary: "Kafka topics replicas"
+                  description: "Kafka topic in-sync partition"
+        # Unit test 2.
+          - eval_time: 5m
+            alertname: KafkaConsumersGroup
+            exp_alerts:
+              # Alert 1.
+              - exp_labels:
+                  severity: error
+                  instance: localhost:9090
+                  job: kafka
+                exp_annotations:
+                  summary: "Kafka consumers group"
+                  description: "Kafka consumers group"
       # Unit tests for promql expressions.
+  minio_test.yaml: |
+    # This is the main input for unit testing. 
+    # Only this file is passed as command line argument.
+
+    rule_files:
+      - /etc/prometheus/alert_rules.yml
+    
+    evaluation_interval: 1m
+    
+    tests:
+      # Test 1.
+    - interval: 1m
+      # Series data.
+      input_series:
+        - series: 'minio_offline_disks'
+          values: '1 1 1 1 1'
+      # Test 2.
+    - interval: 1m
+      # Series data.
+      input_series:
+        - series: 'minio_disk_storage_free_bytes / 1024 / 1024 / 1024'
+          values: '9 9 9 9 9'
+
+      # Unit test for alerting rules.
+      alert_rule_test:
+      # Unit test 1.
+        - eval_time: 5m
+          alertname: MinioDiskOffline
+          exp_alerts:
+            # Alert 1.
+            - exp_labels:
+                severity: error
+                instance: localhost:9090
+                job: minio
+              exp_annotations:
+                summary: "Minio disk offline"
+                description: "Minio disk is offline"
+      # Unit test 2.
+        - eval_time: 5m
+          alertname: MinioStorageSpaceExhausted
+          exp_alerts:
+            # Alert 1.
+            - exp_labels:
+                severity: warning
+                instance: localhost:9090
+                job: minio
+              exp_annotations:
+                summary: "Minio storage space exhausted"
+                description: "Minio storage space is low (< 10 GB)"
+    # Unit tests for promql expressions.
 kind: ConfigMap
 metadata:
   name: alert-unit-tests
