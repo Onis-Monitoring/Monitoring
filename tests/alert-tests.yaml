@@ -5,7 +5,7 @@ data:
     # Only this file is passed as command line argument.
 
     rule_files:
-      - alert_rules.yml.yml
+      - /etc/prometheus/alert_rules.yml
 
     evaluation_interval: 1m
 
@@ -37,7 +37,7 @@ data:
     # Only this file is passed as command line argument.
 
     rule_files:
-      - alert_rules.yml.yml
+      - /etc/prometheus/alert_rules.yml
 
     evaluation_interval: 1m
 
@@ -69,7 +69,7 @@ data:
     # Only this file is passed as command line argument.
 
     rule_files:
-      - alert_rules.yml.yml
+      - /etc/prometheus/alert_rules.yml
 
     evaluation_interval: 1m
 
@@ -98,5 +98,5 @@ data:
       # Unit tests for promql expressions.
 kind: ConfigMap
 metadata:
-name: alert-unit-tests
-namespace: monitoring
+  name: alert-unit-tests
+  namespace: monitoring
