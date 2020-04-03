@@ -50,7 +50,7 @@ spec:
         - mountPath: /etc/prometheus
           name: config-volume
         - mountPath: /etc/prometheus/tests
-          name: alerts-volume
+          name: alert-unit-tests-volume
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
@@ -61,5 +61,5 @@ spec:
           name: prometheus-config
         name: config-volume
       - configMap:
-          name: prometheus-config
-        name: alert-unit-tests
+          name: alert-unit-tests
+        name: alert-unit-tests-volume
