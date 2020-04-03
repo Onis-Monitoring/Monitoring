@@ -48,16 +48,8 @@ data:
         input_series:
           - series: 'increase(mongodb_metrics_cursor_timed_out_total[10m])'
             values: '101 101 101 101 101'
-        # Test 2.
-      - interval: 1m
-        # Series data.
-        input_series:
           - series: 'mongodb_connections{state="current"}'
             values: '501 501 501 501 501'
-        #Test 3.
-      - interval: 1m
-        # Series data.
-        input_series:
           - series: '(sum(mongodb_memory{type="virtual"}) BY (ip) / sum(mongodb_memory{type="mapped"}) BY (ip))'
             values: '4 4 4 4 4'
 
@@ -116,10 +108,6 @@ data:
         input_series:
           - series: 'sum(kafka_topic_partition_in_sync_replica) by (topic)'
             values: '2 2 2 2 2'
-        # Test 2.
-      - interval: 1m
-        # Series data.
-        input_series:
           - series: 'sum(kafka_consumergroup_lag) by (consumergroup)'
             values: '60 60 60 60 60'
 
@@ -166,10 +154,6 @@ data:
       input_series:
         - series: 'minio_offline_disks'
           values: '1 1 1 1 1'
-      # Test 2.
-    - interval: 1m
-      # Series data.
-      input_series:
         - series: 'minio_disk_storage_free_bytes / 1024 / 1024 / 1024'
           values: '9 9 9 9 9'
 
