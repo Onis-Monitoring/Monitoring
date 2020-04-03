@@ -1,0 +1,102 @@
+apiVersion: v1
+data:
+  kubernetes_test.yml: |
+    # This is the main input for unit testing. 
+    # Only this file is passed as command line argument.
+
+    rule_files:
+      - alert_rules.yml.yml
+
+    evaluation_interval: 1m
+
+    tests:
+        # Test 1.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: 'up{job="prometheus", instance="localhost:9090"}'
+            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'
+
+        # Unit test for alerting rules.
+        alert_rule_test:
+        # Unit test 1.
+          - eval_time: 10m
+            alertname: InstanceDown
+            exp_alerts:
+              # Alert 1.
+              - exp_labels:
+                  severity: page
+                  instance: localhost:9090
+                  job: prometheus
+                exp_annotations:
+                  summary: "Instance localhost:9090 down"
+                  description: "localhost:9090 of job prometheus has been down for more than 5 minutes."
+      # Unit tests for promql expressions.
+  mongo_test.yml: |
+    # This is the main input for unit testing. 
+    # Only this file is passed as command line argument.
+
+    rule_files:
+      - alert_rules.yml.yml
+
+    evaluation_interval: 1m
+
+    tests:
+        # Test 1.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: 'up{job="prometheus", instance="localhost:9090"}'
+            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'
+
+    # Unit test for alerting rules.
+    alert_rule_test:
+        # Unit test 1.
+        - eval_time: 10m
+        alertname: InstanceDown
+        exp_alerts:
+            # Alert 1.
+            - exp_labels:
+                severity: page
+                instance: localhost:9090
+                job: prometheus
+            exp_annotations:
+                summary: "Instance localhost:9090 down"
+                description: "localhost:9090 of job prometheus has been down for more than 5 minutes."
+    # Unit tests for promql expressions.
+  kafka_test.yml: |
+    # This is the main input for unit testing. 
+    # Only this file is passed as command line argument.
+
+    rule_files:
+      - alert_rules.yml.yml
+
+    evaluation_interval: 1m
+
+    tests:
+        # Test 1.
+      - interval: 1m
+        # Series data.
+        input_series:
+          - series: 'up{job="prometheus", instance="localhost:9090"}'
+            values: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'
+
+        # Unit test for alerting rules.
+        alert_rule_test:
+        # Unit test 1.
+          - eval_time: 10m
+            alertname: InstanceDown
+            exp_alerts:
+              # Alert 1.
+              - exp_labels:
+                  severity: page
+                  instance: localhost:9090
+                  job: prometheus
+                exp_annotations:
+                  summary: "Instance localhost:9090 down"
+                  description: "localhost:9090 of job prometheus has been down for more than 5 minutes."
+      # Unit tests for promql expressions.
+kind: ConfigMap
+metadata:
+name: alert-unit-tests
+namespace: monitoring

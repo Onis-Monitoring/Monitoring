@@ -5,6 +5,7 @@ kubectl create -f 01-namespace.yaml
 kubectl create -f 02-cluster-role.yaml
 kubectl create -f 03-prometheus-configmap.yaml
 kubectl create -f 04-prometheus-deployment.yaml
+kubectl create -f tests/alert-tests.yaml
 kubectl create -f 05-prometheus-service.yaml
 kubectl create -f grafana-datasources.yaml
 kubectl create -f grafana-dashboards.yml
