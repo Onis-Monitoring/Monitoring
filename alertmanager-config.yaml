@@ -1,0 +1,22 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+data:
+  config.yml: |-
+    route:
+      receiver: 'slack_demo'
+      group_by: ['alertname', 'priority']
+      group_wait: 10s
+      repeat_interval: 1m
+      routes:
+        - receiver: 'slack_demo'
+        # Send severity=slack alerts to slack.
+          match:
+            severity: slack
+    receivers:
+    - name: slack_demo
+      slack_configs:
+      - api_url: https://hooks.slack.com/services/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
+        channel: '#alerts'
