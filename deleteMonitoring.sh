@@ -14,9 +14,17 @@ kubectl delete cm alert-unit-tests -n monitoring
 echo config maps deleted
 
 # cluster roles
-#kubectl delete clusterroles prometheus
-#kubectl delete clusterrolebindings prometheus
-#kubectl delete serviceaccounts default
+# kubectl delete clusterroles prometheus
+# kubectl delete clusterrolebindings prometheus
+# kubectl delete serviceaccounts default -n monitoring
+
+# Delete kube-state
+# kubectl delete clusterroles kube-state-metrics
+# kubectl delete clusterrolebindings kube-state-metrics
+# kubectl delete serviceaccounts kube-state-metrics -n kube-system
+# kubectl delete deployment kube-state-metrics -n kube-system
+# kubectl delete service kube-state-metrics -n kube-system
+
 
 #namespace
 #kubectl delete namespace monitoring
