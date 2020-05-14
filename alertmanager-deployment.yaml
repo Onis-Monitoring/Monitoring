@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: alertmanager
-        image: prom/alertmanager:v0.20.0
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/prom/alertmanager:v0.20.0
         #args:
         # - "--config.file=/etc/alertmanager/config.yml"
         #  - "--storage.path=/alertmanager"

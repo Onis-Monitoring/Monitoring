@@ -22,7 +22,7 @@ spec:
         name: grafana
     spec:
       containers:
-      - image: grafana/grafana:6.5.3
+      - image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/grafana/grafana:6.5.3
         imagePullPolicy: IfNotPresent
         name: grafana
         ports:

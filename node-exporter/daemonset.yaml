@@ -21,7 +21,7 @@ spec:
       serviceAccountName: node-exporter
       containers:
         - name: prometheus-node-exporter
-          image: quay.io/prometheus/node-exporter:v0.17.0
+          image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/quay.io/prometheus/node-exporter:v0.17.0
           imagePullPolicy: Always
           args:
             - --path.procfs=/host/proc
