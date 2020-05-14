@@ -49,8 +49,6 @@ spec:
           name: data
         - mountPath: /etc/prometheus
           name: config-volume
-        - mountPath: /etc/prometheus/tests
-          name: alert-unit-tests-volume
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
@@ -60,6 +58,3 @@ spec:
       - configMap:
           name: prometheus-config
         name: config-volume
-      - configMap:
-          name: alert-unit-tests
-        name: alert-unit-tests-volume

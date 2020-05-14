@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: node-exporter
+    app.kubernetes.io/name: node-exporter
+    app.kubernetes.io/component: node-exporter
+spec:
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      k8s-app: node-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: node-exporter
+    spec:
+      serviceAccountName: node-exporter
+      containers:
+        - name: prometheus-node-exporter
+          image: quay.io/prometheus/node-exporter:v0.17.0
+          imagePullPolicy: Always
+          args:
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+          ports:
+            - name: metrics
+              containerPort: 9100
+              hostPort: 9100
+          volumeMounts:
+            - name: proc
+              mountPath: /host/proc
+              readOnly:  true
+            - name: sys
+              mountPath: /host/sys
+              readOnly: true
+          # Resource limits and requests of `10m` of CPU and `50Mi` of memory
+          resources:
+            limits:
+              cpu: 10m
+              memory: 50Mi
+            requests:
+              cpu: 10m
+              memory: 50Mi
+      # The `hostNetwork` and `hostPID` Pod Security parameters are set to `true` to allow `node-exporter` 
+      # to  access the host process ID namespace and Node network namespace, which are required for scraping Node metrics
+      hostNetwork: true
+      hostPID: true
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
