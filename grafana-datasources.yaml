@@ -16,6 +16,15 @@ data:
                 "type": "prometheus",
                 "url": "http://prometheus:9090",
                 "version": 1
+            },
+            {
+               "access":"proxy",
+                "editable": true,
+                "name": "prometheus-sigma",
+                "orgId": 2,
+                "type": "prometheus",
+                "url": "http://prometheus-sigma:80",
+                "version": 1
             }
         ]
     }

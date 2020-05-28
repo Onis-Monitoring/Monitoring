@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snmp-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snmp-exporter
+  template:
+    metadata:
+      labels:
+        app: snmp-exporter
+    spec:
+      containers:
+      - image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/prom/snmp-exporter:v0.18.0
+        command: ["/bin/snmp_exporter"]
+        args: ["--config.file=/etc/snmp_exporter/snmp.yml"]
+        name: snmp-exporter
+        ports:
+        - containerPort: 9116
+          name: metrics
+        volumeMounts:
+          - mountPath: /etc/snmp_exporter
+            name: config-volume
+      imagePullSecrets:
+          - name: regcred
+      volumes:
+        - name: config-volume
+          configMap:
+            name: snmp-config
+        

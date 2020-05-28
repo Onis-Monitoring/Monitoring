@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-storage
+  namespace: monitoring
+  labels:
+    app: grafana
+spec:
+  storageClassName: pks-storage
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi

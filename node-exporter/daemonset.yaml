@@ -17,6 +17,10 @@ spec:
     metadata:
       labels:
         k8s-app: node-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9101"
+        prometheus.io/scrape: "true"
     spec:
       serviceAccountName: node-exporter
       containers:
@@ -26,10 +30,11 @@ spec:
           args:
             - --path.procfs=/host/proc
             - --path.sysfs=/host/sys
+            - --web.listen-address=:9101
           ports:
             - name: metrics
-              containerPort: 9100
-              hostPort: 9100
+              containerPort: 9101
+              hostPort: 9101
           volumeMounts:
             - name: proc
               mountPath: /host/proc
@@ -49,6 +54,8 @@ spec:
       # to  access the host process ID namespace and Node network namespace, which are required for scraping Node metrics
       hostNetwork: true
       hostPID: true
+      imagePullSecrets:
+        - name: regcred
       volumes:
         - name: proc
           hostPath:

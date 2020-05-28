@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://192.168.122.7:31014"]
+        ports:
+        - containerPort: 9104
+          name: http

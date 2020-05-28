@@ -17,9 +17,17 @@ spec:
       containers:
       - name: alertmanager
         image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/prom/alertmanager:v0.20.0
-        #args:
-        # - "--config.file=/etc/alertmanager/config.yml"
-        #  - "--storage.path=/alertmanager"
+        args:
+        - --config.file=/etc/alertmanager/alertmanager.yml
+        # - --storage.path=/data
+        - "--cluster.advertise-address=$(POD_IP):6783"
+        # - "--web.external-url=/"
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
         ports:
         - containerPort: 9093
           protocol: TCP
@@ -31,17 +39,16 @@ spec:
             cpu: 100m
             memory: 100Mi
         volumeMounts:
-        - mountPath: /var/lib/alertmanager
-          name: data
-        #- name: config-volume
-        #  mountPath: /etc/alertmanager
-        #- name: alertmanager
-        #  mountPath: /alertmanager
+        # - mountPath: /var/lib/alertmanager
+        #   name: data
+        - name: config-volume
+          mountPath: /etc/alertmanager
+      imagePullSecrets:
+        - name: regcred
       volumes:
-      - emptyDir: {}
-        name: data
-      #- name: config-volume
-      #  configMap:
-      #    name: alertmanager-config
-      #- name: alertmanager
-      #  emptyDir: {}
+      # - emptyDir: {}
+      #   name: data
+      - name: config-volume
+        configMap:
+          defaultMode: 420
+          name: alertmanager-config
