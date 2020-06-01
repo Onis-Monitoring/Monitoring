@@ -359,6 +359,30 @@ data:
           annotations:
             summary: "Kubernetes pod crash looping (instance {{ $labels.instance }})"
             description: "Pod {{ $labels.pod }} is crash looping\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+        - alert: KubernetesStatefulsetDown
+          expr: (kube_statefulset_status_replicas_ready / kube_statefulset_status_replicas_current) != 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Kubernetes StatefulSet down (instance {{ $labels.instance }})"
+            description: "A StatefulSet went down"
+        - alert: KubernetesMemoryPressure
+          expr: kube_node_status_condition{condition="MemoryPressure",status="true"} == 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Kubernetes memory pressure (instance {{ $labels.instance }})"
+            description: "{{ $labels.node }} has MemoryPressure condition"
+        - alert: KubernetesDiskPressure
+          expr: kube_node_status_condition{condition="DiskPressure",status="true"} == 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Kubernetes disk pressure (instance {{ $labels.instance }})"
+            description: "{{ $labels.node }} has DiskPressure condition"
       - name: mongoDB.rules
         rules:
         - alert: MongodbNumberCursorsOpen
@@ -393,6 +417,62 @@ data:
           annotations:
             summary: "MongoDB virtual memory usage (instance {{ $labels.instance }})"
             description: "High memory usage\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+        - alert: MongodbReplicationLag
+          expr: avg(mongodb_replset_member_optime_date{state="PRIMARY"}) - avg(mongodb_replset_member_optime_date{state="SECONDARY"}) > 10
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication lag (instance {{ $labels.instance }})"
+            description: "Mongodb replication lag is more than 10s\n VALUE = {{ $value }}\n LABELS: {{ $labels }}"
+        - alert: MongodbReplicationHeadroom
+          expr: (avg(mongodb_replset_oplog_tail_timestamp - mongodb_replset_oplog_head_timestamp) - (avg(mongodb_replset_member_optime_date{state="PRIMARY"}) - avg(mongodb_replset_member_optime_date{state="SECONDARY"}))) <= 0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication headroom (instance {{ $labels.instance }})"
+            description: "MongoDB replication headroom is <= 0\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+        - alert: MongodbReplicationStatus3
+          expr: mongodb_replset_member_state == 3
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication Status 3 (instance {{ $labels.instance }})"
+            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
+        - alert: MongodbReplicationStatus6
+          expr: mongodb_replset_member_state == 6
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication Status 6 (instance {{ $labels.instance }})"
+            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
+        - alert: MongodbReplicationStatus8
+          expr: mongodb_replset_member_state == 8
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication Status 8 (instance {{ $labels.instance }})"
+            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
+        - alert: MongodbReplicationStatus9
+          expr: mongodb_replset_member_state == 9
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication Status 9 (instance {{ $labels.instance }})"
+            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
+        - alert: MongodbReplicationStatus10
+          expr: mongodb_replset_member_state == 10
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "MongoDB replication Status 10 (instance {{ $labels.instance }})"
+            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
       - name: minio.rules
         rules:
         - alert: MinioDiskOffline
@@ -429,6 +509,160 @@ data:
           annotations:
             summary: "Kafka consumers group (instance {{ $labels.instance }})"
             description: "Kafka consumers group\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - name: matrixxx.rules
+        rules:
+        - alert: sysAgentShutDown
+          expr: sum(sysAgentShutdown) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "SNMP Agent shutting down (instance {{ $labels.instance }})"
+            description: "SNMP Agent has gone into shutting down status"
+        - alert: sysAgentStart
+          expr: sum(sysAgentStart) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "SNMP Agent went to shutdown and start status (instance {{ $labels.instance }})"
+            description: "SNMP Agent is in start status"
+        - alert: sysServiceRestart
+          expr: sum(sysServiceRestart) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "SNMP Agent went has been restarted(instance {{ $labels.instance }})"
+            description: "SNMP Agent has been restarted"
+        - alert: sysServiceReboot
+          expr: sum(sysServiceReboot) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "SNMP Agent services has been rebooted(instance {{ $labels.instance }})"
+            description: "SNMP Agent service has been rebooted"
+        - alert: sysServerReboot
+          expr: sum(sysServerReboot) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "SNMP server rebooted(instance {{ $labels.instance }})"
+            description: "SNMP server has been rebooted"
+        - alert: sysServiceDown
+          expr: sum(sysServiceDown) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Critical System Service has shutdown(instance {{ $labels.instance }})"
+            description: "Critical System Service has shutdown"
+        - alert: sysProcessingErrorAlert
+          expr: sum(sysProcessingErrorAlert) != 0
+          for: 5m
+          labels:
+            severity: minor
+          annotations:
+            summary: "Processing error has ocurred(instance {{ $labels.instance }})"
+            description: "Processing error has ocurred"
+        - alert: sysThresholdCrossingAlert
+          expr: sum(sysThresholdCrossingAlert) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "Maximum response time reached(instance {{ $labels.instance }})"
+            description: "Maximum response time reached"
+        - alert: sysClusterNodeExited
+          expr: sum(sysClusterNodeExited) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Node has exited the cluster(instance {{ $labels.instance }})"
+            description: "Node has exited the cluster"
+        - alert: sysClusterNodeJoined
+          expr: sum(sysClusterNodeJoined) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Node has joined the cluster(instance {{ $labels.instance }})"
+            description: "Node has joined the cluster"
+        - alert: sysClusterNodeServiceDown
+          expr: sum(sysClusterNodeServiceDown) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "Cluster memeber not processing requests (instance {{ $labels.instance }})"
+            description: "Cluster memeber not processing requests"
+        - alert: sysClusterNodeServiceUp
+          expr: sum(sysClusterNodeServiceUp) != 0
+          for: 5m
+          labels:
+            severity: major
+          annotations:
+            summary: "Cluster memeber ready to process service requests (instance {{ $labels.instance }})"
+            description: "Cluster memeber ready to process service requests"
+        - alert: sysClusterPeerActiveError
+          expr: sum(sysClusterPeerActiveError) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Primary and Seconday clusters are both active (instance {{ $labels.instance }})"
+            description: "Primary and Seconday clusters are both active"
+        - alert: sysClusterPeerDisconnected
+          expr: sum(sysClusterPeerDisconnected) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Peer cluster has become disconnected (instance {{ $labels.instance }})"
+            description: "Peer cluster has become disconnected"
+        - alert: sysClusterPeerConnected
+          expr: sum(sysClusterPeerConnected) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Peer cluster has connected (instance {{ $labels.instance }})"
+            description: "Peer cluster has connected"
+        - alert: sysClusterHaStateChange
+          expr: sum(sysClusterHaStateChange) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "H/A state has changed (instance {{ $labels.instance }})"
+            description: "Sent when the H/A state of a cluster has changed"
+        - alert: sysClusterHaPeerActiveStateConflict
+          expr: sum(sysClusterHaPeerActiveStateConflict) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "both peer clusters are in HA ACTIVE state(instance {{ $labels.instance }})"
+            description: "Sent when both peer clusters are in the H/A ACTIVE state, and a split-brain situation has occurred"
+        - alert: sysClusterHaPeerClusterIdReplayConflict
+          expr: sum(sysClusterHaPeerClusterIdReplayConflict) != 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Two Stanby clusters hace same transaction replay source(instance {{ $labels.instance }})"
+            description: "Sent when two H/A STANDBY clusters have same transaction replay source"
+        - alert: sysMemoryAvailableThresholdMb
+          expr: sum(sysMemoryAvailableThresholdMb) < 50
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Sent when the minimum available memory reached in MB {{ $labels.instance }})"
+            description: "Sent when the minimum available memory reached in MB."
 kind: ConfigMap
 metadata:
   name: prometheus-config
