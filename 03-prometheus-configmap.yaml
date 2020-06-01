@@ -558,7 +558,7 @@ data:
             severity: critical
           annotations:
             summary: "Critical System Service has shutdown(instance {{ $labels.instance }})"
-            description: "Critical System Service has shutdown"
+            description: "Critical System Service has shutdown status"
         - alert: sysProcessingErrorAlert
           expr: sum(sysProcessingErrorAlert) != 0
           for: 5m
