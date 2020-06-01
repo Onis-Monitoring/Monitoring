@@ -517,7 +517,7 @@ data:
           labels:
             severity: major
           annotations:
-            summary: "SNMP Agent shutting down (instance {{ $labels.instance }})"
+            summary: "SNMP Agent is shutting down (instance {{ $labels.instance }})"
             description: "SNMP Agent has gone into shutting down status"
         - alert: sysAgentStart
           expr: sum(sysAgentStart) != 0
