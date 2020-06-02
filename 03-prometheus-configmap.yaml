@@ -35,18 +35,92 @@ data:
       static_configs:
         - targets: ['snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116']
 
-    - job_name: 'SNMP-exporter-2'
-      metrics_path: /snmp
-      static_configs:
-        - targets: ['snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116']
-
-    - job_name: 'snmp-test'
+    - job_name: 'matrixx_mib'
       static_configs:
         - targets:
-          - 10.100.200.102  # SNMP device.
+          - ckpt-s1e1-0.attmdev.svc.cluster.local:14700
+          - proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - publ-s1e1-0.attmdev.svc.cluster.local:14700
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116
+    
+    - job_name: 'matrixx_common_mib'
+      static_configs:
+        - targets:
+          - ckpt-s1e1-0.attmdev.svc.cluster.local:14700
+          - proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - publ-s1e1-0.attmdev.svc.cluster.local:14700
+      metrics_path: /snmp
+      params:
+        module: [matrixx_common_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116
+
+    - job_name: 'matrixx_sysinfo_mib'
+      static_configs:
+        - targets:
+          - ckpt-s1e1-0.attmdev.svc.cluster.local:14700
+          - proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - publ-s1e1-0.attmdev.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.attmdev.svc.cluster.local:14700
+          - trart-0.attmdev.svc.cluster.local:14700
+          - trart-1.attmdev.svc.cluster.local:14700
+      metrics_path: /snmp
+      params:
+        module: [matrixx_sysinfo_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116
+
+    - job_name: 'matrixx_tra_mib'
+      static_configs:
+        - targets:
+          - tralb-proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.attmdev.svc.cluster.local:14700
+          - trart-0.attmdev.svc.cluster.local:14700
+          - trart-1.attmdev.svc.cluster.local:14700
+      metrics_path: /snmp
+      params:
+        module: [matrixx_tra_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter-service.monitoring-mtx.svc.cluster.local:9116
+
+    - job_name: 'matrixx_generalservice_mib'
+      static_configs:
+        - targets:
+          - ckpt-s1e1-0.attmdev.svc.cluster.local:14700
+          - proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - publ-s1e1-0.attmdev.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.attmdev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.attmdev.svc.cluster.local:14700
+          - trart-0.attmdev.svc.cluster.local:14700
+          - trart-1.attmdev.svc.cluster.local:14700
+      metrics_path: /snmp
+      params:
+        module: [matrixx_generalservice_mib]
       relabel_configs:
         - source_labels: [__address__]
           target_label: __param_target
