@@ -6,7 +6,7 @@ metadata:
   name: prometheus
   namespace: monitoring
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       name: prometheus
@@ -28,7 +28,7 @@ spec:
       - args:
         - --config.file=/etc/prometheus/prometheus.yml
         - --storage.tsdb.path=/prometheus
-        - --storage.tsdb.retention=24h
+        - --storage.tsdb.retention.time=30d
         command:
         - /bin/prometheus
         image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2

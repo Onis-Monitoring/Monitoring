@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   capacity:
-    storage: 10Gi
+    storage: 90Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -27,4 +27,4 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 10Gi
+      storage: 90Gi

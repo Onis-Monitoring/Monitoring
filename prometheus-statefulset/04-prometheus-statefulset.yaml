@@ -38,6 +38,7 @@ spec:
           args:
             - --config.file=/etc/prometheus/prometheus.yml
             - --storage.tsdb.path=/data
+            - --storage.tsdb.retention.time=30d
             - --web.console.libraries=/etc/prometheus/console_libraries
             - --web.console.templates=/etc/prometheus/consoles
             - --web.enable-lifecycle
@@ -96,4 +97,4 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: "15Gi"
+          storage: "90Gi"
