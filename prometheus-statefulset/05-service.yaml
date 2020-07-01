@@ -17,6 +17,6 @@ spec:
   # Ensures clients are routed to the same Prometheus Pod, which is necessary to get consistent dashboards in a highly-available setup. 
   # To learn more about Prometheus high availability, 
   # consult https://github.com/coreos/prometheus-operator/blob/master/Documentation/high-availability.md#prometheus
-  sessionAffinity: ClientIP
+  sessionAffinity: LoadBalancer
   selector:
     k8s-app: prometheus

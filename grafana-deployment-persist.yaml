@@ -25,8 +25,8 @@ spec:
       - image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/grafana/grafana:6.5.3
         imagePullPolicy: IfNotPresent
         name: grafana
-        securityContext:
-          fsGroup: 472
+        # securityContext:
+        #   fsGroup: 472
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -49,7 +49,8 @@ spec:
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
-      securityContext: {}
+      securityContext:
+        fsGroup: 472
       terminationGracePeriodSeconds: 30
       volumes:
       - name: grafana-storage

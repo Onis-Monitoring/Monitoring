@@ -69,6 +69,8 @@ spec:
             subPath: ""
           - mountPath: /etc/prometheus
             name: config-volume
+      imagePullSecrets:
+      - name: regcred
       terminationGracePeriodSeconds: 300
       volumes:
         # The Prometheus ConfigMap is mounted into the Pods as a volume at `/etc/config`

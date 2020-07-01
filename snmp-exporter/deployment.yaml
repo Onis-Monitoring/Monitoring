@@ -16,7 +16,7 @@ spec:
       containers:
       - image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/prom/snmp-exporter:v0.18.0
         command: ["/bin/snmp_exporter"]
-        args: ["--config.file=/etc/snmp_exporter/snmp.yml"]
+        args: ["--config.file=/etc/snmp_exporter/matrixx-snmp.yml"]
         name: snmp-exporter
         ports:
         - containerPort: 9116
@@ -29,5 +29,5 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: snmp-config
+            name: snmp-exporter-conf
         
