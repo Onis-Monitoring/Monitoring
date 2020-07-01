@@ -12,28 +12,28 @@ spec:
   resources:
     requests:
       storage: 10Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  annotations:
-    pv.kubernetes.io/bind-completed: "yes"
-    pv.kubernetes.io/bound-by-controller: "yes"
-    volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume
-  creationTimestamp: null
-  finalizers:
-  - kubernetes.io/pvc-protection
-  labels:
-    app: grafana
-  name: grafana-storage
-  selfLink: /api/v1/namespaces/monitoring/persistentvolumeclaims/grafana-storage
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: pks-storage
-  volumeMode: Filesystem
-  volumeName: pvc-52b37e01-734d-4274-98d9-4ef3525fba01
-status: {} 
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   annotations:
+#     pv.kubernetes.io/bind-completed: "yes"
+#     pv.kubernetes.io/bound-by-controller: "yes"
+#     volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume
+#   creationTimestamp: null
+#   finalizers:
+#   - kubernetes.io/pvc-protection
+#   labels:
+#     app: grafana
+#   name: grafana-storage
+#   selfLink: /api/v1/namespaces/monitoring/persistentvolumeclaims/grafana-storage
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi
+#   storageClassName: pks-storage
+#   volumeMode: Filesystem
+#   volumeName: pvc-52b37e01-734d-4274-98d9-4ef3525fba01
+# status: {} 
