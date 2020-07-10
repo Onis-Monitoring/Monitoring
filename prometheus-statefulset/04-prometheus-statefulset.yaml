@@ -9,7 +9,7 @@ metadata:
   namespace: monitoring
 spec:
   serviceName: "prometheus"
-  replicas: 2
+  replicas: 1
   podManagementPolicy: "Parallel"
   updateStrategy:
     type: "RollingUpdate"

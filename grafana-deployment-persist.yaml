@@ -49,6 +49,10 @@ spec:
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
+      # hostAliases:
+      # - ip: 10.150.152.74
+      #   hostnames:
+      #   - sigmasit-provisioning-prereq-pronetheus.attmx-ne.local
       securityContext:
         fsGroup: 472
       terminationGracePeriodSeconds: 30

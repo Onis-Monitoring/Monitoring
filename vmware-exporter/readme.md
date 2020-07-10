@@ -10,6 +10,6 @@ The pod has prometheus annotations so when there's a prometheus on the cluster i
 
 ```
 read -s VSPHERE_PASSWORD
-kubectl create secret generic vmware-exporter-password --from-literal=VSPHERE_PASSWORD=$VSPHERE_PASSWORD
+kubectl create secret generic vmware-exporter-password --from-literal=VSPHERE_PASSWORD=Password@1 -n monitoring
 kubectl apply -f . 
 ```

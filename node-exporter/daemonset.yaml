@@ -17,10 +17,6 @@ spec:
     metadata:
       labels:
         k8s-app: node-exporter
-      annotations:
-        prometheus.io/path: "/metrics"
-        prometheus.io/port: "9101"
-        prometheus.io/scrape: "true"
     spec:
       serviceAccountName: node-exporter
       containers:

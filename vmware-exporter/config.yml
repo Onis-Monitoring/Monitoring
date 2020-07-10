@@ -3,10 +3,11 @@ metadata:
   labels:
     app: vmware-exporter
   name: vmware-exporter-config
+  namespace: monitoring
 apiVersion: v1
 data:
-  VSPHERE_USER: "<USER>"
-  VSPHERE_HOST: "<HOST>"
+  VSPHERE_USER: "Onis_User@vsphere.local"
+  VSPHERE_HOST: "paas-vcsa-01.attmx-ne.local"
   VSPHERE_IGNORE_SSL: "True"
   VSPHERE_COLLECT_HOSTS: "True"
   VSPHERE_COLLECT_DATASTORES: "True"
