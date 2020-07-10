@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-1
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9105"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://shard1-0.mongodb.svc.cluster.local:27018,mongodb://shard1-1.mongodb.svc.cluster.local:27018"]
+        ports:
+        - containerPort: 9105
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-2
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9106"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9106", "--mongodb.uri", "mongodb://shard2-0.mongodb.svc.cluster.local:27018,mongodb://shard2-1.mongodb.svc.cluster.local:27018"]
+        ports:
+        - containerPort: 9106
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-3
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9107"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9107", "--mongodb.uri", "mongodb://shard3-0.mongodb.svc.cluster.local:27018,mongodb://shard3-1.mongodb.svc.cluster.local:27018"]
+        ports:
+        - containerPort: 9107
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-4
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9108", "--mongodb.uri", "mongodb://shard4-0.mongodb.svc.cluster.local:27018,mongodb://shard4-1.mongodb.svc.cluster.local:27018"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
