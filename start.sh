@@ -33,6 +33,7 @@ kubectl create -f node-exporter/
 
 echo "Installing mongodb-exporter"
 kubectl create -f mongodb-exporter/deployment.yaml
+kubectl create -f mongodb-exporter/deployment-shards.yaml
 # kubectl create -f mongodb-exporter/service.yaml
 
 echo "Installing snmp-exporter"
@@ -40,7 +41,8 @@ kubectl create -f snmp-exporter/configmap.yaml
 kubectl create -f snmp-exporter/deployment.yaml
 kubectl create -f snmp-exporter/service.yaml
 
-# echo "Installing vmware-exporter"
-# kubectl create -f vmware-exporter/
+echo "Installing vmware-exporter"
+kubectl create secret generic vmware-exporter-password --from-literal=VSPHERE_PASSWORD=Password@1 -n monitoring
+kubectl create -f vmware-exporter/vmware-exporter.yaml
 
 kubectl get all -n monitoring

@@ -10,7 +10,9 @@ kubectl delete cm grafana-dashboard-definitions -n monitoring
 kubectl delete cm grafana-dashboards -n monitoring
 kubectl delete cm grafana-datasources -n monitoring
 kubectl delete cm prometheus-config -n monitoring
-kubectl delete cm alert-unit-tests -n monitoring
+kubectl delete cm vmware-exporter-config -n monitoring
+kubectl delete cm alertmanager-config -n monitoring
+kubectl delete cm snmp-exporter-conf -n monitoring
 echo config maps deleted
 
 # cluster roles
