@@ -3254,6 +3254,734 @@ data:
           resolved. - 1.3.6.1.4.1.35838.1.2.1.2.14.1.8
       auth:
         community: public
+    matrixx_rc_mib:
+      get:
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.12.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.12.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.12.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.10.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.11.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.4.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.5.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.6.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.7.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.8.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.9.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3.0
+      metrics:
+      - name: rcSubMdbInsertCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.1
+        type: counter
+        help: 'Subscriber table: active insert operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.1'
+      - name: rcSubMdbInsertAlrExistsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.10
+        type: counter
+        help: 'Subscriber table: record already exists errors during insert new record
+          operation since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.10'
+      - name: rcSubMdbInsertNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.11
+        type: counter
+        help: 'Subscriber table: record not found errors during record update operation
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.11'
+      - name: rcSubMdbInsertErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.12
+        type: counter
+        help: 'Subscriber table: errors detected during insert operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.12'
+      - name: rcSubMdbInsertCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.2
+        type: counter
+        help: 'Subscriber table: insert operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.2'
+      - name: rcSubMdbInsertAllocNrpCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.3
+        type: counter
+        help: 'Subscriber table: allocated records during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.3'
+      - name: rcSubMdbInsertKeyFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.4
+        type: counter
+        help: 'Subscriber table: keys found during insert operation since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.4'
+      - name: rcSubMdbInsertValEqCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.5
+        type: counter
+        help: 'Subscriber table: found matching value during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.5'
+      - name: rcSubMdbInsertUpdateCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.6
+        type: counter
+        help: 'Subscriber table: record updated during insert operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.6'
+      - name: rcSubMdbInsertXchgCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.7
+        type: counter
+        help: 'Subscriber table: record exchanged during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.7'
+      - name: rcSubMdbInsertNewCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.8
+        type: counter
+        help: 'Subscriber table: inserted new records during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.8'
+      - name: rcSubMdbInsertNoMemCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.9
+        type: counter
+        help: 'Subscriber table: free record unavailable errors during insert operation
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.9'
+      - name: rcSubMdbFetchCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.1
+        type: counter
+        help: 'Subscriber table: active fetch operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.1'
+      - name: rcSubMdbFetchCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.2
+        type: counter
+        help: 'Subscriber table: fetch operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.2'
+      - name: rcSubMdbFetchRecFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.3
+        type: counter
+        help: 'Subscriber table: records found during fetch operations since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.3'
+      - name: rcSubMdbFetchNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.4
+        type: counter
+        help: 'Subscriber table: records not found during fetch operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.4'
+      - name: rcSubMdbFetchErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.5
+        type: counter
+        help: 'Subscriber table: errors detected during fetch operations since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.2.5'
+      - name: rcSubMdbEraseCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.1
+        type: counter
+        help: 'Subscriber table: active erase operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.1'
+      - name: rcSubMdbEraseCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.2
+        type: counter
+        help: 'Subscriber table: erase operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.2'
+      - name: rcSubMdbEraseKMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.3
+        type: counter
+        help: 'Subscriber table: erase with key-match operations since start of RC. -
+          1.3.6.1.4.1.35838.1.3.1.2.1.1.3.3'
+      - name: rcSubMdbEraseKPMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.4
+        type: counter
+        help: 'Subscriber table: erase with key prefix match operations since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.4'
+      - name: rcSubMdbEraseAllCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.5
+        type: counter
+        help: 'Subscriber table: erase all records operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.5'
+      - name: rcSubMdbEraseAIHBCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.6
+        type: counter
+        help: 'Subscriber table: erase all records in hash bucket operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.6'
+      - name: rcSubMdbEraseNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.7
+        type: counter
+        help: 'Subscriber table: records not found during erase operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.7'
+      - name: rcSubMdbEraseErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.8
+        type: counter
+        help: 'Subscriber table: errors detected during erase operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.3.8'
+      - name: rcSubMdbIterNewCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.1
+        type: counter
+        help: 'Subscriber table: new iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.1'
+      - name: rcSubMdbIterProcUnlockCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.10
+        type: counter
+        help: 'Subscriber table: unlocked hash buckets during iterator processing since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.10'
+      - name: rcSubMdbIterProcNextCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.11
+        type: counter
+        help: 'Subscriber table: next record operations conducted during iterator processing
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.11'
+      - name: rcSubMdbIterDelCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.2
+        type: counter
+        help: 'Subscriber table: delete iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.2'
+      - name: rcSubMdbIterProcCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.3
+        type: counter
+        help: 'Subscriber table: process iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.3'
+      - name: rcSubMdbIterProcErrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.4
+        type: counter
+        help: 'Subscriber table: errors detected during iterator processing calls since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.4'
+      - name: rcSubMdbIterProcEofCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.5
+        type: counter
+        help: 'Subscriber table: eof detected during iterator processing calls since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.5'
+      - name: rcSubMdbIterProcShmIdCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.6
+        type: counter
+        help: 'Subscriber table: invalid SHM id detected during iterator processing calls
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.6'
+      - name: rcSubMdbIterProcValCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.7
+        type: counter
+        help: 'Subscriber table: iterator processing returns value since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.7'
+      - name: rcSubMdbIterProcPtrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.8
+        type: counter
+        help: 'Subscriber table: iterator processing returns pointer since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.8'
+      - name: rcSubMdbIterProcEraseCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.9
+        type: counter
+        help: 'Subscriber table: erased records during iterator processing since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.4.9'
+      - name: rcSubMdbGcProcToutMilsec
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.1
+        type: counter
+        help: 'Subscriber table: current garbage collection processing timeout in milliseconds.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.1'
+      - name: rcSubMdbGcLoopsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.2
+        type: counter
+        help: 'Subscriber table: garbage collection processing loop counter since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.2'
+      - name: rcSubMdbGcFreeRecCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.3
+        type: counter
+        help: 'Subscriber table: records erased during garbage collection since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.3'
+      - name: rcSubMdbMainTotalNumberOfRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1
+        type: counter
+        help: 'Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1'
+      - name: rcSubMdbMainNumberOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2
+        type: counter
+        help: 'Subscriber table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2'
+      - name: rcSubMdbMainPercentageOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3
+        type: counter
+        help: 'Subscriber table: percentage [0-100] of available records in this table.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3'
+      - name: rcSesMdbInsertCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.1
+        type: counter
+        help: 'Session table: active insert operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.1'
+      - name: rcSesMdbInsertAlrExistsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.10
+        type: counter
+        help: 'Session table: record already exists errors during insert new record operation
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.10'
+      - name: rcSesMdbInsertNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.11
+        type: counter
+        help: 'Session table: record not found errors during record update operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.11'
+      - name: rcSesMdbInsertErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.12
+        type: counter
+        help: 'Session table: errors detected during insert operation since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.12'
+      - name: rcSesMdbInsertCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.2
+        type: counter
+        help: 'Session table: insert operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.2'
+      - name: rcSesMdbInsertAllocNrpCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.3
+        type: counter
+        help: 'Session table: allocated records during insert operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.3'
+      - name: rcSesMdbInsertKeyFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.4
+        type: counter
+        help: 'Session table: keys found during insert operation since start of RC. -
+          1.3.6.1.4.1.35838.1.3.1.2.1.2.1.4'
+      - name: rcSesMdbInsertValEqCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.5
+        type: counter
+        help: 'Session table: found matching value during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.5'
+      - name: rcSesMdbInsertUpdateCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.6
+        type: counter
+        help: 'Session table: record updated during insert operation since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.6'
+      - name: rcSesMdbInsertXchgCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.7
+        type: counter
+        help: 'Session table: record exchanged during insert operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.7'
+      - name: rcSesMdbInsertNewCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.8
+        type: counter
+        help: 'Session table: inserted new records during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.8'
+      - name: rcSesMdbInsertNoMemCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.9
+        type: counter
+        help: 'Session table: free record unavailable errors during insert operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.9'
+      - name: rcSesMdbFetchCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.1
+        type: counter
+        help: 'Session table: active fetch operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.1'
+      - name: rcSesMdbFetchCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.2
+        type: counter
+        help: 'Session table: fetch operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.2'
+      - name: rcSesMdbFetchRecFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.3
+        type: counter
+        help: 'Session table: records found during fetch operations since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.3'
+      - name: rcSesMdbFetchNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.4
+        type: counter
+        help: 'Session table: records not found during fetch operations since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.4'
+      - name: rcSesMdbFetchErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.5
+        type: counter
+        help: 'Session table: errors detected during fetch operations since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.2.5'
+      - name: rcSesMdbEraseCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.1
+        type: counter
+        help: 'Session table: active erase operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.1'
+      - name: rcSesMdbEraseCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.2
+        type: counter
+        help: 'Session table: erase operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.2'
+      - name: rcSesMdbEraseKMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.3
+        type: counter
+        help: 'Session table: erase with key-match operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.3'
+      - name: rcSesMdbEraseKPMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.4
+        type: counter
+        help: 'Session table: erase with key prefix match operations since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.4'
+      - name: rcSesMdbEraseAllCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.5
+        type: counter
+        help: 'Session table: erase all records operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.5'
+      - name: rcSesMdbEraseAIHBCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.6
+        type: counter
+        help: 'Session table: erase all records in hash bucket operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.6'
+      - name: rcSesMdbEraseNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.7
+        type: counter
+        help: 'Session table: records not found during erase operation since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.7'
+      - name: rcSesMdbEraseErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.8
+        type: counter
+        help: 'Session table: errors detected during erase operation since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.3.8'
+      - name: rcSesMdbIterNewCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.1
+        type: counter
+        help: 'Session table: new iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.1'
+      - name: rcSesMdbIterProcUnlockCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.10
+        type: counter
+        help: 'Session table: unlocked hash buckets during iterator processing since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.10'
+      - name: rcSesMdbIterProcNextCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.11
+        type: counter
+        help: 'Session table: next record operations conducted during iterator processing
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.11'
+      - name: rcSesMdbIterDelCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.2
+        type: counter
+        help: 'Session table: delete iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.2'
+      - name: rcSesMdbIterProcCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.3
+        type: counter
+        help: 'Session table: process iterator method calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.3'
+      - name: rcSesMdbIterProcErrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.4
+        type: counter
+        help: 'Session table: errors detected during iterator processing calls since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.4'
+      - name: rcSesMdbIterProcEofCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.5
+        type: counter
+        help: 'Session table: eof detected during iterator processing calls since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.5'
+      - name: rcSesMdbIterProcShmIdCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.6
+        type: counter
+        help: 'Session table: invalid SHM id detected during iterator processing calls
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.6'
+      - name: rcSesMdbIterProcValCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.7
+        type: counter
+        help: 'Session table: iterator processing returns value since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.7'
+      - name: rcSesMdbIterProcPtrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.8
+        type: counter
+        help: 'Session table: iterator processing returns pointer since start of RC. -
+          1.3.6.1.4.1.35838.1.3.1.2.1.2.4.8'
+      - name: rcSesMdbIterProcEraseCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.9
+        type: counter
+        help: 'Session table: erased records during iterator processing since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.4.9'
+      - name: rcSesMdbGcProcToutMilsec
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.1
+        type: counter
+        help: 'Session table: current garbage collection processing timeout in milliseconds.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.1'
+      - name: rcSesMdbGcLoopsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.2
+        type: counter
+        help: 'Session table: garbage collection processing loop counter since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.2'
+      - name: rcSesMdbGcFreeRecCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.3
+        type: counter
+        help: 'Session table: records erased during garbage collection since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.3'
+      - name: rcSesMdbMainTotalNumberOfRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1
+        type: counter
+        help: 'Session table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1'
+      - name: rcSesMdbMainNumberOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2
+        type: counter
+        help: 'Session table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2'
+      - name: rcSesMdbMainPercentageOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3
+        type: counter
+        help: 'Session table: percentage [0-100] of available records in this table. -
+          1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3'
+      - name: rcAdmnSubMdbInsertCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.1
+        type: counter
+        help: 'Admin Subscriber table: active insert operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.1'
+      - name: rcAdmnSubMdbInsertAlrExistsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.10
+        type: counter
+        help: 'Admin Subscriber table: record already exists errors during insert new
+          record operation since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.10'
+      - name: rcAdmnSubMdbInsertNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.11
+        type: counter
+        help: 'Admin Subscriber table: record not found errors during record update operation
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.11'
+      - name: rcAdmnSubMdbInsertErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.12
+        type: counter
+        help: 'Admin Subscriber table: errors detected during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.12'
+      - name: rcAdmnSubMdbInsertCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.2
+        type: counter
+        help: 'Admin Subscriber table: insert operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.2'
+      - name: rcAdmnSubMdbInsertAllocNrpCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.3
+        type: counter
+        help: 'Admin Subscriber table: allocated records during insert operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.3'
+      - name: rcAdmnSubMdbInsertKeyFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.4
+        type: counter
+        help: 'Admin Subscriber table: keys found during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.4'
+      - name: rcAdmnSubMdbInsertValEqCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.5
+        type: counter
+        help: 'Admin Subscriber table: found matching value during insert operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.5'
+      - name: rcAdmnSubMdbInsertUpdateCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.6
+        type: counter
+        help: 'Admin Subscriber table: record updated during insert operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.6'
+      - name: rcAdmnSubMdbInsertXchgCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.7
+        type: counter
+        help: 'Admin Subscriber table: record exchanged during insert operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.7'
+      - name: rcAdmnSubMdbInsertNewCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.8
+        type: counter
+        help: 'Admin Subscriber table: inserted new records during insert operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.8'
+      - name: rcAdmnSubMdbInsertNoMemCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.9
+        type: counter
+        help: 'Admin Subscriber table: free record unavailable errors during insert operation
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.9'
+      - name: rcAdmnSubMdbFetchCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.1
+        type: counter
+        help: 'Admin Subscriber table: active fetch operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.1'
+      - name: rcAdmnSubMdbFetchCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.2
+        type: counter
+        help: 'Admin Subscriber table: fetch operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.2'
+      - name: rcAdmnSubMdbFetchRecFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.3
+        type: counter
+        help: 'Admin Subscriber table: records found during fetch operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.3'
+      - name: rcAdmnSubMdbFetchNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.4
+        type: counter
+        help: 'Admin Subscriber table: records not found during fetch operations since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.4'
+      - name: rcAdmnSubMdbFetchErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.5
+        type: counter
+        help: 'Admin Subscriber table: errors detected during fetch operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.2.5'
+      - name: rcAdmnSubMdbEraseCallInProgress
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.1
+        type: counter
+        help: 'Admin Subscriber table: active erase operations at the moment. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.1'
+      - name: rcAdmnSubMdbEraseCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.2
+        type: counter
+        help: 'Admin Subscriber table: erase operations since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.2'
+      - name: rcAdmnSubMdbEraseKMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.3
+        type: counter
+        help: 'Admin Subscriber table: erase with key-match operations since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.3'
+      - name: rcAdmnSubMdbEraseKPMCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.4
+        type: counter
+        help: 'Admin Subscriber table: erase with key prefix match operations since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.4'
+      - name: rcAdmnSubMdbEraseAllCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.5
+        type: counter
+        help: 'Admin Subscriber table: erase all records operations since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.5'
+      - name: rcAdmnSubMdbEraseAIHBCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.6
+        type: counter
+        help: 'Admin Subscriber table: erase all records in hash bucket operations since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.6'
+      - name: rcAdmnSubMdbEraseNotFoundCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.7
+        type: counter
+        help: 'Admin Subscriber table: records not found during erase operation since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.7'
+      - name: rcAdmnSubMdbEraseErrorCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.8
+        type: counter
+        help: 'Admin Subscriber table: errors detected during erase operation since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.3.8'
+      - name: rcAdmnSubMdbIterNewCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.1
+        type: counter
+        help: 'Admin Subscriber table: new iterator method calls since start of RC. -
+          1.3.6.1.4.1.35838.1.3.1.2.1.3.4.1'
+      - name: rcAdmnSubMdbIterProcUnlockCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.10
+        type: counter
+        help: 'Admin Subscriber table: unlocked hash buckets during iterator processing
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.10'
+      - name: rcAdmnSubMdbIterProcNextCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.11
+        type: counter
+        help: 'Admin Subscriber table: next record operations conducted during iterator
+          processing since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.11'
+      - name: rcAdmnSubMdbIterDelCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.2
+        type: counter
+        help: 'Admin Subscriber table: delete iterator method calls since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.2'
+      - name: rcAdmnSubMdbIterProcCallCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.3
+        type: counter
+        help: 'Admin Subscriber table: process iterator method calls since start of RC.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.3'
+      - name: rcAdmnSubMdbIterProcErrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.4
+        type: counter
+        help: 'Admin Subscriber table: errors detected during iterator processing calls
+          since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.4'
+      - name: rcAdmnSubMdbIterProcEofCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.5
+        type: counter
+        help: 'Admin Subscriber table: eof detected during iterator processing calls since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.5'
+      - name: rcAdmnSubMdbIterProcShmIdCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.6
+        type: counter
+        help: 'Admin Subscriber table: invalid SHM id detected during iterator processing
+          calls since start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.6'
+      - name: rcAdmnSubMdbIterProcValCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.7
+        type: counter
+        help: 'Admin Subscriber table: iterator processing returns value since start of
+          RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.7'
+      - name: rcAdmnSubMdbIterProcPtrCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.8
+        type: counter
+        help: 'Admin Subscriber table: iterator processing returns pointer since start
+          of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.8'
+      - name: rcAdmnSubMdbIterProcEraseCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.9
+        type: counter
+        help: 'Admin Subscriber table: erased records during iterator processing since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.4.9'
+      - name: rcAdmnSubMdbGcProcToutMilsec
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.1
+        type: counter
+        help: 'Admin Subscriber table: current garbage collection processing timeout in
+          milliseconds. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.1'
+      - name: rcAdmnSubMdbGcLoopsCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.2
+        type: counter
+        help: 'Admin Subscriber table: garbage collection processing loop counter since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.2'
+      - name: rcAdmnSubMdbGcFreeRecCnt
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.3
+        type: counter
+        help: 'Admin Subscriber table: records erased during garbage collection since
+          start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.3'
+      - name: rcAdmnSubMdbMainTotalNumberOfRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1
+        type: counter
+        help: 'Admin Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1'
+      - name: rcAdmnSubMdbMainNumberOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2
+        type: counter
+        help: 'Admin Subscriber table: total number of available records in this table.
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2'
+      - name: rcAdmnSubMdbMainPercentageOfFreeRecords
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3
+        type: counter
+        help: 'Admin Subscriber table: percentage [0-100] of available records in this
+          table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3'
+      auth:
+        community: public
     matrixx_web_mib:
       get:
       - 1.3.6.1.4.1.35838.1.5.1.1.1.1.0

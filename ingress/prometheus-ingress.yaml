@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  #   ncp/internal_ip_for_policy: 100.64.112.15
+  # generation: 1
+  name: prometheus
+  namespace: monitoring
+  # resourceVersion: "25713195"
+  # selfLink: /apis/extensions/v1beta1/namespaces/attmdev/ingresses/rsgateway
+spec:
+  rules:
+  - host: monitoring-prod-prometheus.mx.att.com
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - monitoring-prod-prometheus.mx.att.com
+    secretName: default-server-secret

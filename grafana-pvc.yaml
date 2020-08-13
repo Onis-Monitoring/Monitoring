@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: grafana-storage
+  name: grafana-storage-2
   namespace: monitoring
   labels:
     app: grafana

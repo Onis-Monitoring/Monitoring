@@ -21,7 +21,8 @@ spec:
       containers:
       - name: mongo-exporter
         image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
-        args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mongos-0.mongodb.svc.cluster.local:27017,mongos-1.mongodb.svc.cluster.local:27017,mongos-2.mongodb.svc.cluster.local:27017,mongos-3.mongodb.svc.cluster.local:27017"]
+        # args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mongos-0.mongodb.svc.cluster.local:27017,mongos-1.mongodb.svc.cluster.local:27017,mongos-2.mongodb.svc.cluster.local:27017,mongos-3.mongodb.svc.cluster.local:27017"]
+        args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mtxx-admin:mtxx-pass@172.16.9.2:26001,172.16.9.2:26002,172.16.9.3:26003,172.16.9.3:26004/admin"]
         ports:
         - containerPort: 9104
           name: http

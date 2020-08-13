@@ -61,8 +61,10 @@ spec:
           # Resource requests of `200m` of CPU and `1000Mi` of memory
           resources:
             requests:
-              cpu: 200m
-              memory: 500Mi
+              cpu: 500m
+              memory: 2000Mi
+            limits:
+              memory: 2000Mi
           volumeMounts:
           - name: prometheus
             mountPath: /data

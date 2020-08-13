@@ -3,14 +3,21 @@
 
 kubectl create namespace monitoring
 
-kubectl create -f secret.yaml
+# kubectl create -f secret.yaml
+
+kubectl create secret generic regcred \
+    --from-file=.dockerconfigjson=/home/Matrixx/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson \
+-n monitoring
 
 echo "Installing Prometheus"
 kubectl create -f 02-cluster-role.yaml
 kubectl create -f 03-prometheus-configmap.yaml
 # kubectl create -f 04-prometheus-deployment.yaml
 # kubectl create -f 05-prometheus-service.yaml
-kubectl create -f prometheus-statefulset/
+kubectl create -f 04-prometheus-statefulset.yaml
+kubectl create -f 05-service.yaml
+# kubectl create -f prometheus-statefulset/
 
 echo "Installing Grafana"
 kubectl create -f grafana-datasources.yaml
@@ -43,6 +50,7 @@ kubectl create -f snmp-exporter/service.yaml
 
 echo "Installing vmware-exporter"
 kubectl create secret generic vmware-exporter-password --from-literal=VSPHERE_PASSWORD=Password@1 -n monitoring
-kubectl create -f vmware-exporter/vmware-exporter.yaml
+kubectl create -f vmware-exporter/config.yml
+kubectl create -f vmware-exporter/vmware-exporter.yml
 
 kubectl get all -n monitoring
