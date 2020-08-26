@@ -18,6 +18,12 @@ data:
     # the endpoints associated with the default/kubernetes service using the
     # default named port `https`. This works for single API server deployments as
     # well as HA API server deployments.
+    # Alertmanager configuration
+    # alerting:
+    #   alertmanagers:
+    #   - static_configs:
+    #     - targets:
+    #       - alertmanager:9093
 
     # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
     # rule_files:
@@ -43,12 +49,8 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tra-dr-ag1-0.matrixx.svc.cluster.local:14700
-          - tra-dr-ag1-1.matrixx.svc.cluster.local:14700
-          # - tralb-proc-s1e2-0.mtx-attm-sit.svc.cluster.local:14700
-          # - tralb-publ-s1e2-0.mtx-attm-sit.svc.cluster.local:14700
-          # - trart-0.mtx-attm-sit.svc.cluster.local:14700
-          # - trart-1.mtx-attm-sit.svc.cluster.local:14700
+          - tra-dr-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-dr-ag1-1.matrixx-prod-int.svc.cluster.local:14700
           labels:                           
             subdomain: 'integration-1'
       metrics_path: /snmp
@@ -66,12 +68,8 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tra-dr-ag1-0.matrixx.svc.cluster.local:14700
-          - tra-dr-ag1-1.matrixx.svc.cluster.local:14700
-          # - tralb-proc-s1e2-0.mtx-attm-sit.svc.cluster.local:14700
-          # - tralb-publ-s1e2-0.mtx-attm-sit.svc.cluster.local:14700
-          # - trart-0.mtx-attm-sit.svc.cluster.local:14700
-          # - trart-1.mtx-attm-sit.svc.cluster.local:14700
+          - tra-dr-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-dr-ag1-1.matrixx-prod-int.svc.cluster.local:14700
           labels:                           
             subdomain: 'integration-1'
       metrics_path: /snmp
@@ -89,8 +87,8 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tra-dr-ag1-0.matrixx.svc.cluster.local:14700
-          - tra-dr-ag1-1.matrixx.svc.cluster.local:14700
+          - tra-dr-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-dr-ag1-1.matrixx-prod-int.svc.cluster.local:14700
           labels:                           
             subdomain: 'integration-1'
       metrics_path: /snmp
@@ -108,8 +106,8 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tra-dr-ag1-0.matrixx.svc.cluster.local:14700
-          - tra-dr-ag1-1.matrixx.svc.cluster.local:14700
+          - tra-dr-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-dr-ag1-1.matrixx-prod-int.svc.cluster.local:14700
           labels:                           
             subdomain: 'integration-1'
       metrics_path: /snmp

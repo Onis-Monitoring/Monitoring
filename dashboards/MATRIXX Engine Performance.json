@@ -1,0 +1,2653 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Defines SNMP statistics and notifications specific to the MATRIXX Engine.",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 13,
+  "iteration": 1597856389356,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 19,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(txnMsgCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Transaction Message Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1798",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1799",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 39,
+      "panels": [],
+      "title": "Diameter",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 33,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(diamResultCodeStatsResultCodeOut{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+          "hide": false,
+          "legendFormat": "{{diamResultCodeStatsResultCode}} - {{diamResultCodeStatsApplicationId}} - {{diamResultCodeStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "diamResultCodeStatsResultCodeOut{subdomain=~\"$Subdomain\", instance=~\"$instance\"}",
+          "hide": true,
+          "legendFormat": "{{diamResultCodeStatsResultCode}} - {{diamResultCodeStatsApplicationId}} - {{diamResultCodeStatsCmdCode}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Diameter Code Stats",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 54,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"0\"}[2m])",
+          "legendFormat": "{{instance}} - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Common Messages",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 61,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsTotalResponsesOut - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(diamPduStatsTotalRequestsIn{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRequestsIn - {{diamPduStatsCmdCode}}",
+          "refId": "B"
+        },
+        {
+          "expr": "rate(diamPduStatsTotalRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "C"
+        },
+        {
+          "expr": "rate(diamPduStatsCurrentRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "D"
+        },
+        {
+          "expr": "rate(diamPduStatsCurrentRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "E"
+        },
+        {
+          "expr": "rate(diamPduStatsTotalRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"4\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Credit Control",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:118",
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:119",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 57,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsTotalResponsesOut - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRequestsIn{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRequestsIn - {{diamPduStatsCmdCode}}",
+          "refId": "B"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "C"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "D"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "E"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "RX Interface",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "hiddenSeries": false,
+      "id": 58,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsTotalResponsesOut - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRequestsIn{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRequestsIn - {{diamPduStatsCmdCode}}",
+          "refId": "B"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "C"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "D"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "E"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777217\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "SH/DH Interface",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 25
+      },
+      "hiddenSeries": false,
+      "id": 59,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsTotalResponsesOut - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRequestsIn{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRequestsIn - {{diamPduStatsCmdCode}}",
+          "refId": "B"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "C"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "D"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "E"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777238\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "GX Interface",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "hiddenSeries": false,
+      "id": 60,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(diamPduStatsTotalResponsesOut{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777302\"}[6m])",
+          "legendFormat": "diamPduStatsTotalResponsesOut - {{diamPduStatsCmdCode}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRequestsIn{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777302\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRequestsIn - {{diamPduStatsCmdCode}}",
+          "refId": "B"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777302\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "C"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeAvg{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777302\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeAvg- {{diamPduStatsCmdCode}}",
+          "refId": "D"
+        },
+        {
+          "expr": "irate(diamPduStatsCurrentRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777302\"}[6m])",
+          "legendFormat": "diamPduStatsCurrentRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "E"
+        },
+        {
+          "expr": "irate(diamPduStatsTotalRespTimeMax{subdomain=~\"$Subdomain\", instance=~\"$instance\", diamPduStatsApplicationId=\"16777236\"}[6m])",
+          "legendFormat": "diamPduStatsTotalRespTimeMax- {{diamPduStatsCmdCode}}",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "SY Interface",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 37,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 10
+          },
+          "hiddenSeries": false,
+          "id": 41,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(smsChargingStatsValidInitialDPSmsCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsValidInitialDPSmsCount  - {{instance}}",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(smsChargingStatsSubmissionCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsSubmissionCount  - {{instance}}",
+              "refId": "B"
+            },
+            {
+              "expr": "rate(smsChargingStatsReservationCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsReservationCount  - {{instance}}",
+              "refId": "C"
+            },
+            {
+              "expr": "rate(smsChargingStatsRejectUnknownReasonCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsRejectUnknownReasonCount  - {{instance}}",
+              "refId": "D"
+            },
+            {
+              "expr": "rate(smsChargingStatsRejectNoCreditCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsRejectNoCreditCount  - {{instance}}",
+              "refId": "E"
+            },
+            {
+              "expr": "rate(smsChargingStatsImmediateChargeCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsImmediateChargeCount  - {{instance}}",
+              "refId": "F"
+            },
+            {
+              "expr": "rate(smsChargingStatsFailureCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsFailureCount  - {{instance}}",
+              "refId": "G"
+            },
+            {
+              "expr": "rate(smsChargingStatsEventReportTimeoutCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsEventReportTimeoutCount  - {{instance}}",
+              "refId": "H"
+            },
+            {
+              "expr": "rate(smsChargingStatsFailureCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsFailureCount  - {{instance}}",
+              "refId": "I"
+            },
+            {
+              "expr": "rate(smsChargingStatsBadInitialDPSmsCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "smsChargingStatsBadInitialDPSmsCount  - {{instance}}",
+              "refId": "J"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "SMS stats",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "SMS",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 35,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "Number of good IDPs \n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 13,
+            "x": 0,
+            "y": 11
+          },
+          "id": 48,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsValidIdpCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "voiceChargingStatsValidIdpCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of good IDPs ",
+          "type": "bargauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsBadIdpCount - Number of bad IDPs.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 15
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 11,
+            "x": 13,
+            "y": 11
+          },
+          "id": 50,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "repeat": null,
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsBadIdpCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsBadIdpCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of bad IDPs ",
+          "type": "bargauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsAnnouncementCompleteCount - Number of announcements successfully played to the caller. ",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 16
+          },
+          "id": 49,
+          "links": [],
+          "options": {
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsAnnouncementCompleteCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsAnnouncementCompleteCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of announcements successfully played to the caller. ",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsScriptCount- Number of attempts to run a VXML script.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 8,
+            "y": 16
+          },
+          "id": 51,
+          "links": [],
+          "options": {
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsScriptCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsScriptCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of attempts to run a VXML script.",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsScriptCompleteCount - Number of VXML scripts successfully run.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 16,
+            "y": 16
+          },
+          "id": 52,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsScriptCompleteCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsScriptCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of VXML scripts successfully run.",
+          "type": "bargauge"
+        },
+        {
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsCftActionForAcrCount - Number of sessions for which charging failure action was applied on receipt of an ApplyChargingReport. ",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 21
+          },
+          "id": 45,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsCftActionForAcrCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsRouteSelectFailureCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Sessions charging failure applied on receipt of ApplyChargingReport",
+          "type": "gauge"
+        },
+        {
+          "datasource": "$datasource",
+          "description": "Number of sessions ended due to route select failure.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 8,
+            "y": 21
+          },
+          "id": 43,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsRouteSelectFailureCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsRouteSelectFailureCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Voice Session ended due to Route Select Failure",
+          "type": "gauge"
+        },
+        {
+          "datasource": "$datasource",
+          "description": "voiceChargingStatsAcrTimeoutCount\n - Number of sessions timed out waiting for ApplyChargingReport. ",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 16,
+            "y": 21
+          },
+          "id": 46,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(voiceChargingStatsAcrTimeoutCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "voiceChargingStatsAcrTimeoutCount",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of sessions timed out waiting for ApplyChargingReport. ",
+          "type": "gauge"
+        }
+      ],
+      "title": "Voice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "id": 31,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "cacheTimeout": null,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(callStartStatsAttemptCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsAttemptCount - {{instance}}",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(callStartStatsBadMsgCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsBadMsgCount  - {{instance}}",
+              "refId": "B"
+            },
+            {
+              "expr": "rate(callStartStatsCalledBusyCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsCalledBusyCount  - {{instance}}",
+              "refId": "C"
+            },
+            {
+              "expr": "rate(callStartStatsCalledDisconnectCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsCalledDisconnectCount  - {{instance}}",
+              "refId": "D"
+            },
+            {
+              "expr": "rate(callStartStatsCalledNoAnswerCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsCalledNoAnswerCount  - {{instance}}",
+              "refId": "E"
+            },
+            {
+              "expr": "rate(callStartStatsCallingBusyCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsCallingBusyCount  - {{instance}}",
+              "refId": "F"
+            },
+            {
+              "expr": "rate(callStartStatsCallingDisconnectCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsCallingDisconnectCount - {{instance}}",
+              "refId": "G"
+            },
+            {
+              "expr": "rate(callStartStatsNotAllowedNoCreditCoun{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "callStartStatsNotAllowedNoCreditCoun  - {{instance}}",
+              "refId": "H"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Call Start",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 23
+          },
+          "id": 6,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "callStartStatsRequestCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Call Request Count",
+          "type": "gauge"
+        },
+        {
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 23
+          },
+          "id": 7,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "callStartStatsSuccessCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Call Success Count",
+          "type": "gauge"
+        }
+      ],
+      "title": "Call",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 29,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "cacheTimeout": null,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "description": "The average number of transactions, per second, processed by the Charging Server",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 32
+          },
+          "hiddenSeries": false,
+          "id": 21,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(chrgServerAvgTxnsPerSecond{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance)",
+              "instant": false,
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transaction average by Charging Server",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "$datasource",
+          "description": "The current in-progress/pending transaction count. \n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 32
+          },
+          "id": 23,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "rate(txnCurrentTxnCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Current in-progress/pending Transactions",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "Number of sessions for which charging server granted some time and ApplyCharging was sent",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 38
+          },
+          "id": 25,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "voiceChargingStatsFreeCallCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Sessions Charging Server granted time and applied charging",
+          "type": "bargauge"
+        },
+        {
+          "datasource": "$datasource",
+          "description": "Number of sessions ended due to no answer. ",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 12,
+            "y": 38
+          },
+          "id": 27,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "sum(rate(voiceChargingStatsNoAnswerCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance)",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of sessions ended due to no answer. ",
+          "type": "gauge"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 43
+          },
+          "hiddenSeries": false,
+          "id": 9,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(camelStatsChargingSessionEndCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "camelStatsChargingSessionEndCount - {{instance}}",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(camelStatsChargingSessionErrorCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "camelStatsChargingSessionErrorCount - {{instance}}",
+              "refId": "B"
+            },
+            {
+              "expr": "rate(camelStatsChargingSessionStartCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])",
+              "legendFormat": "camelStatsChargingSessionStartCount - {{instance}}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Charging Session",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "$datasource",
+          "description": "Number of ATI TCAP ABORTS received",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 12,
+            "x": 12,
+            "y": 43
+          },
+          "id": 11,
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "sum(irate(mapCallOutStatsAnyTimeQueryRoutingErrorCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance)",
+              "instant": false,
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of ATI TCAP ABORTS received",
+          "type": "bargauge"
+        },
+        {
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 12,
+            "x": 12,
+            "y": 47
+          },
+          "id": 13,
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "sum(irate(mapCallOutStatsAnyTimeQueryErrorCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance)",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of ATI ReturnErrors received.",
+          "type": "bargauge"
+        },
+        {
+          "datasource": "$datasource",
+          "description": "Number of ATI Requests sent",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 51
+          },
+          "id": 15,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "sum(irate(mapCallOutStatsAnyTimeQueryRequestCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance, job)",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of ATI Requests sent",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "$datasource",
+          "description": "Number of ATI TCAP NOTICEs received",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {},
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 51
+          },
+          "id": 17,
+          "links": [],
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.1.1",
+          "targets": [
+            {
+              "expr": "sum(irate(mapCallOutStatsAnyTimeQueryRoutingErrorCount{subdomain=~\"$Subdomain\", instance=~\"$instance\"}[5m])) by (instance, job)",
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Number of ATI TCAP NOTICES received",
+          "type": "gauge"
+        }
+      ],
+      "title": "Charging",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 63,
+      "panels": [],
+      "title": "Database stats",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "prometheus",
+          "value": "prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasoruce",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "subdomain-1",
+          "value": "subdomain-1"
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(subdomain)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Subdomain",
+        "multi": false,
+        "name": "Subdomain",
+        "options": [],
+        "query": "label_values(subdomain)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "proc-s1e1-0.mtx-attm-sit.svc.cluster.local:14700",
+          "value": [
+            "proc-s1e1-0.mtx-attm-sit.svc.cluster.local:14700"
+          ]
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(camelStatsChargingSessionStartCount{subdomain=\"$Subdomain\"},instance)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "instance",
+        "multi": true,
+        "name": "instance",
+        "options": [],
+        "query": "label_values(camelStatsChargingSessionStartCount{subdomain=\"$Subdomain\"},instance)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "MATRIXX Engine Performance",
+  "uid": "vA2a4XkMq",
+  "version": 8
+}
