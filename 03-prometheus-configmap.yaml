@@ -30,6 +30,25 @@ data:
         - "alert_rules.yml"
 
     scrape_configs:
+    # - job_name: 'federate'
+    #   scrape_interval: 3s
+
+    #   honor_labels: true
+    #   metrics_path: '/federate'
+
+    #   params:
+    #     'match[]':
+    #       - '{job="matrixx_mib"}'
+    #       - '{job="matrixx_common_mib"}'
+    #       - '{job="matrixx_sysinfo_mib"}'
+    #       - '{job="matrixx_tra_mib"}'
+    #       - '{job="matrixx_generalservice_mib"}'
+
+    #   static_configs:
+    #     - targets:
+    #       - '10.150.152.111:9090'
+    #       - '10.150.152.100:9090'
+
     - job_name: 'node-exporter'
       scrape_interval: 1m
       scrape_timeout: 1m
@@ -56,7 +75,7 @@ data:
           - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
           - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
@@ -68,30 +87,8 @@ data:
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116
     
-    # - job_name: 'matrixx_mib-test-subdomain-1'
-    #   honor_labels: true
-    #   static_configs:
-    #     - targets:
-    #       - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-    #       - ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-    #       - proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-    #       - proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-    #       - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-    #       - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-    #       labels:                           
-    #         subdomain: 'subdomain-2'
-    #   metrics_path: /snmp
-    #   params:
-    #     module: [matrixx_mib]
-    #   relabel_configs:
-    #     - source_labels: [__address__]
-    #       target_label: __param_target
-    #     - source_labels: [__param_target]
-    #       target_label: instance
-    #     - target_label: __address__
-    #       replacement: 10.150.152.115:9116
-    
     - job_name: 'matrixx_common_mib'
+      honor_labels: true
       static_configs:
         - targets:
           - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
@@ -106,6 +103,8 @@ data:
           - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          labels:                           
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_common_mib]
@@ -118,6 +117,7 @@ data:
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116
 
     - job_name: 'matrixx_sysinfo_mib'
+      honor_labels: true
       static_configs:
         - targets:
           - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
@@ -132,6 +132,8 @@ data:
           - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          labels:                           
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_sysinfo_mib]
@@ -144,6 +146,7 @@ data:
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116
 
     - job_name: 'matrixx_tra_mib'
+      honor_labels: true
       static_configs:
         - targets:
           - tralb-proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
@@ -152,6 +155,8 @@ data:
           - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          labels:                           
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_tra_mib]
@@ -164,6 +169,7 @@ data:
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116
 
     - job_name: 'matrixx_generalservice_mib'
+      honor_labels: true
       static_configs:
         - targets:
           - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
@@ -178,6 +184,8 @@ data:
           - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-0.mtx-attm-uat.svc.cluster.local:14700
           - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          labels:                           
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_generalservice_mib]

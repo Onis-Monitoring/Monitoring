@@ -8,8 +8,7 @@ metadata:
   # generation: 1
   name: prometheus
   namespace: monitoring
-  # resourceVersion: "25713195"
-  # selfLink: /apis/extensions/v1beta1/namespaces/attmdev/ingresses/rsgateway
+
 spec:
   rules:
   - host: monitoring-prod-prometheus.mx.att.com

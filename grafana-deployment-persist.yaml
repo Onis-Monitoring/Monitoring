@@ -60,7 +60,7 @@ spec:
       volumes:
       - name: grafana-storage
         persistentVolumeClaim:
-          claimName: grafana-storage-2
+          claimName: grafana-storage
       - configMap:
           name: grafana-datasources
         name: datasources
