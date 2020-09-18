@@ -30,25 +30,6 @@ data:
         - "alert_rules.yml"
 
     scrape_configs:
-    # - job_name: 'federate'
-    #   scrape_interval: 3s
-
-    #   honor_labels: true
-    #   metrics_path: '/federate'
-
-    #   params:
-    #     'match[]':
-    #       - '{job="matrixx_mib"}'
-    #       - '{job="matrixx_common_mib"}'
-    #       - '{job="matrixx_sysinfo_mib"}'
-    #       - '{job="matrixx_tra_mib"}'
-    #       - '{job="matrixx_generalservice_mib"}'
-
-    #   static_configs:
-    #     - targets:
-    #       - '10.150.152.111:9090'
-    #       - '10.150.152.100:9090'
-
     - job_name: 'node-exporter'
       scrape_interval: 1m
       scrape_timeout: 1m
@@ -59,23 +40,18 @@ data:
         regex: 'node-exporter'
         action: keep
 
-    - job_name: 'SNMP-exporter'
-      metrics_path: /metrics
-      static_configs:
-        - targets: ['snmp-exporter.monitoring.svc.cluster.local:9116']
-
     - job_name: 'matrixx_mib'
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
+          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
+          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
+          - proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - publ-s1e2-0.matrixx.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-3'
+            subdomain: 'subdomain-1'
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
@@ -91,20 +67,20 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
+          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
+          - proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - trart-0.matrixx.svc.cluster.local:14700
+          - trart-1.matrixx.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-3'
+            subdomain: 'subdomain-1'
       metrics_path: /snmp
       params:
         module: [matrixx_common_mib]
@@ -120,20 +96,20 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
+          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
+          - proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - trart-0.matrixx.svc.cluster.local:14700
+          - trart-1.matrixx.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-3'
+            subdomain: 'subdomain-1'
       metrics_path: /snmp
       params:
         module: [matrixx_sysinfo_mib]
@@ -149,14 +125,14 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tralb-proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - trart-0.matrixx.svc.cluster.local:14700
+          - trart-1.matrixx.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-3'
+            subdomain: 'subdomain-1'
       metrics_path: /snmp
       params:
         module: [matrixx_tra_mib]
@@ -172,20 +148,20 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-0.mtx-attm-uat.svc.cluster.local:14700
-          - trart-1.mtx-attm-uat.svc.cluster.local:14700
+          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
+          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
+          - proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
+          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
+          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - trart-0.matrixx.svc.cluster.local:14700
+          - trart-1.matrixx.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-3'
+            subdomain: 'subdomain-1'
       metrics_path: /snmp
       params:
         module: [matrixx_generalservice_mib]
