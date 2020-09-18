@@ -1,0 +1,3420 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "gnetId": 11074,
+  "graphTooltip": 0,
+  "id": 33,
+  "iteration": 1598981958348,
+  "links": [
+    {
+      "$$hashKey": "object:21646",
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [],
+      "targetBlank": true,
+      "title": "",
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "Healthy",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "noValue": "Healthy",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 227,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(kube_pod_status_phase{job=\"kube-state-metrics\", namespace=~\"mtx-attm-sit\",phase=~\"Running\", pod=~\"ckpt.*|proc.*|publ.*|tra.*|gatewayproxy.*|activemq.*\"}) != 1)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Pods/Blades (T)",
+          "refId": "B"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=~\"1|2\", subdomain=~\"subdomain-1\"}) != 7)",
+          "format": "time_series",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Engine (T)",
+          "refId": "C"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(100 * (1 - ((avg_over_time(statSysInfoPhysicalMemoryFreeMb{subdomain=\"subdomain-1\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryCachedMb{subdomain=\"subdomain-1\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryBuffersMb{subdomain=\"subdomain-1\"}[24h])) / avg_over_time(statSysInfoPhysicalMemoryTotalMb{subdomain=\"subdomain-1\"}[24h]))) > 60)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Memory (T)",
+          "refId": "D"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"shared\", subdomain=~\"subdomain-1\"}) + sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"local\", subdomain=~\"subdomain-1\"}) > 60) - 0",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Disk (T)",
+          "refId": "A"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "sum(diamTotalStatsProtocolErrors{subdomain=\"subdomain-1\"}) > 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "E"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(rate(sysProcessingErrors{subdomain=\"subdomain-1\"}[5m]) > 100)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Processing Errors",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Subdomain-1",
+      "type": "stat"
+    },
+    {
+      "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "Healthy",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "noValue": "Healthy",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 228,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(kube_pod_status_phase{job=\"kube-state-metrics\", namespace=~\"mtx-attm-sit\",phase=~\"Running\", pod=~\"ckpt.*|proc.*|publ.*|tra.*|gatewayproxy.*|activemq.*\"}) != 1)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Pods/Blades (T)",
+          "refId": "B"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=~\"1|2\", subdomain=~\"subdomain-2\"}) != 7)",
+          "format": "time_series",
+          "hide": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Engine (T)",
+          "refId": "C"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(100 * (1 - ((avg_over_time(statSysInfoPhysicalMemoryFreeMb{subdomain=\"subdomain-2\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryCachedMb{subdomain=\"subdomain-2\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryBuffersMb{subdomain=\"subdomain-2\"}[24h])) / avg_over_time(statSysInfoPhysicalMemoryTotalMb{subdomain=\"subdomain-2\"}[24h]))) > 60)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Memory (T)",
+          "refId": "D"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"shared\", subdomain=~\"subdomain-2\"}) + sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"local\", subdomain=~\"subdomain-2\"}) > 60) - 0",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Disk (T)",
+          "refId": "A"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "sum(diamTotalStatsProtocolErrors{subdomain=\"subdomain-2\"}) > 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "E"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(rate(sysProcessingErrors{subdomain=\"subdomain-2\"}[5m]) > 100)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Processing Errors",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Subdomain-2",
+      "type": "stat"
+    },
+    {
+      "datasource": "-- Mixed --",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "Healthy",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "noValue": "Healthy",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 229,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(kube_pod_status_phase{job=\"kube-state-metrics\", namespace=~\"mtx-attm-sit\",phase=~\"Running\", pod=~\"ckpt.*|proc.*|publ.*|tra.*|gatewayproxy.*|activemq.*\"}) != 1)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Pods/Blades (T)",
+          "refId": "B"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(avg(sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=~\"1|2\", subdomain=~\"subdomain-3\"}) != 7)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Engine (T)",
+          "refId": "C"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(100 * (1 - ((avg_over_time(statSysInfoPhysicalMemoryFreeMb{subdomain=\"subdomain-3\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryCachedMb{subdomain=\"subdomain-3\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryBuffersMb{subdomain=\"subdomain-3\"}[24h])) / avg_over_time(statSysInfoPhysicalMemoryTotalMb{subdomain=\"subdomain-3\"}[24h]))) > 60)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Memory (T)",
+          "refId": "D"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"shared\", subdomain=~\"subdomain-3\"}) + sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"local\", subdomain=~\"subdomain-3\"}) > 60) - 0",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Disk (T)",
+          "refId": "A"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "sum(diamTotalStatsProtocolErrors{subdomain=\"subdomain-3\"}) > 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "E"
+        },
+        {
+          "datasource": "prometheus",
+          "expr": "count(rate(sysProcessingErrors{subdomain=\"subdomain-3\"}[5m]) > 100)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Processing Errors",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Subdomain-3",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 199,
+      "panels": [],
+      "title": "VISIBLE MATRIXX Eye On Glass",
+      "type": "row"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "0",
+              "id": 1,
+              "text": "StandBy",
+              "to": "7",
+              "type": 2,
+              "value": "0"
+            }
+          ],
+          "min": 0,
+          "noValue": "Standby",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2020-08-07T18:53:05"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Active"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 187,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysClusterEngineActiveDateTime{instance=~\"proc-s1e1.*\",sysClusterEngineActiveDateTime!=\"None\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "{{sysClusterEngineActiveDateTime}}",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=\"1\", subdomain=~\"$subdomain\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Engine1",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "0",
+              "id": 1,
+              "text": "StandBy",
+              "to": "7",
+              "type": 2,
+              "value": "0"
+            }
+          ],
+          "min": 0,
+          "noValue": "N/A",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2020-08-07T18:53:05"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Active"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 208,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "avg(sysPeerClusterClusterState{instance=~\"proc-s1.*\", sysPeerClusterClusterId=\"1\",sysPeerClusterEngineId=\"2\", subdomain=~\"$subdomain\"})",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Engine2",
+      "type": "stat"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 7
+      },
+      "id": 188,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:8901",
+          "alias": "IP",
+          "align": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberMgmtIpAddress",
+          "thresholds": [
+            ""
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8939",
+              "text": "UP",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8902",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8961",
+              "text": "active",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8903",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "rangeMaps": [],
+          "thresholds": [
+            "6",
+            "8"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8985",
+              "text": "active",
+              "value": "8"
+            },
+            {
+              "$$hashKey": "object:8174",
+              "text": "standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:1366",
+          "alias": "Node ID",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberNodeId",
+          "thresholds": [],
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "$$hashKey": "object:4090",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:4189",
+              "text": "proc-s1e1-0",
+              "value": "proc-s1e1-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:4247",
+              "text": "proc-s1e1-1",
+              "value": "proc-s1e1-1.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:9155",
+              "text": "proc-s1e1-0",
+              "value": "proc-s1e1-0.mtx-attm-uat.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:9213",
+              "text": "proc-s1e1-0",
+              "value": "proc-s1e1-0.mtx-attm-sit.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8904",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sysClusterMemberMgmtIpAddress{instance=~\"proc-s1e1.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{ instance=~\"proc-s1e1.*\", sysPeerClusterClusterId=\"1\", sysPeerClusterEngineId=\"1\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=~\"proc-s1e1.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        },
+        {
+          "expr": "sysClusterMemberNodeId{instance=~\"proc-s1e1.\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 7
+      },
+      "id": 224,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:8901",
+          "alias": "IP",
+          "align": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberMgmtIpAddress",
+          "thresholds": [
+            ""
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8939",
+              "text": "UP",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8902",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8961",
+              "text": "active",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8903",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "rangeMaps": [],
+          "thresholds": [
+            "6",
+            "8"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8985",
+              "text": "active",
+              "value": "8"
+            },
+            {
+              "$$hashKey": "object:8174",
+              "text": "standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:1366",
+          "alias": "Node ID",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberNodeId",
+          "thresholds": [],
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "$$hashKey": "object:4090",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:4189",
+              "text": "publ-s1e1-0",
+              "value": "publ-s1e1-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:4247",
+              "text": "publ-s1e1-1",
+              "value": "publ-s1e1-1.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:9155",
+              "text": "publ-s1e1-0",
+              "value": "publ-s1e1-0.mtx-attm-uat.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:9213",
+              "text": "publ-s1e1-0",
+              "value": "publ-s1e1-0.mtx-attm-sit.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8904",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sysClusterMemberMgmtIpAddress{instance=~\"publ-s1e1.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{ instance=~\"publ-s1e1.*\", sysPeerClusterClusterId=\"2\", sysPeerClusterEngineId=\"1\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=~\"publ-s1e1.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        },
+        {
+          "expr": "sysClusterMemberNodeId{instance=~\"publ-s1e1.\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 7
+      },
+      "id": 220,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:8901",
+          "alias": "IP",
+          "align": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberMgmtIpAddress",
+          "thresholds": [
+            ""
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": []
+        },
+        {
+          "$$hashKey": "object:8902",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8961",
+              "text": "active",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8903",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "rangeMaps": [],
+          "thresholds": [
+            "6",
+            "8"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8985",
+              "text": "active",
+              "value": "8"
+            },
+            {
+              "$$hashKey": "object:8174",
+              "text": "standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:1366",
+          "alias": "Node ID",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberNodeId",
+          "thresholds": [],
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "$$hashKey": "object:4090",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:4189",
+              "text": "proc-s1e2-0",
+              "value": "proc-s1e2-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:4247",
+              "text": "proc-s1e2-1",
+              "value": "proc-s1e2-1.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:11019",
+              "text": "proc-s1e2-0",
+              "value": "proc-s1e2-0.mtx-attm-uat.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:11051",
+              "text": "proc-s1e2-0",
+              "value": "proc-s1e2-0.mtx-attm-sit.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8904",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sysClusterMemberMgmtIpAddress{instance=~\"proc-s1e2.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{ instance=~\"proc-s1e2.*\", sysPeerClusterClusterId=\"1\", sysPeerClusterEngineId=\"2\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=~\"proc-s1e2.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        },
+        {
+          "expr": "sysClusterMemberNodeId{instance=~\"proc-s1e2.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 7
+      },
+      "id": 223,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:8901",
+          "alias": "IP",
+          "align": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberMgmtIpAddress",
+          "thresholds": [
+            ""
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": []
+        },
+        {
+          "$$hashKey": "object:8902",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8961",
+              "text": "active",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8903",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "rangeMaps": [],
+          "thresholds": [
+            "6",
+            "8"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:8985",
+              "text": "active",
+              "value": "8"
+            },
+            {
+              "$$hashKey": "object:8174",
+              "text": "standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:1366",
+          "alias": "Node ID",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberNodeId",
+          "thresholds": [],
+          "type": "number",
+          "unit": "none"
+        },
+        {
+          "$$hashKey": "object:4090",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:4189",
+              "text": "publ-s1e2-0",
+              "value": "publ-s1e2-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:4247",
+              "text": "publ-s1e2-1",
+              "value": "publ-s1e2-1.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:15567",
+              "text": "publ-s1e2-0",
+              "value": "publ-s1e2-0.mtx-attm-uat.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:15569",
+              "text": "publ-s1e2-0",
+              "value": "publ-s1e2-0.mtx-attm-sit.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:8904",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sysClusterMemberMgmtIpAddress{instance=~\"publ-s1e2.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{ instance=~\"publ-s1e2.*\", sysPeerClusterClusterId=\"2\", sysPeerClusterEngineId=\"2\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=~\"publ-s1e2.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        },
+        {
+          "expr": "sysClusterMemberNodeId{instance=~\"publ-s1e2.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 191,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:17878",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17916",
+              "text": "UP",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:17879",
+          "alias": "Peer Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "thresholds": [
+            "0",
+            "0"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17938",
+              "text": "UP",
+              "value": "0"
+            },
+            {
+              "$$hashKey": "object:17939",
+              "text": "Standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:17880",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17962",
+              "text": "ckpt-s1e1-0",
+              "value": "ckpt-s1e1-0.attmdev.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:34081",
+          "alias": "IP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "tfcCfgVipAddress",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:17881",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": "$datasource",
+          "expr": "tfcCfgVipAddress{instance=~\"tralb.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraPeerNodeState{instance=~\"tralb.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysTraNodeState{instance=~\"tralb.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "prometheus",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 15
+      },
+      "id": 222,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:17878",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17916",
+              "text": "UP",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:17879",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "thresholds": [
+            "0",
+            "0"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17938",
+              "text": "UP",
+              "value": "0"
+            },
+            {
+              "$$hashKey": "object:17939",
+              "text": "Standby",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:17880",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17962",
+              "text": "tra-dr-ag1-0",
+              "value": "tra-dr-ag1-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:20308",
+              "text": "tra-dr-ag1-1",
+              "value": "tra-dr-ag1-1.matrixx.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:33224",
+          "alias": "IP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "tfcCfgVipAddress",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:17881",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "tfcCfgVipAddress{instance=~\"tra-dr-.*|trart.*\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraPeerNodeState{instance=~\"tra-dr-.*|trart.*\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysTraNodeState{instance=~\"tra-dr-.*|trart.*\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "TRA- Disaster Recovery",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 15
+      },
+      "id": 194,
+      "pageSize": 5,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:16983",
+          "alias": "Node State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Value #M",
+          "thresholds": [
+            "5",
+            "5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17021",
+              "text": "UP",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:16984",
+          "alias": "Cluster State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #N",
+          "thresholds": [
+            "6",
+            "8"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:17043",
+              "text": "UP",
+              "value": "8"
+            },
+            {
+              "$$hashKey": "object:17044",
+              "text": "Standby",
+              "value": "6"
+            },
+            {
+              "$$hashKey": "object:17045",
+              "text": "yesy",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:16985",
+          "alias": "IP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "sysClusterMemberMgmtIpAddress",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": []
+        },
+        {
+          "$$hashKey": "object:35374",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "instance",
+          "sanitize": false,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:35448",
+              "text": "ckpt-s1e1-0",
+              "value": "ckpt-s1e1-0.matrixx.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:19100",
+              "text": "ckpt-s1e1-0",
+              "value": "ckpt-s1e1-0.mtx-attm-uat.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:19102",
+              "text": "ckpt-s1e2-0",
+              "value": "ckpt-s1e2-0.mtx-attm-uat.svc.cluster.local:14700"
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:16986",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sysClusterMemberMgmtIpAddress{instance=~\"ckpt-.*\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sysPeerClusterClusterState{instance=~\"ckpt-.*\", sysPeerClusterClusterId=\"3\", subdomain=~\"$subdomain\"} - 0 ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "N"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=~\"ckpt-.*\", subdomain=~\"$subdomain\"} - 0",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Checkpoint",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 22
+      },
+      "id": 195,
+      "pageSize": 10,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:12945",
+          "alias": "Memory Usage (%)",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value",
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "number",
+          "unit": "percent",
+          "valueMaps": []
+        },
+        {
+          "$$hashKey": "object:12946",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:12994",
+              "text": "ckpt-s1e1-0",
+              "value": "ckpt-s1e1-0.attmdev.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:12995",
+              "text": "",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:12947",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "100 * (1 - ((avg_over_time(statSysInfoPhysicalMemoryFreeMb{subdomain=~\"$subdomain\"}[24h]) + avg_over_time(statSysInfoPhysicalMemoryCachedMb[24h]) + avg_over_time(statSysInfoPhysicalMemoryBuffersMb{subdomain=~\"$subdomain\"}[24h])) / avg_over_time(statSysInfoPhysicalMemoryTotalMb{subdomain=~\"$subdomain\"}[24h])))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Pod Memory Usage",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "$datasource",
+      "description": " ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 22
+      },
+      "id": 213,
+      "pageSize": 6,
+      "showHeader": true,
+      "sort": {
+        "col": 5,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:12945",
+          "alias": "Threshold",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 2,
+          "pattern": "Value #M",
+          "rangeMaps": [
+            {
+              "$$hashKey": "object:17694",
+              "from": "0",
+              "text": "Normal",
+              "to": "50"
+            },
+            {
+              "$$hashKey": "object:17710",
+              "from": "51",
+              "text": "Critical",
+              "to": "100"
+            }
+          ],
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "string",
+          "unit": "percent",
+          "valueMaps": []
+        },
+        {
+          "$$hashKey": "object:12946",
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "$$hashKey": "object:12994",
+              "text": "ckpt-s1e1-0",
+              "value": "ckpt-s1e1-0.attmdev.svc.cluster.local:14700"
+            },
+            {
+              "$$hashKey": "object:12995",
+              "text": "",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "$$hashKey": "object:17740",
+          "alias": "/shared",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value #A",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "$$hashKey": "object:17797",
+          "alias": "/var/log/mtx/local",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "$$hashKey": "object:12947",
+          "alias": "",
+          "align": "right",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"shared\", subdomain=~\"$subdomain\"}) - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"local\", subdomain=~\"$subdomain\"}) - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"shared\", subdomain=~\"$subdomain\"}) + sum without (statSysInfoDiskIdStr) (statSysInfoDiskUsedPct{statSysInfoDiskIdStr=\"local\", subdomain=~\"$subdomain\"})",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "M"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "All Matrixx Disk Utilization",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "hiddenSeries": false,
+      "id": 197,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(sysTotalMemoryPoolInUseMb{subdomain=~\"$subdomain\", instance=~\"publ.*\"}) * 100 / (sysTotalMemoryPoolSizeMb{subdomain=~\"$subdomain\", instance=~\"publ.*\"})",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Publishing Blades System Memory Pool Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:10220",
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:10221",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 215,
+      "panels": [
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "description": " ",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fontSize": "100%",
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 37
+          },
+          "id": 225,
+          "pageSize": 15,
+          "showHeader": true,
+          "sort": {
+            "col": 5,
+            "desc": false
+          },
+          "styles": [
+            {
+              "$$hashKey": "object:11144",
+              "alias": "Memory Free KB",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #B",
+              "thresholds": [
+                ""
+              ],
+              "type": "number",
+              "unit": "none",
+              "valueMaps": []
+            },
+            {
+              "$$hashKey": "object:11145",
+              "alias": "Name",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "link": false,
+              "mappingType": 1,
+              "pattern": "txnDatabaseName",
+              "thresholds": [],
+              "type": "string",
+              "unit": "short",
+              "valueMaps": [
+                {
+                  "$$hashKey": "object:11194",
+                  "text": "",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "$$hashKey": "object:11565",
+              "alias": "Memory Used KB",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #C",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:11988",
+              "alias": "Memory Count",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #D",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:15326",
+              "alias": "Memory KB",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #E",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:15557",
+              "alias": "Memory Growth Last Minute",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #F",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:15845",
+              "alias": "Memory Growth Last Hour",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #G",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:16191",
+              "alias": "Memory Growth Last Day",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #H",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:11146",
+              "alias": "",
+              "align": "right",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "expr": "txnDatabaseName{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "expr": "txnDatabaseMemoryFreeKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
+            },
+            {
+              "expr": "txnDatabaseMemoryUsedKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "C"
+            },
+            {
+              "expr": "txnDatabaseMemoryReclaimableCount{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "D"
+            },
+            {
+              "expr": "txnDatabaseMemoryReclaimableKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "E"
+            },
+            {
+              "expr": "txnDatabaseMemoryGrowthLastMinuteInKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "F"
+            },
+            {
+              "expr": "txnDatabaseMemoryGrowthLastHourInKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "G"
+            },
+            {
+              "expr": "txnDatabaseMemoryGrowthLastDayInKb{subdomain=~\"$subdomain\",instance=~\"proc-s1e1.*\"} - 0",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "H"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Database Memory Stats",
+          "transform": "table",
+          "type": "table-old"
+        },
+        {
+          "columns": [],
+          "datasource": "$datasource",
+          "description": " ",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fontSize": "100%",
+          "gridPos": {
+            "h": 13,
+            "w": 24,
+            "x": 0,
+            "y": 48
+          },
+          "id": 212,
+          "pageSize": 15,
+          "showHeader": true,
+          "sort": {
+            "col": 5,
+            "desc": false
+          },
+          "styles": [
+            {
+              "$$hashKey": "object:11144",
+              "alias": "proc-s1e1-0",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(50, 172, 45, 0.97)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(245, 54, 54, 0.9)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #B",
+              "thresholds": [
+                ""
+              ],
+              "type": "number",
+              "unit": "none",
+              "valueMaps": []
+            },
+            {
+              "$$hashKey": "object:11145",
+              "alias": "Name",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 2,
+              "link": false,
+              "mappingType": 1,
+              "pattern": "txnDatabaseObjectName",
+              "thresholds": [],
+              "type": "string",
+              "unit": "short",
+              "valueMaps": [
+                {
+                  "$$hashKey": "object:11194",
+                  "text": "",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "$$hashKey": "object:11565",
+              "alias": "publ-s1e1-0",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #C",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:11988",
+              "alias": "ckpt-s1e1-0",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Value #D",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
+            {
+              "$$hashKey": "object:11146",
+              "alias": "",
+              "align": "right",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "/.*/",
+              "thresholds": [],
+              "type": "hidden",
+              "unit": "short"
+            }
+          ],
+          "targets": [
+            {
+              "expr": "txnDatabaseObjectName{instance=~\"proc-s1e1-0.*\",txnDatabaseObjectPoolId=\"5\", subdomain=~\"$subdomain\"} - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "expr": "sum without (instance) (txnDatabaseObjectCount{instance=~\"proc-s1e1-0.*\", txnDatabaseObjectPoolId=\"5\", subdomain=~\"$subdomain\"}) - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
+            },
+            {
+              "expr": "sum without (instance) (txnDatabaseObjectCount{instance=~\"publ-s1e1-0.*\", txnDatabaseObjectPoolId=\"5\", subdomain=~\"$subdomain\"}) - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "C"
+            },
+            {
+              "expr": "sum without (instance) (txnDatabaseObjectCount{instance=~\"ckpt-s1e1-0.*\", txnDatabaseObjectPoolId=\"5\", subdomain=~\"$subdomain\"}) - 0",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "D"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Database Synch",
+          "transform": "table",
+          "type": "table-old"
+        }
+      ],
+      "title": "IMDB Synch",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 201,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 38
+          },
+          "hiddenSeries": false,
+          "id": 203,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(diamResultCodeStatsResultCodeOut{subdomain=~\"$subdomain\"}[5m])",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "{{diamResultCodeStatsApplicationId}} - {{diamResultCodeStatsCmdCode}} - {{diamResultCodeStatsResultCode}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "All Errors",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:24068",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:24069",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 44
+          },
+          "hiddenSeries": false,
+          "id": 205,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(diamResultCodeStatsResultCodeOut{diamResultCodeStatsResultCode=\"5002\", subdomain=~\"$subdomain\"}[5m])",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "5002 - DIAMETER_UNKNOWN_SESSION_ID",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:24455",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:24456",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 44
+          },
+          "hiddenSeries": false,
+          "id": 206,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(diamResultCodeStatsResultCodeOut{diamResultCodeStatsResultCode=\"5030\", subdomain=~\"$subdomain\"}[5m])",
+              "interval": "",
+              "legendFormat": "{{diamResultCodeStatsApplicationId}} - {{diamResultCodeStatsCmdCode}} - {{diamResultCodeStatsResultCode}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "5030 - DIAMETER_USER_UNKNOWN",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:24538",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:24539",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "$datasource",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 44
+          },
+          "hiddenSeries": false,
+          "id": 207,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(diamResultCodeStatsResultCodeOut{diamResultCodeStatsResultCode=\"4010\", subdomain=~\"$subdomain\"}[5m])",
+              "interval": "",
+              "legendFormat": "{{diamResultCodeStatsApplicationId}} - {{diamResultCodeStatsCmdCode}} - {{diamResultCodeStatsResultCode}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "4010 - DIAMETER_END_USER_SERVICE_DENIED",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "MATRIXX Diameter Errors",
+      "type": "row"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [
+    "Prometheus"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "prometheus",
+          "value": "prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "subdomain-3",
+          "value": "subdomain-3"
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(subdomain)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Subdomain",
+        "multi": false,
+        "name": "subdomain",
+        "options": [],
+        "query": "label_values(subdomain)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "now": true,
+    "refresh_intervals": [
+      "15s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "1   Matrixx Summary",
+  "uid": "hb7fSE0Zq",
+  "version": 23
+}
