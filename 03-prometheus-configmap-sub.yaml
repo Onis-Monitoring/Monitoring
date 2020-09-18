@@ -19,15 +19,15 @@ data:
     # default named port `https`. This works for single API server deployments as
     # well as HA API server deployments.
     # Alertmanager configuration
-    alerting:
-      alertmanagers:
-      - static_configs:
-        - targets:
-          - alertmanager:9093
+    # alerting:
+    #   alertmanagers:
+    #   - static_configs:
+    #     - targets:
+    #       - alertmanager:9093
 
-    # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-    rule_files:
-        - "alert_rules.yml"
+    # # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+    # rule_files:
+    #     - "alert_rules.yml"
 
     scrape_configs:
     - job_name: 'node-exporter'
@@ -40,22 +40,17 @@ data:
         regex: 'node-exporter'
         action: keep
 
-    - job_name: 'SNMP-exporter'
-      metrics_path: /metrics
-      static_configs:
-        - targets: ['snmp-exporter.monitoring.svc.cluster.local:9116']
-
     - job_name: 'matrixx_mib'
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - ckpt-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-2'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
@@ -71,15 +66,15 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - ckpt-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-2'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_common_mib]
@@ -95,15 +90,15 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - ckpt-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-2'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_sysinfo_mib]
@@ -119,10 +114,10 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tralb-proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-2'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_tra_mib]
@@ -138,15 +133,15 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - ckpt-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - proc-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - publ-s3e2-1.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-proc-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
+          - tralb-publ-s3e2-0.matrixx-prod-sd03.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-2'
+            subdomain: 'subdomain-3'
       metrics_path: /snmp
       params:
         module: [matrixx_generalservice_mib]

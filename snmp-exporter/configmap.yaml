@@ -5,6 +5,7 @@ data:
     matrixx_common_mib:
       walk:
       - 1.3.6.1.4.1.35838.1.1.1.1.2.1
+      - 1.3.6.1.4.1.35838.1.4.1.1.1
       - 1.3.6.1.4.1.35838.1.1.1.1.2.2
       - 1.3.6.1.4.1.35838.1.4.1.1.2.4
       get:
@@ -16,21 +17,21 @@ data:
       - 1.3.6.1.4.1.35838.1.1.1.1.1.5.0
       metrics:
       - name: sysMonitoringInterval
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.1.1
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.1.1
         type: gauge
         help: The duration in seconds of the latencies monitoring interval - 1.3.6.1.4.1.35838.1.1.1.1.1.1
       - name: sysProcessingErrors
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.1.10
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.1.10
         type: counter
         help: The total number of critical and major system errors logged since the system
           was started. - 1.3.6.1.4.1.35838.1.1.1.1.1.10
       - name: sysTotalMemoryPoolSizeMb
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.1.11
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.1.11
         type: gauge
         help: The total size (in megabytes) of the system memory dedicated to databases,
           buffer pools (mtx bufs), shared memory multi-queues. - 1.3.6.1.4.1.35838.1.1.1.1.1.11
       - name: sysTotalMemoryPoolInUseMb
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.1.12
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.1.12
         type: gauge
         help: The total size (in megabytes) of the system memory dedicated to databases,
           buffer pools (mtx bufs), shared memory multi-queues that is currently in use.
@@ -40,7 +41,7 @@ data:
         type: gauge
         help: The node (blade) ID. - 1.3.6.1.4.1.35838.1.1.1.1.1.4
       - name: sysMemoryAvailableThresholdMb
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.1.5
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.1.5
         type: gauge
         help: The minimum available memory notification threshold in MB. - 1.3.6.1.4.1.35838.1.1.1.1.1.5
       - name: sysServiceStatsServiceId
