@@ -1,3 +1,10 @@
+#Author: OCC
+#Date: 18022021
+#Changes: 
+#ATT has released DNS 
+#Tultitlan: monitoring-prod-prometheus-qr.mx.att.com
+#Sperto: monitoring-prod-prometheus-qr.mx.att.com
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -11,7 +18,8 @@ metadata:
 
 spec:
   rules:
-  - host: monitoring-prod-prometheus.mx.att.com
+  #- host: monitoring-prod-prometheus.mx.att.com
+  - host: monitoring-prod-prometheus-qr.mx.att.com
     http:
       paths:
       - backend:
@@ -20,5 +28,6 @@ spec:
         path: /
   tls:
   - hosts:
-    - monitoring-prod-prometheus.mx.att.com
+    #- monitoring-prod-prometheus.mx.att.com
+    - monitoring-prod-prometheus-qr.mx.att.com
     secretName: default-server-secret

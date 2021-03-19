@@ -31,7 +31,8 @@ spec:
         - --storage.tsdb.retention.time=30d
         command:
         - /bin/prometheus
-        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2
+        #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2
+        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2
         imagePullPolicy: IfNotPresent
         name: prometheus
         ports:

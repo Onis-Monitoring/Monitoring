@@ -15,6 +15,6 @@ spec:
       targetPort: 9090
   sessionAffinity: ClientIP
   type: LoadBalancer
-  loadBalancerIP: 10.237.47.191
+  #loadBalancerIP: 10.237.47.191
   selector:
     k8s-app: prometheus

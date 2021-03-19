@@ -1,3 +1,10 @@
+#Author: OCC
+#Date: 18022021
+#Changes: 
+#ATT has released DNS 
+#Tultitlan: monitoring-prod-grafana-tl.mx.att.com
+#Sperto: monitoring-prod-grafana-qr.mx.att.com
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -8,7 +15,8 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: monitoring-prod-grafana.mx.att.com
+  #- host: monitoring-prod-grafana.mx.att.com
+  - host: monitoring-prod-grafana-qr.mx.att.com
     http:
       paths:
       - backend:
@@ -17,5 +25,6 @@ spec:
         path: /
   tls:
   - hosts:
-    - monitoring-prod-grafana.mx.att.com
+    #- monitoring-prod-grafana.mx.att.com
+    - monitoring-prod-grafana-qr.mx.att.com
     secretName: default-server-secret

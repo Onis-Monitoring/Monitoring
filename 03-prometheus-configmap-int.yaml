@@ -120,6 +120,39 @@ data:
       static_configs:
         - targets: ['kube-state-metrics.monitoring.svc.cluster.local:9092']
 
+    - job_name: 'activemq'
+      static_configs:
+        - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
+      metrics_path: /metrics
+  
+    - job_name: 'rsgateway'
+      static_configs:
+        - targets: ['rsgateway-ag1.matrixx-prod-int.svc.cluster.local:8080']
+      metrics_path: /rsgateway/actuator/prometheus        
+
+    - job_name: 'matrixx_ne_mib'
+      static_configs:
+      - targets:
+        #TULTITLAN
+        - 10.237.31.200:14700
+        - 10.237.31.202:14700
+        #SPERTO
+        - 10.237.47.200:14700
+        - 10.237.47.201:14700
+        #labels:                           
+        #    subdomain: 'subdomain-1'
+      # ADD_MORE_MTX_BLADE_OR_REMOVE. Please check SNMP Agent listening port in configuration.
+      metrics_path: /snmp
+      params:
+        module: ['matrixx_ne_mib']
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port 
+
     # Scrape config for nodes (kubelet).
     #
     # Rather than connecting directly to the node, the scrape is proxied though the
