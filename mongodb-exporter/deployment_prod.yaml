@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9104"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        #image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/noenv/mongo-exporter:latest
+        #args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.38.143:27018/admin"]
+        args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.143:27017,10.237.3.143:27018,10.237.38.143:27017,10.237.38.143:27018/admin"]
+        ports:
+        - containerPort: 9104
+          name: http
+      imagePullSecrets:
+        - name: regcred

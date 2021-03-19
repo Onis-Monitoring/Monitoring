@@ -1,0 +1,449 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-cfgsvr
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9105"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter      
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.141:27017,10.237.3.142:27017,10.237.38.141:27017/admin?replicaSet=MtxxCfgRS"]
+        ports:
+        - containerPort: 9105
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-1
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9106"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.144:27018,10.237.3.145:27018,10.237.38.144:27018/admin?replicaSet=MtxSh1ReplSet"]
+        ports:
+        - containerPort: 9106
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-2
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9106"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.146:27018,10.237.3.147:27018,10.237.38.146:27018/admin?replicaSet=MtxSh2ReplSet"]
+        ports:
+        - containerPort: 9106
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-3
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9107"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.148:27018,10.237.3.149:27018,10.237.38.148:27018/admin?replicaSet=MtxSh3ReplSet"]
+        ports:
+        - containerPort: 9107
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-4
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.150:27018,10.237.3.151:27018,10.237.38.150:27018/admin?replicaSet=MtxSh4ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-5
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.152:27018,10.237.3.153:27018,10.237.38.152:27018/admin?replicaSet=MtxSh5ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-6
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.154:27018,10.237.3.155:27018,10.237.38.154:27018/admin?replicaSet=MtxSh6ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-7
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.156:27018,10.237.3.157:27018,10.237.38.156:27018/admin?replicaSet=MtxSh7ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-8
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.158:27018,10.237.3.159:27018,10.237.38.158:27018/admin?replicaSet=MtxSh8ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-9
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.160:27018,10.237.3.161:27018,10.237.38.160:27018/admin?replicaSet=MtxSh9ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-10
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.162:27018,10.237.3.163:27018,10.237.38.162:27018/admin?replicaSet=MtxSh10ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-11
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.164:27018,10.237.3.165:27018,10.237.38.164:27018/admin?replicaSet=MtxSh11ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-12
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.166:27018,10.237.3.167:27018,10.237.38.166:27018/admin?replicaSet=MtxSh12ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-13
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.168:27018,10.237.3.169:27018,10.237.38.168:27018/admin?replicaSet=MtxSh13ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-shard-14
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9108"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-monitor:m0n1tr_MtxX@10.237.3.170:27018,10.237.3.171:27018,10.237.38.170:27018/admin?replicaSet=MtxSh14ReplSet"]
+        ports:
+        - containerPort: 9108
+          name: http
+      imagePullSecrets:
+        - name: regcred

@@ -1,0 +1,1796 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 49,
+  "iteration": 1603298648831,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 60
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              },
+              {
+                "color": "dark-red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"heap\",id=\"Survivor Space\",} *  100) /jvm_memory_max_bytes{application=\"rsgateway\",area=\"heap\",id=\"Survivor Space\",}",
+          "interval": "",
+          "legendFormat": "Survivor Space",
+          "refId": "D"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"heap\",id=\"Eden Space\",} * 100) / jvm_memory_max_bytes{application=\"rsgateway\",area=\"heap\",id=\"Eden Space\",} ",
+          "interval": "",
+          "legendFormat": "Eden Space",
+          "refId": "F"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"heap\",id=\"Tenured Gen\",} * 100) /jvm_memory_max_bytes{application=\"rsgateway\",area=\"heap\",id=\"Tenured Gen\",}",
+          "interval": "",
+          "legendFormat": "Tenured Gen",
+          "refId": "G"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JVM heap",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 60
+              },
+              {
+                "color": "#EAB839",
+                "value": 70
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              },
+              {
+                "color": "dark-red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\",} * 100) / jvm_memory_max_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\",}",
+          "interval": "",
+          "legendFormat": "non-nmethods",
+          "refId": "B"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\",} * 100 ) / \njvm_memory_max_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\",}",
+          "interval": "",
+          "legendFormat": "non-profiled nmethods",
+          "refId": "C"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\",}*100) /jvm_memory_max_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\",}",
+          "interval": "",
+          "legendFormat": "Profiled nmethods",
+          "refId": "H"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"Compressed Class Space\",} * 100)/jvm_memory_max_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"Compressed Class Space\",}",
+          "interval": "",
+          "legendFormat": "Compressed Class Space",
+          "refId": "E"
+        },
+        {
+          "expr": "(jvm_memory_used_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"Metaspace\",} * 100) / jvm_memory_max_bytes{application=\"rsgateway\",area=\"nonheap\",id=\"Metaspace\",}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "Metaspace",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JVM nonheap",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 4
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mtx_web_request_http_duration_seconds_${type}{application=\"rsgateway\",exception=\"${exception}\",method=\"${method}\",status=\"${status}\",outcome=\"${outcome}\",uri=\"${uri}\",}",
+          "interval": "",
+          "legendFormat": "mtx_web_request_http_duration_seconds",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "mtx_web_request_http_duration_seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 4
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mtx_web_request_rtt_duration_seconds_${type}{application=\"rsgateway\",exception=\"${exception}\",method=\"${method}\",status=\"${status}\",outcome=\"${outcome}\",uri=\"${uri}\",}",
+          "interval": "",
+          "legendFormat": "mtx_web_request_rtt_duration_seconds",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "mtx_web_request_rtt_duration_seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 4
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "http_server_requests_seconds_${type}{application=\"rsgateway\",exception=\"${exception}\",method=\"${method}\",status=\"${status}\",outcome=\"${outcome}\",uri=\"${uri}\",}",
+          "interval": "",
+          "legendFormat": "http_server_requests_seconds",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "http_server_requests_seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 4
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mtx_web_request_proc_duration_seconds_${type}{application=\"rsgateway\",exception=\"${exception}\",method=\"${method}\",status=\"${status}\",outcome=\"${outcome}\",uri=\"${uri}\",}",
+          "interval": "",
+          "legendFormat": "mtx_web_request_proc_duration_seconds",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "mtx_web_request_proc_duration_seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"debug\",}",
+          "interval": "",
+          "legendFormat": "debug",
+          "refId": "A"
+        },
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"error\",}",
+          "interval": "",
+          "legendFormat": "error",
+          "refId": "B"
+        },
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"fatal\",}",
+          "interval": "",
+          "legendFormat": "fatal",
+          "refId": "C"
+        },
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"trace\",}",
+          "interval": "",
+          "legendFormat": "trace",
+          "refId": "D"
+        },
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"warn\",}",
+          "interval": "",
+          "legendFormat": "warn",
+          "refId": "E"
+        },
+        {
+          "expr": "log4j2_events_total{application=\"rsgateway\",level=\"info\",}",
+          "interval": "",
+          "legendFormat": "Info",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Log4J",
+      "type": "stat"
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "GET",
+          "value": "GET"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "method",
+        "multi": false,
+        "name": "method",
+        "options": [
+          {
+            "selected": false,
+            "text": "DELETE",
+            "value": "DELETE"
+          },
+          {
+            "selected": false,
+            "text": "POST",
+            "value": "POST"
+          },
+          {
+            "selected": true,
+            "text": "GET",
+            "value": "GET"
+          },
+          {
+            "selected": false,
+            "text": "PUT",
+            "value": "PUT"
+          }
+        ],
+        "query": "DELETE, POST, GET, PUT",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "200",
+          "value": "200"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "status",
+        "multi": false,
+        "name": "status",
+        "options": [
+          {
+            "selected": true,
+            "text": "200",
+            "value": "200"
+          },
+          {
+            "selected": false,
+            "text": "404",
+            "value": "404"
+          },
+          {
+            "selected": false,
+            "text": "422",
+            "value": "422"
+          },
+          {
+            "selected": false,
+            "text": "503",
+            "value": "503"
+          }
+        ],
+        "query": "200, 404, 422, 503",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "IllegalStateException",
+          "value": "IllegalStateException"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "exception",
+        "multi": false,
+        "name": "exception",
+        "options": [
+          {
+            "selected": false,
+            "text": "IllegalStateException",
+            "value": "IllegalStateException"
+          },
+          {
+            "selected": true,
+            "text": "None",
+            "value": "None"
+          }
+        ],
+        "query": "IllegalStateException, None",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "/rsgateway/data/v3/pricing/offers/19",
+          "value": [
+            "/rsgateway/data/v3/pricing/offers/19"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "uri",
+        "multi": true,
+        "name": "uri",
+        "options": [
+          {
+            "selected": false,
+            "text": "/**",
+            "value": "/**"
+          },
+          {
+            "selected": false,
+            "text": "/actuator/health",
+            "value": "/actuator/health"
+          },
+          {
+            "selected": false,
+            "text": "/actuator/health/**",
+            "value": "/actuator/health/**"
+          },
+          {
+            "selected": false,
+            "text": "/actuator/metrics",
+            "value": "/actuator/metrics"
+          },
+          {
+            "selected": false,
+            "text": "/actuator/prometheus",
+            "value": "/actuator/prometheus"
+          },
+          {
+            "selected": false,
+            "text": "/data/json",
+            "value": "/data/json"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/cache/pricing/balance/",
+            "value": "/data/json/cache/pricing/balance/"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/cache/pricing/CatalogItem",
+            "value": "/data/json/cache/pricing/CatalogItem"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/pricing/balances",
+            "value": "/data/json/pricing/balances"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/pricing/offers",
+            "value": "/data/json/pricing/offers"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/pricing/service_types",
+            "value": "/data/json/pricing/service_types"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/pricing/status",
+            "value": "/data/json/pricing/status"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/subscriber/",
+            "value": "/data/json/subscriber/"
+          },
+          {
+            "selected": false,
+            "text": "/data/json/subscription/",
+            "value": "/data/json/subscription/"
+          },
+          {
+            "selected": false,
+            "text": "/data/template/get/",
+            "value": "/data/template/get/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3",
+            "value": "/data/v3"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/attmex/v1.0/subscription/",
+            "value": "/data/v3/attmex/v1.0/subscription/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/device/",
+            "value": "/data/v3/device/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/device/query/ExternalId/",
+            "value": "/data/v3/device/query/ExternalId/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/mtx_config",
+            "value": "/data/v3/mtx_config"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/balance/",
+            "value": "/data/v3/pricing/balance/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/balances",
+            "value": "/data/v3/pricing/balances"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/billing_cycles",
+            "value": "/data/v3/pricing/billing_cycles"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/CatalogItem",
+            "value": "/data/v3/pricing/CatalogItem"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/CatalogItem/",
+            "value": "/data/v3/pricing/CatalogItem/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/event_types",
+            "value": "/data/v3/pricing/event_types"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/lifecycle/device",
+            "value": "/data/v3/pricing/lifecycle/device"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/lifecycle/group",
+            "value": "/data/v3/pricing/lifecycle/group"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/lifecycle/subscriber",
+            "value": "/data/v3/pricing/lifecycle/subscriber"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/lifecycle/user",
+            "value": "/data/v3/pricing/lifecycle/user"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/offers/",
+            "value": "/data/v3/pricing/offers/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/status",
+            "value": "/data/v3/pricing/status"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/pricing/user_role",
+            "value": "/data/v3/pricing/user_role"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/service/user",
+            "value": "/data/v3/service/user"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/subscriber/",
+            "value": "/data/v3/subscriber/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/subscriber/query/ExternalId/",
+            "value": "/data/v3/subscriber/query/ExternalId/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/subscription/",
+            "value": "/data/v3/subscription/"
+          },
+          {
+            "selected": false,
+            "text": "/data/v3/user/",
+            "value": "/data/v3/user/"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/",
+            "value": "/rsgateway/"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/actuator/health",
+            "value": "/rsgateway/actuator/health"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/actuator/health/camel",
+            "value": "/rsgateway/actuator/health/camel"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/actuator/metrics",
+            "value": "/rsgateway/actuator/metrics"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/actuator/prometheus",
+            "value": "/rsgateway/actuator/prometheus"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/css/bootstrap.min.css",
+            "value": "/rsgateway/css/bootstrap.min.css"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/css/main_ui.css",
+            "value": "/rsgateway/css/main_ui.css"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/css/service_console.css",
+            "value": "/rsgateway/css/service_console.css"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json",
+            "value": "/rsgateway/data/json"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21017",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21017"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21018",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21018"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21019",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21019"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21020",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21020"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21021",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21021"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21036",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21036"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21038",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21038"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21039",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21039"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21044",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21044"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21045",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21045"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21046",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21046"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21049",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21049"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21050",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21050"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21052",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21052"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21053",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21053"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21054",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21054"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21056",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21056"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21057",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21057"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21058",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21058"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/balance/21059",
+            "value": "/rsgateway/data/json/cache/pricing/balance/21059"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/cache/pricing/CatalogItem",
+            "value": "/rsgateway/data/json/cache/pricing/CatalogItem"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/pricing/balances",
+            "value": "/rsgateway/data/json/pricing/balances"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/pricing/offers",
+            "value": "/rsgateway/data/json/pricing/offers"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/pricing/service_types",
+            "value": "/rsgateway/data/json/pricing/service_types"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/pricing/status",
+            "value": "/rsgateway/data/json/pricing/status"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/subscriber/0:1:5:25/offers/19",
+            "value": "/rsgateway/data/json/subscriber/0:1:5:25/offers/19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/subscriber/0:1:5:25/offers/21",
+            "value": "/rsgateway/data/json/subscriber/0:1:5:25/offers/21"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/subscriber/0:1:5:25/offers/23",
+            "value": "/rsgateway/data/json/subscriber/0:1:5:25/offers/23"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/subscription/0:1:5:19",
+            "value": "/rsgateway/data/json/subscription/0:1:5:19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/json/subscription/0:1:5:25",
+            "value": "/rsgateway/data/json/subscription/0:1:5:25"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/template/get/about.html",
+            "value": "/rsgateway/data/template/get/about.html"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/template/get/NavigationTile.html",
+            "value": "/rsgateway/data/template/get/NavigationTile.html"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3",
+            "value": "/rsgateway/data/v3"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/attmex/v1.0/subscription/AccessNumber+10/deposit",
+            "value": "/rsgateway/data/v3/attmex/v1.0/subscription/AccessNumber+10/deposit"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-16",
+            "value": "/rsgateway/data/v3/device/0-1-5-16"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-22",
+            "value": "/rsgateway/data/v3/device/0-1-5-22"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-22/policycounter",
+            "value": "/rsgateway/data/v3/device/0-1-5-22/policycounter"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-22/session",
+            "value": "/rsgateway/data/v3/device/0-1-5-22/session"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-28/policycounter",
+            "value": "/rsgateway/data/v3/device/0-1-5-28/policycounter"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/0-1-5-28/session",
+            "value": "/rsgateway/data/v3/device/0-1-5-28/session"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/ObjectId+0-1-5-16",
+            "value": "/rsgateway/data/v3/device/ObjectId+0-1-5-16"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/ObjectId+0-1-5-22",
+            "value": "/rsgateway/data/v3/device/ObjectId+0-1-5-22"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/ObjectId+0-1-5-28",
+            "value": "/rsgateway/data/v3/device/ObjectId+0-1-5-28"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/device/query/ExternalId/10",
+            "value": "/rsgateway/data/v3/device/query/ExternalId/10"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/mtx_config",
+            "value": "/rsgateway/data/v3/mtx_config"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/balance/21018",
+            "value": "/rsgateway/data/v3/pricing/balance/21018"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/balance/21021",
+            "value": "/rsgateway/data/v3/pricing/balance/21021"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/balances",
+            "value": "/rsgateway/data/v3/pricing/balances"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/billing_cycles",
+            "value": "/rsgateway/data/v3/pricing/billing_cycles"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/142",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/142"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/143",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/143"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/16",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/16"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/185",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/185"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/192",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/192"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/193",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/193"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/194",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/194"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/197",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/197"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/213",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/213"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/214",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/214"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/27",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/27"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/CatalogItem/73",
+            "value": "/rsgateway/data/v3/pricing/CatalogItem/73"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/event_types",
+            "value": "/rsgateway/data/v3/pricing/event_types"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/lifecycle/device",
+            "value": "/rsgateway/data/v3/pricing/lifecycle/device"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/lifecycle/group",
+            "value": "/rsgateway/data/v3/pricing/lifecycle/group"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/lifecycle/subscriber",
+            "value": "/rsgateway/data/v3/pricing/lifecycle/subscriber"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/lifecycle/user",
+            "value": "/rsgateway/data/v3/pricing/lifecycle/user"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/",
+            "value": "/rsgateway/data/v3/pricing/offers/"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/106",
+            "value": "/rsgateway/data/v3/pricing/offers/106"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/119",
+            "value": "/rsgateway/data/v3/pricing/offers/119"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/120",
+            "value": "/rsgateway/data/v3/pricing/offers/120"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/121",
+            "value": "/rsgateway/data/v3/pricing/offers/121"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/122",
+            "value": "/rsgateway/data/v3/pricing/offers/122"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/123",
+            "value": "/rsgateway/data/v3/pricing/offers/123"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/124",
+            "value": "/rsgateway/data/v3/pricing/offers/124"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/15",
+            "value": "/rsgateway/data/v3/pricing/offers/15"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/16",
+            "value": "/rsgateway/data/v3/pricing/offers/16"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/17",
+            "value": "/rsgateway/data/v3/pricing/offers/17"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/18",
+            "value": "/rsgateway/data/v3/pricing/offers/18"
+          },
+          {
+            "selected": true,
+            "text": "/rsgateway/data/v3/pricing/offers/19",
+            "value": "/rsgateway/data/v3/pricing/offers/19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/20",
+            "value": "/rsgateway/data/v3/pricing/offers/20"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/21",
+            "value": "/rsgateway/data/v3/pricing/offers/21"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/41",
+            "value": "/rsgateway/data/v3/pricing/offers/41"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/42",
+            "value": "/rsgateway/data/v3/pricing/offers/42"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/43",
+            "value": "/rsgateway/data/v3/pricing/offers/43"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/63",
+            "value": "/rsgateway/data/v3/pricing/offers/63"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/93",
+            "value": "/rsgateway/data/v3/pricing/offers/93"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/offers/94",
+            "value": "/rsgateway/data/v3/pricing/offers/94"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/status",
+            "value": "/rsgateway/data/v3/pricing/status"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/pricing/user_role",
+            "value": "/rsgateway/data/v3/pricing/user_role"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/service/user",
+            "value": "/rsgateway/data/v3/service/user"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-13/device/0-1-5-16",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-13/device/0-1-5-16"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-19/device/0-1-5-22",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-19/device/0-1-5-22"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-19/payment_method",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-19/payment_method"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-19/wallet",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-19/wallet"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-19/wallet/2/adjustment",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-19/wallet/2/adjustment"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-25/payment_method",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-25/payment_method"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/10/adjustment",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/10/adjustment"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/11/adjustment",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/11/adjustment"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/9/adjustment",
+            "value": "/rsgateway/data/v3/subscriber/0-1-5-25/wallet/9/adjustment"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscriber/query/ExternalId/10",
+            "value": "/rsgateway/data/v3/subscriber/query/ExternalId/10"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/0-1-5-13",
+            "value": "/rsgateway/data/v3/subscription/0-1-5-13"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/0-1-5-19",
+            "value": "/rsgateway/data/v3/subscription/0-1-5-19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/0-1-5-19/offers",
+            "value": "/rsgateway/data/v3/subscription/0-1-5-19/offers"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/0-1-5-25",
+            "value": "/rsgateway/data/v3/subscription/0-1-5-25"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/0-1-5-25/offers",
+            "value": "/rsgateway/data/v3/subscription/0-1-5-25/offers"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/ExternalId+10",
+            "value": "/rsgateway/data/v3/subscription/ExternalId+10"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/ObjectId+0-1-5-13",
+            "value": "/rsgateway/data/v3/subscription/ObjectId+0-1-5-13"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/subscription/ObjectId+0-1-5-19",
+            "value": "/rsgateway/data/v3/subscription/ObjectId+0-1-5-19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/0-1-5-12",
+            "value": "/rsgateway/data/v3/user/0-1-5-12"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/0-1-5-12/subscription/0-1-5-13",
+            "value": "/rsgateway/data/v3/user/0-1-5-12/subscription/0-1-5-13"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/0-1-5-18",
+            "value": "/rsgateway/data/v3/user/0-1-5-18"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/0-1-5-18/subscription/0-1-5-19",
+            "value": "/rsgateway/data/v3/user/0-1-5-18/subscription/0-1-5-19"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/ExternalId+2000010",
+            "value": "/rsgateway/data/v3/user/ExternalId+2000010"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/ObjectId+0-1-5-12",
+            "value": "/rsgateway/data/v3/user/ObjectId+0-1-5-12"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/ObjectId+0-1-5-18",
+            "value": "/rsgateway/data/v3/user/ObjectId+0-1-5-18"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/data/v3/user/UserId+2000010",
+            "value": "/rsgateway/data/v3/user/UserId+2000010"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/images/logo.jpg",
+            "value": "/rsgateway/images/logo.jpg"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/images/serviceconsole.png",
+            "value": "/rsgateway/images/serviceconsole.png"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/images/wait.gif",
+            "value": "/rsgateway/images/wait.gif"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/index.js",
+            "value": "/rsgateway/index.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/js/commonFunctions.js",
+            "value": "/rsgateway/js/commonFunctions.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/js/externalDialog.js",
+            "value": "/rsgateway/js/externalDialog.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/js/fieldPicker.js",
+            "value": "/rsgateway/js/fieldPicker.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/js/navTiles.js",
+            "value": "/rsgateway/js/navTiles.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/bootstrap.min.js",
+            "value": "/rsgateway/jslib/bootstrap.min.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/jquery-2.1.4.min.js",
+            "value": "/rsgateway/jslib/jquery-2.1.4.min.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/jquery-migrate-1.2.1.min.js",
+            "value": "/rsgateway/jslib/jquery-migrate-1.2.1.min.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/jquery-ui.js",
+            "value": "/rsgateway/jslib/jquery-ui.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/matrixx-1.0.0.js",
+            "value": "/rsgateway/jslib/matrixx-1.0.0.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/matrixx.accessController-1.0.0.js",
+            "value": "/rsgateway/jslib/matrixx.accessController-1.0.0.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/matrixx.json.nodevisitor-1.0.0.js",
+            "value": "/rsgateway/jslib/matrixx.json.nodevisitor-1.0.0.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/matrixx.json.propsetter-1.0.0.js",
+            "value": "/rsgateway/jslib/matrixx.json.propsetter-1.0.0.js"
+          },
+          {
+            "selected": false,
+            "text": "/rsgateway/jslib/matrixx.jsonHandler-1.0.0.js",
+            "value": "/rsgateway/jslib/matrixx.jsonHandler-1.0.0.js"
+          }
+        ],
+        "query": "/**, /actuator/health, /actuator/health/**, /actuator/metrics, /actuator/prometheus, /data/json, /data/json/cache/pricing/balance/, /data/json/cache/pricing/CatalogItem, /data/json/pricing/balances, /data/json/pricing/offers, /data/json/pricing/service_types, /data/json/pricing/status, /data/json/subscriber/, /data/json/subscription/, /data/template/get/, /data/v3, /data/v3/attmex/v1.0/subscription/, /data/v3/device/, /data/v3/device/query/ExternalId/, /data/v3/mtx_config, /data/v3/pricing/balance/, /data/v3/pricing/balances, /data/v3/pricing/billing_cycles, /data/v3/pricing/CatalogItem, /data/v3/pricing/CatalogItem/, /data/v3/pricing/event_types, /data/v3/pricing/lifecycle/device, /data/v3/pricing/lifecycle/group, /data/v3/pricing/lifecycle/subscriber, /data/v3/pricing/lifecycle/user, /data/v3/pricing/offers/, /data/v3/pricing/status, /data/v3/pricing/user_role, /data/v3/service/user, /data/v3/subscriber/, /data/v3/subscriber/query/ExternalId/, /data/v3/subscription/, /data/v3/user/, /rsgateway/, /rsgateway/actuator/health, /rsgateway/actuator/health/camel, /rsgateway/actuator/metrics, /rsgateway/actuator/prometheus, /rsgateway/css/bootstrap.min.css, /rsgateway/css/main_ui.css, /rsgateway/css/service_console.css, /rsgateway/data/json, /rsgateway/data/json/cache/pricing/balance/21017, /rsgateway/data/json/cache/pricing/balance/21018, /rsgateway/data/json/cache/pricing/balance/21019, /rsgateway/data/json/cache/pricing/balance/21020, /rsgateway/data/json/cache/pricing/balance/21021, /rsgateway/data/json/cache/pricing/balance/21036, /rsgateway/data/json/cache/pricing/balance/21038, /rsgateway/data/json/cache/pricing/balance/21039, /rsgateway/data/json/cache/pricing/balance/21044, /rsgateway/data/json/cache/pricing/balance/21045, /rsgateway/data/json/cache/pricing/balance/21046, /rsgateway/data/json/cache/pricing/balance/21049, /rsgateway/data/json/cache/pricing/balance/21050, /rsgateway/data/json/cache/pricing/balance/21052, /rsgateway/data/json/cache/pricing/balance/21053, /rsgateway/data/json/cache/pricing/balance/21054, /rsgateway/data/json/cache/pricing/balance/21056, /rsgateway/data/json/cache/pricing/balance/21057, /rsgateway/data/json/cache/pricing/balance/21058, /rsgateway/data/json/cache/pricing/balance/21059, /rsgateway/data/json/cache/pricing/CatalogItem, /rsgateway/data/json/pricing/balances, /rsgateway/data/json/pricing/offers, /rsgateway/data/json/pricing/service_types, /rsgateway/data/json/pricing/status, /rsgateway/data/json/subscriber/0:1:5:25/offers/19, /rsgateway/data/json/subscriber/0:1:5:25/offers/21, /rsgateway/data/json/subscriber/0:1:5:25/offers/23, /rsgateway/data/json/subscription/0:1:5:19, /rsgateway/data/json/subscription/0:1:5:25, /rsgateway/data/template/get/about.html, /rsgateway/data/template/get/NavigationTile.html, /rsgateway/data/v3, /rsgateway/data/v3/attmex/v1.0/subscription/AccessNumber+10/deposit, /rsgateway/data/v3/device/0-1-5-16, /rsgateway/data/v3/device/0-1-5-22, /rsgateway/data/v3/device/0-1-5-22/policycounter, /rsgateway/data/v3/device/0-1-5-22/session, /rsgateway/data/v3/device/0-1-5-28/policycounter, /rsgateway/data/v3/device/0-1-5-28/session, /rsgateway/data/v3/device/ObjectId+0-1-5-16, /rsgateway/data/v3/device/ObjectId+0-1-5-22, /rsgateway/data/v3/device/ObjectId+0-1-5-28, /rsgateway/data/v3/device/query/ExternalId/10, /rsgateway/data/v3/mtx_config, /rsgateway/data/v3/pricing/balance/21018, /rsgateway/data/v3/pricing/balance/21021, /rsgateway/data/v3/pricing/balances, /rsgateway/data/v3/pricing/billing_cycles, /rsgateway/data/v3/pricing/CatalogItem, /rsgateway/data/v3/pricing/CatalogItem/142, /rsgateway/data/v3/pricing/CatalogItem/143, /rsgateway/data/v3/pricing/CatalogItem/16, /rsgateway/data/v3/pricing/CatalogItem/185, /rsgateway/data/v3/pricing/CatalogItem/192, /rsgateway/data/v3/pricing/CatalogItem/193, /rsgateway/data/v3/pricing/CatalogItem/194, /rsgateway/data/v3/pricing/CatalogItem/197, /rsgateway/data/v3/pricing/CatalogItem/213, /rsgateway/data/v3/pricing/CatalogItem/214, /rsgateway/data/v3/pricing/CatalogItem/27, /rsgateway/data/v3/pricing/CatalogItem/73, /rsgateway/data/v3/pricing/event_types, /rsgateway/data/v3/pricing/lifecycle/device, /rsgateway/data/v3/pricing/lifecycle/group, /rsgateway/data/v3/pricing/lifecycle/subscriber, /rsgateway/data/v3/pricing/lifecycle/user, /rsgateway/data/v3/pricing/offers/, /rsgateway/data/v3/pricing/offers/106, /rsgateway/data/v3/pricing/offers/119, /rsgateway/data/v3/pricing/offers/120, /rsgateway/data/v3/pricing/offers/121, /rsgateway/data/v3/pricing/offers/122, /rsgateway/data/v3/pricing/offers/123, /rsgateway/data/v3/pricing/offers/124, /rsgateway/data/v3/pricing/offers/15, /rsgateway/data/v3/pricing/offers/16, /rsgateway/data/v3/pricing/offers/17, /rsgateway/data/v3/pricing/offers/18, /rsgateway/data/v3/pricing/offers/19, /rsgateway/data/v3/pricing/offers/20, /rsgateway/data/v3/pricing/offers/21, /rsgateway/data/v3/pricing/offers/41, /rsgateway/data/v3/pricing/offers/42, /rsgateway/data/v3/pricing/offers/43, /rsgateway/data/v3/pricing/offers/63, /rsgateway/data/v3/pricing/offers/93, /rsgateway/data/v3/pricing/offers/94, /rsgateway/data/v3/pricing/status, /rsgateway/data/v3/pricing/user_role, /rsgateway/data/v3/service/user, /rsgateway/data/v3/subscriber/0-1-5-13/device/0-1-5-16, /rsgateway/data/v3/subscriber/0-1-5-19/device/0-1-5-22, /rsgateway/data/v3/subscriber/0-1-5-19/payment_method, /rsgateway/data/v3/subscriber/0-1-5-19/wallet, /rsgateway/data/v3/subscriber/0-1-5-19/wallet/2/adjustment, /rsgateway/data/v3/subscriber/0-1-5-25/payment_method, /rsgateway/data/v3/subscriber/0-1-5-25/wallet, /rsgateway/data/v3/subscriber/0-1-5-25/wallet/10/adjustment, /rsgateway/data/v3/subscriber/0-1-5-25/wallet/11/adjustment, /rsgateway/data/v3/subscriber/0-1-5-25/wallet/9/adjustment, /rsgateway/data/v3/subscriber/query/ExternalId/10, /rsgateway/data/v3/subscription/0-1-5-13, /rsgateway/data/v3/subscription/0-1-5-19, /rsgateway/data/v3/subscription/0-1-5-19/offers, /rsgateway/data/v3/subscription/0-1-5-25, /rsgateway/data/v3/subscription/0-1-5-25/offers, /rsgateway/data/v3/subscription/ExternalId+10, /rsgateway/data/v3/subscription/ObjectId+0-1-5-13, /rsgateway/data/v3/subscription/ObjectId+0-1-5-19, /rsgateway/data/v3/user/0-1-5-12, /rsgateway/data/v3/user/0-1-5-12/subscription/0-1-5-13, /rsgateway/data/v3/user/0-1-5-18, /rsgateway/data/v3/user/0-1-5-18/subscription/0-1-5-19, /rsgateway/data/v3/user/ExternalId+2000010, /rsgateway/data/v3/user/ObjectId+0-1-5-12, /rsgateway/data/v3/user/ObjectId+0-1-5-18, /rsgateway/data/v3/user/UserId+2000010, /rsgateway/images/logo.jpg, /rsgateway/images/serviceconsole.png, /rsgateway/images/wait.gif, /rsgateway/index.js, /rsgateway/js/commonFunctions.js, /rsgateway/js/externalDialog.js, /rsgateway/js/fieldPicker.js, /rsgateway/js/navTiles.js, /rsgateway/jslib/bootstrap.min.js, /rsgateway/jslib/jquery-2.1.4.min.js, /rsgateway/jslib/jquery-migrate-1.2.1.min.js, /rsgateway/jslib/jquery-ui.js, /rsgateway/jslib/matrixx-1.0.0.js, /rsgateway/jslib/matrixx.accessController-1.0.0.js, /rsgateway/jslib/matrixx.json.nodevisitor-1.0.0.js, /rsgateway/jslib/matrixx.json.propsetter-1.0.0.js, /rsgateway/jslib/matrixx.jsonHandler-1.0.0.js",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "SUCCESS",
+          "value": "SUCCESS"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "outcome",
+        "multi": false,
+        "name": "outcome",
+        "options": [
+          {
+            "selected": true,
+            "text": "SUCCESS",
+            "value": "SUCCESS"
+          },
+          {
+            "selected": false,
+            "text": "CLIENT_ERROR",
+            "value": "CLIENT_ERROR"
+          },
+          {
+            "selected": false,
+            "text": "SERVER_ERROR",
+            "value": "SERVER_ERROR"
+          }
+        ],
+        "query": "SUCCESS, CLIENT_ERROR, SERVER_ERROR",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "sum",
+          "value": "sum"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "type",
+        "multi": false,
+        "name": "type",
+        "options": [
+          {
+            "selected": false,
+            "text": "sum",
+            "value": "sum"
+          },
+          {
+            "selected": true,
+            "text": "count",
+            "value": "count"
+          },
+          {
+            "selected": false,
+            "text": "max",
+            "value": "max"
+          }
+        ],
+        "query": "sum, count, max",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "RSGateway",
+  "uid": "vBIck4tGk",
+  "version": 19
+}

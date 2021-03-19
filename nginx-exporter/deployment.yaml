@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-prometheus-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: nginx-prometheus-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: nginx-prometheus-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: nginx-prometheus-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9113"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: nginx-prometheus-exporter
+        #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/nginx/nginx-prometheus-exporter:0.8.0
+        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/nginx/nginx-prometheus-exporter:0.8.0
+        args: 
+        - "-nginx.scrape-uri=http://10.150.152.206:8080/stub_status"
+        ports:
+        - containerPort: 9113
+          name: http
+      imagePullSecrets:
+        - name: regcred

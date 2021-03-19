@@ -1,0 +1,1199 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 36,
+  "links": [
+    {
+      "$$hashKey": "object:307",
+      "icon": "external link",
+      "tags": [],
+      "title": "MTXX Env Dashboard",
+      "type": "link",
+      "url": "http://10.150.152.95:3000/d/vuQFgiIGk/matrixx-environment-dashboard?orgId=1&refresh=5m"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "start",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "pre-init",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "post-init",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "standby-sync",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "active-sync",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "backstop",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "10"
+            },
+            {
+              "from": "",
+              "id": 11,
+              "text": "stop",
+              "to": "",
+              "type": 1,
+              "value": "11"
+            },
+            {
+              "from": "",
+              "id": 12,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "12"
+            },
+            {
+              "from": "",
+              "id": 13,
+              "text": "failed",
+              "to": "",
+              "type": 1,
+              "value": "13"
+            },
+            {
+              "from": "",
+              "id": 14,
+              "text": "none",
+              "to": "",
+              "type": 1,
+              "value": "14"
+            },
+            {
+              "from": "",
+              "id": 15,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "light-purple",
+                "value": 5
+              },
+              {
+                "color": "blue",
+                "value": 6
+              },
+              {
+                "color": "light-purple",
+                "value": 7
+              },
+              {
+                "color": "dark-green",
+                "value": 8
+              },
+              {
+                "color": "light-yellow",
+                "value": 9
+              },
+              {
+                "color": "red",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysPeerClusterClusterState{instance=\"proc-s1e1.mtx-attm-dev.svc.cluster.local:14700\", job=\"matrixx_mib\", sysPeerClusterEngineId=\"1\",sysPeerClusterClusterId=\"1\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "engine 1",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "engine 1 status",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "start",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "pre-init",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "post-init",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "standby-sync",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "active-sync",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "backstop",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "10"
+            },
+            {
+              "from": "",
+              "id": 11,
+              "text": "stop",
+              "to": "",
+              "type": 1,
+              "value": "11"
+            },
+            {
+              "from": "",
+              "id": 12,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "12"
+            },
+            {
+              "from": "",
+              "id": 13,
+              "text": "failed",
+              "to": "",
+              "type": 1,
+              "value": "13"
+            },
+            {
+              "from": "",
+              "id": 14,
+              "text": "none",
+              "to": "",
+              "type": 1,
+              "value": "14"
+            },
+            {
+              "from": "",
+              "id": 15,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "light-purple",
+                "value": 5
+              },
+              {
+                "color": "blue",
+                "value": 6
+              },
+              {
+                "color": "light-purple",
+                "value": 7
+              },
+              {
+                "color": "dark-green",
+                "value": 8
+              },
+              {
+                "color": "light-yellow",
+                "value": 9
+              },
+              {
+                "color": "red",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysPeerClusterClusterState{instance=\"proc-s1e1-0.attmdev.svc.cluster.local:14700\", job=\"matrixx_mib\", sysPeerClusterEngineId=\"2\",sysPeerClusterClusterId=\"1\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "engine 1",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "engine 2 status",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "rec-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "rec-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "rec-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "rec-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "rec-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "subscribers count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 2
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "group count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 2
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "mtb-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "mtb-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "mtb-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"MTB-TRF-PUBL102:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "mtb-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "interval": "",
+          "legendFormat": "mtb-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "subscribers count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 2
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "mtb-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"MTB-TRF-PROC102:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "mtb-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"MTB-TRF-PUBL101:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "mtb-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"MTB-TRF-PUBL102:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "mtb-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=\"MTB-TRF-CHECK101:14700\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "mtb-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "group count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "DatabaseMemoryUsedKb{instance=\"proc-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "rec-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "rec-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "rec-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "sub (all) memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "mtb-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "mtb-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"MTB-TRF-PUBL101:14700\",txnDatabasePoolId=\"5\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "mtb-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "mtb-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700\",txnDatabasePoolId=\"5\"}",
+          "interval": "",
+          "legendFormat": "mtb-check101",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "sub (all) memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:388",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:389",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Database",
+  "uid": "DiXmbpHGz",
+  "version": 10
+}

@@ -1,0 +1,2026 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 40,
+  "iteration": 1603298525460,
+  "links": [
+    {
+      "$$hashKey": "object:48",
+      "icon": "external link",
+      "tags": [],
+      "title": "General Overview",
+      "type": "link",
+      "url": "http://10.150.152.95:3000/d/cI5VwP5Mz/general-overview?orgId=1"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Active",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 27,
+      "links": [
+        {
+          "title": "ActiveMQ Dashboard",
+          "url": "http://10.150.152.95:3000/d/7B3DXM5Gz/activemq?orgId=1&refresh=5s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "org_apache_activemq_Broker_Active",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ActiveMQ",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "0",
+              "id": 0,
+              "text": "Active",
+              "to": "8000000",
+              "type": 2
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 4,
+        "y": 0
+      },
+      "id": 31,
+      "links": [
+        {
+          "title": "Camel Counters",
+          "url": "http://10.150.152.95:3000/d/Scu-IxcGz/camel-counters?orgId=1"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "camelStatsChargingSessionStartCount",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Camel Notifier",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "1",
+              "id": 0,
+              "text": "Active",
+              "to": "100",
+              "type": 2,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 9,
+        "y": 0
+      },
+      "id": 44,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "(tomcat_sessions_active_current_sessions{application=\"rsgateway\",} * 100 ) / tomcat_sessions_active_max_sessions{application=\"rsgateway\",}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "RSGateway Sessions",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 30
+              },
+              {
+                "color": "#EAB839",
+                "value": 40
+              },
+              {
+                "color": "dark-orange",
+                "value": 60
+              },
+              {
+                "color": "dark-red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 14,
+        "y": 0
+      },
+      "id": 42,
+      "links": [
+        {
+          "title": "IMDB Dashboard",
+          "url": "http://10.150.152.95:3000/d/DiXmbpHGz/database?orgId=1&refresh=5s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 /(\ntxnDatabaseMemoryUsedKb{instance=\"proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + txnDatabaseMemoryFreeKb{instance=\"proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 /(\ntxnDatabaseMemoryUsedKb{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} +\ntxnDatabaseMemoryFreeKb{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 / (\ntxnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + \ntxnDatabaseMemoryFreeKb{instance=\"tralb-publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 / (\ntxnDatabaseMemoryUsedKb{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + \ntxnDatabaseMemoryFreeKb{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "(txnDatabaseMemoryUsedKb{instance=\"ckpt-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 ) /\n(txnDatabaseMemoryUsedKb{instance=\"ckpt-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + \ntxnDatabaseMemoryFreeKb{instance=\"ckpt-s1e1.matrixx-prod-int.svc.cluster.local:14700\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "check101",
+          "refId": "E"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "IMDB memory used (KB)",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Up",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 25,
+      "links": [
+        {
+          "title": "MongoDB Overview",
+          "url": "http://10.150.152.95:3000/d/5-f2aCGGk/mongodb-overview?orgId=1&refresh=5s"
+        },
+        {
+          "title": "MongoDB ReplicaSet",
+          "url": "http://10.150.152.95:3000/d/7lzrQGNik/mongodb-replset?orgId=1&refresh=1m&var-interval=$__auto_interval_interval&var-replset=rs0&var-host=172.45.42.6:9104"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "mongodb_up",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MongoDB RS",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 2
+      },
+      "id": 29,
+      "links": [
+        {
+          "title": "Nginx Dashboard",
+          "url": "http://10.150.152.95:3000/d/GqFjuAgmk/nginx?orgId=1&refresh=30s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NGINX",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 4,
+        "y": 2
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\"}",
+          "interval": "",
+          "legendFormat": "e1 tradr 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\"}",
+          "interval": "",
+          "legendFormat": "e1 tradr 2",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Disaster Recovery",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 20,
+        "x": 0,
+        "y": 4
+      },
+      "id": 46,
+      "options": {
+        "content": "Engine 1\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "id": 48,
+      "options": {
+        "content": "Subdomain errors",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "start",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "pre-init",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "post-init",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "standby-sync",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "active-sync",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "backstop",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "10"
+            },
+            {
+              "from": "",
+              "id": 11,
+              "text": "stop",
+              "to": "",
+              "type": 1,
+              "value": "11"
+            },
+            {
+              "from": "",
+              "id": 12,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "12"
+            },
+            {
+              "from": "",
+              "id": 13,
+              "text": "failed",
+              "to": "",
+              "type": 1,
+              "value": "13"
+            },
+            {
+              "from": "",
+              "id": 14,
+              "text": "none",
+              "to": "",
+              "type": 1,
+              "value": "14"
+            },
+            {
+              "from": "",
+              "id": 15,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "light-purple",
+                "value": 5
+              },
+              {
+                "color": "blue",
+                "value": 6
+              },
+              {
+                "color": "light-purple",
+                "value": 7
+              },
+              {
+                "color": "dark-green",
+                "value": 8
+              },
+              {
+                "color": "light-yellow",
+                "value": 9
+              },
+              {
+                "color": "red",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 5
+      },
+      "id": 2,
+      "links": [
+        {
+          "title": "IMDB Dashboard",
+          "url": "http://10.150.152.95:3000/d/DiXmbpHGz/database?orgId=1&refresh=5s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysPeerClusterClusterState{instance=\"proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysPeerClusterEngineId=\"1\",sysPeerClusterClusterId=\"1\",subdomain=\"$Subdomain\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "engine 1",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Status",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "purple",
+                "value": 1
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "#EAB839",
+                "value": 8
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 4,
+        "y": 5
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "processing 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "processing 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 2",
+          "refId": "E"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"ckpt-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "checkpoint 1",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Blades",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 14,
+        "y": 5
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",sysPeerClusterEngineId=\"1\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 1",
+          "refId": "A"
+        },
+        {
+          "expr": "ysTraNodeState{instance=\"tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",sysPeerClusterEngineId=\"1\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 2",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Load Balancer",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "dark-orange",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              },
+              {
+                "color": "dark-red",
+                "value": 110
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 20,
+        "y": 5
+      },
+      "id": 39,
+      "links": [
+        {
+          "title": "Processing Errors Dashboard",
+          "url": "http://10.150.152.95:3000/d/d0SDkB5Gk/processing-errors?orgId=1"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sum by(name)(sysProcessingErrors{subdomain=\"${Subdomain}\"})",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Proc Errors",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 20,
+        "x": 0,
+        "y": 9
+      },
+      "id": 47,
+      "options": {
+        "content": "Engine 2\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "start",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "pre-init",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "post-init",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "standby-sync",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "active-sync",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "backstop",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "10"
+            },
+            {
+              "from": "",
+              "id": 11,
+              "text": "stop",
+              "to": "",
+              "type": 1,
+              "value": "11"
+            },
+            {
+              "from": "",
+              "id": 12,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "12"
+            },
+            {
+              "from": "",
+              "id": 13,
+              "text": "failed",
+              "to": "",
+              "type": 1,
+              "value": "13"
+            },
+            {
+              "from": "",
+              "id": 14,
+              "text": "none",
+              "to": "",
+              "type": 1,
+              "value": "14"
+            },
+            {
+              "from": "",
+              "id": 15,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "light-purple",
+                "value": 5
+              },
+              {
+                "color": "blue",
+                "value": 6
+              },
+              {
+                "color": "light-purple",
+                "value": 7
+              },
+              {
+                "color": "#508642",
+                "value": 8
+              },
+              {
+                "color": "light-yellow",
+                "value": 9
+              },
+              {
+                "color": "red",
+                "value": 14
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 10
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysPeerClusterClusterState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysPeerClusterEngineId=\"2\",sysPeerClusterClusterId=\"1\",subdomain=\"$Subdomain\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "engine 2",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Status",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "purple",
+                "value": 1
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 5
+              },
+              {
+                "color": "#EAB839",
+                "value": 8
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 4,
+        "y": 10
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "processing 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "processing 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 2",
+          "refId": "E"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"ckpt-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "checkpoint 1",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Blades",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 14,
+        "y": 10
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\",sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 2",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Load Balancer",
+      "type": "stat"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "subdomain-1",
+          "value": "subdomain-1"
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(subdomain)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Subdomain",
+        "multi": false,
+        "name": "Subdomain",
+        "options": [],
+        "query": "label_values(subdomain)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "MATRIXX Subdomain Dashboard",
+  "uid": "vuQFgiIGk",
+  "version": 77
+}

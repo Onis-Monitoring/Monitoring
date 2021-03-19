@@ -1,0 +1,1716 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 8,
+  "iteration": 1610064189359,
+  "links": [
+    {
+      "$$hashKey": "object:48",
+      "icon": "external link",
+      "tags": [],
+      "title": "General Overview",
+      "type": "link",
+      "url": "http://10.150.152.95:3000/d/cI5VwP5Mz/general-overview?orgId=1"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Active",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 27,
+      "links": [
+        {
+          "title": "ActiveMQ Dashboard",
+          "url": "http://10.150.152.95:3000/d/7B3DXM5Gz/activemq?orgId=1&refresh=5s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "org_apache_activemq_Broker_Active",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ActiveMQ",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "0",
+              "id": 0,
+              "text": "Active",
+              "to": "8000000",
+              "type": 2
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 5,
+        "y": 0
+      },
+      "id": 31,
+      "links": [
+        {
+          "title": "Camel Counters",
+          "url": "http://10.150.152.95:3000/d/Scu-IxcGz/camel-counters?orgId=1"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "camelStatsChargingSessionStartCount",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Camel Notifier",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 10,
+        "y": 0
+      },
+      "id": 44,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "rate(mtx_web_request_proc_duration_seconds_sum{application=\"rsgateway\",exception=\"None\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/data/json/pricing/status\",} [5m])",
+          "interval": "",
+          "legendFormat": "mtx_web_req_proc",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(mtx_web_request_rtt_duration_seconds_sum{application=\"rsgateway\",exception=\"None\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/data/json/pricing/status\",}[5m])",
+          "interval": "",
+          "legendFormat": "mtx_web_req_rtt",
+          "refId": "B"
+        },
+        {
+          "expr": "rate(http_server_requests_seconds_sum{application=\"rsgateway\",exception=\"None\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/data/json/pricing/status\",}[5m])",
+          "interval": "",
+          "legendFormat": "http_server_req",
+          "refId": "C"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "RSGateway request duration (sec)",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 30
+              },
+              {
+                "color": "#EAB839",
+                "value": 40
+              },
+              {
+                "color": "dark-orange",
+                "value": 60
+              },
+              {
+                "color": "dark-red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "id": 42,
+      "links": [
+        {
+          "title": "IMDB Dashboard",
+          "url": "http://10.150.152.95:3000/d/DiXmbpHGz/database?orgId=1&refresh=5s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=~\"proc-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 /(\ntxnDatabaseMemoryUsedKb{instance=~\"proc-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} +\ntxnDatabaseMemoryFreeKb{instance=~\"proc-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "Proc",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseMemoryUsedKb{instance=~\"tralb-publ-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 / (\ntxnDatabaseMemoryUsedKb{instance=~\"tralb-publ-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + \ntxnDatabaseMemoryFreeKb{instance=~\"tralb-publ-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "Publ",
+          "refId": "C"
+        },
+        {
+          "expr": "(txnDatabaseMemoryUsedKb{instance=~\"ckpt-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} * 100 ) /\n(txnDatabaseMemoryUsedKb{instance=~\"ckpt-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"} + \ntxnDatabaseMemoryFreeKb{instance=~\"ckpt-.*\",txnDatabasePoolId=\"5\",subdomain=\"$Subdomain\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Ckpt",
+          "refId": "E"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "IMDB memory used (KB)",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "Up",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 25,
+      "links": [
+        {
+          "title": "MongoDB Overview",
+          "url": "http://10.150.152.95:3000/d/5-f2aCGGk/mongodb-overview?orgId=1&refresh=5s"
+        },
+        {
+          "title": "MongoDB ReplicaSet",
+          "url": "http://10.150.152.95:3000/d/7lzrQGNik/mongodb-replset?orgId=1&refresh=1m&var-interval=$__auto_interval_interval&var-replset=rs0&var-host=172.45.42.6:9104"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "mongodb_up",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MongoDB RS",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 0,
+        "y": 2
+      },
+      "id": 29,
+      "links": [
+        {
+          "title": "Nginx Dashboard",
+          "url": "http://10.150.152.95:3000/d/GqFjuAgmk/nginx?orgId=1&refresh=30s"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NGINX",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 5,
+        "y": 2
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=~\"tra-rt-.*\", job=\"matrixx_tra_mib\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "e1 tradr 1",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Disaster Recovery",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 16,
+        "x": 0,
+        "y": 4
+      },
+      "id": 46,
+      "options": {
+        "content": "Engine 1\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 4
+      },
+      "id": 50,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"proc-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\", subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "rec-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"proc-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"publ-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"publ.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"ckpt-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"1\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-check101",
+          "refId": "E"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "IMDB subscribers count",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "purple",
+                "value": 1
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "#EAB839",
+                "value": 8
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 0,
+        "y": 5
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sum(sysClusterMemberNodeState{instance=~\"proc-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}) / count(sysClusterMemberNodeState{instance=~\"proc-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "processing 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(sysClusterMemberNodeState{instance=~\"proc-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"}) / count(sysClusterMemberNodeState{instance=~\"proc-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"})",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "processing 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(sysClusterMemberNodeState{instance=~\"publ-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}) / count(sysClusterMemberNodeState{instance=~\"publ-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "publishing 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(sysClusterMemberNodeState{instance=~\"publ-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"}) / count(sysClusterMemberNodeState{instance=~\"publ-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "publishing 2",
+          "refId": "E"
+        },
+        {
+          "expr": "sum(sysClusterMemberNodeState{instance=~\"ckpt-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"}) / count(sysClusterMemberNodeState{instance=~\"ckpt-.*\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\",subdomain=\"$Subdomain\"})",
+          "interval": "",
+          "legendFormat": "checkpoint 1",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Blades",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 10,
+        "y": 5
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=~\"tra-rt-.*\",job=\"matrixx_tra_mib\",sysPeerClusterEngineId=\"1\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tra-rt 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraNodeState{instance=~\"tra-rt-.*\",job=\"matrixx_tra_mib\",sysPeerClusterEngineId=\"1\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tra-rt 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysTraNodeState{instance=~\"tralb-proc.*\",job=\"matrixx_tra_mib\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-proc 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysTraNodeState{instance=~\"tralb-publ.*\",job=\"matrixx_tra_mib\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 2",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Load Balancer",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 16,
+        "x": 0,
+        "y": 9
+      },
+      "id": 47,
+      "options": {
+        "content": "Engine 2\n         ",
+        "mode": "html"
+      },
+      "pluginVersion": "7.1.0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 9
+      },
+      "id": 52,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"proc.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "interval": "",
+          "legendFormat": "rec-proc101",
+          "refId": "A"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"proc.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-proc102",
+          "refId": "B"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"publ-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-publ101",
+          "refId": "C"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"publ-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-publ102",
+          "refId": "D"
+        },
+        {
+          "expr": "txnDatabaseObjectCount{instance=~\"publ-.*\",txnDatabaseObjectPoolId=\"5\",txnDatabaseObjectTypeId=\"4\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "rec-check101",
+          "refId": "E"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "IMDB group count",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "purple",
+                "value": 1
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 5
+              },
+              {
+                "color": "#EAB839",
+                "value": 8
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 0,
+        "y": 10
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "processing 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "processing 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"publ-s1e1.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"proc-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"2\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "publishing 2",
+          "refId": "E"
+        },
+        {
+          "expr": "sysClusterMemberNodeState{instance=\"ckpt-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\", job=\"matrixx_mib\", sysClusterMemberNodeId=\"1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "checkpoint 1",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Blades",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "active",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            },
+            {
+              "from": "",
+              "id": 1,
+              "text": "down",
+              "to": "",
+              "type": 1,
+              "value": "null"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "unknown",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "init",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "sync-wait",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "sync-ready",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 6,
+              "text": "sync",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 7,
+              "text": "quiesce",
+              "to": "",
+              "type": 1,
+              "value": "6"
+            },
+            {
+              "from": "",
+              "id": 8,
+              "text": "exit",
+              "to": "",
+              "type": 1,
+              "value": "7"
+            },
+            {
+              "from": "",
+              "id": 9,
+              "text": "final",
+              "to": "",
+              "type": 1,
+              "value": "8"
+            },
+            {
+              "from": "",
+              "id": 10,
+              "text": "standby",
+              "to": "",
+              "type": 1,
+              "value": "9"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 5
+              },
+              {
+                "color": "dark-blue",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 10,
+        "y": 10
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\",sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 1",
+          "refId": "A"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "tralb 2",
+          "refId": "B"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-proc-s1e1.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 1",
+          "refId": "C"
+        },
+        {
+          "expr": "sysTraNodeState{instance=\"tralb-publ-s1e1-0.matrixx-prod-int.svc.cluster.local:14700\",job=\"matrixx_tra_mib\",subdomain=\"subdomain-1\", sysPeerClusterEngineId=\"2\",subdomain=\"$Subdomain\"}",
+          "interval": "",
+          "legendFormat": "tralb-pub 2",
+          "refId": "D"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Tra Load Balancer",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 10
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "dark-orange",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              },
+              {
+                "color": "dark-red",
+                "value": 110
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 39,
+      "links": [
+        {
+          "title": "Processing Errors Dashboard",
+          "url": "http://10.150.152.95:3000/d/d0SDkB5Gk/processing-errors?orgId=1"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "sysProcessingErrors{subdomain=\"${Subdomain}\"}",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Proc Errors",
+      "type": "gauge"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "subdomain-1",
+          "value": "subdomain-1"
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(subdomain)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Subdomain",
+        "multi": false,
+        "name": "Subdomain",
+        "options": [],
+        "query": "label_values(subdomain)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "MATRIXX Subdomain Dashboard",
+  "uid": "vuQFgiIGk",
+  "version": 19
+}

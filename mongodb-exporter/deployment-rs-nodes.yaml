@@ -1,0 +1,97 @@
+#Author: OCC
+#Date: 10112020
+#Description: taken as base file "deployment-shards.yaml" the connection string for mongo in label "args"  
+#has changed in order to watch replicaset nodes instead of sharded cluster nodes.
+#This change has been performed cause Matrixx has requested
+#a mongodb replica set implementation for environments DEV,SIT,QA and temporarily for PROD
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-rs-node-1
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9105"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9105", "--mongodb.uri", "mongodb://mtxx-admin:mtxx-pass@172.16.9.2:27013,172.16.9.3:27013/admin"]
+        ports:
+        - containerPort: 9105
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-rs-node-2
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9106"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9106", "--mongodb.uri", "mongodb://mongo-0.mongo.mongodb.svc.cluster.local:27017/admin?replicaSet=rs0"]
+        ports:
+        - containerPort: 9106
+          name: http
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter-rs-node-3
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9107"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/noenv/mongo-exporter:latest
+        args: ["--web.listen-address=:9106", "--mongodb.uri", "mongodb://mongo-1.mongo.mongodb.svc.cluster.local:27017/admin?replicaSet=rs0"]
+        ports:
+        - containerPort: 9107
+          name: http
+      imagePullSecrets:
+        - name: regcred

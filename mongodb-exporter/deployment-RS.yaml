@@ -1,0 +1,37 @@
+#Author: OCC
+#Date: 10112020
+#Description: 
+#connectoin string has been updated to implements an ReplicaSet configuration
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: mongo-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: mongo-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: mongo-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9104"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: mongo-exporter
+        #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/noenv/mongo-exporter:latest
+        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/noenv/mongo-exporter:latest
+        #mongo mongodb://mongo-0.mongo.mongodb.svc.cluster.local:27017,mongo-1.mongo.mongodb.svc.cluster.local:27017,mongo-2.mongo.mongodb.svc.cluster.local:27017/admin?replicaSet=rs0
+        args: ["--web.listen-address=:9104", "--mongodb.uri", "mongodb://mongo-0.mongo.mongodb.svc.cluster.local:27017,mongo-1.mongo.mongodb.svc.cluster.local:27017,mongo-2.mongo.mongodb.svc.cluster.local:27017/admin?replicaSet=rs0"]
+        ports:
+        - containerPort: 9104
+          name: http
+      imagePullSecrets:
+        - name: regcred
