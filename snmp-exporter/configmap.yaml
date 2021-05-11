@@ -429,6 +429,9 @@ data:
       - 1.3.6.1.4.1.35838.1.1.1.9.1.1.0
       - 1.3.6.1.4.1.35838.1.1.1.9.1.2.0
       - 1.3.6.1.4.1.35838.1.1.1.9.1.3.0
+      - 1.3.6.1.4.1.35838.1.1.1.21.1.1.0
+      - 1.3.6.1.4.1.35838.1.1.1.21.1.2.0
+      - 1.3.6.1.4.1.35838.1.1.1.21.1.3.0
       metrics:
       - name: sysServiceRestart
         oid: 1.3.6.1.4.1.35838.1.1.2.1.3
@@ -2205,6 +2208,18 @@ data:
         type: counter
         help: Number of TCAP messages for which creating or finding a charging session
           failed. - 1.3.6.1.4.1.35838.1.1.1.9.1.3
+      - name: ldapStatsSuccessRequestLdapCount
+        oid: 1.3.6.1.4.1.35838.1.1.1.21.1.1
+        type: counter
+        help: Number of ldap successful requests. - 1.3.6.1.4.1.35838.1.1.1.21.1.1 
+      - name: ldapStatsSuccessResponseLdapCount
+        oid: 1.3.6.1.4.1.35838.1.1.1.21.1.2
+        type: counter
+        help: Number of ldap successful responses. - 1.3.6.1.4.1.35838.1.1.1.21.1.2 
+      - name: ldapStatsErrorCount 
+        oid: 1.3.6.1.4.1.35838.1.1.1.21.1.3
+        type: counter
+        help: Number of ldap errors. - 1.3.6.1.4.1.35838.1.1.1.21.1.3 
       auth:
         community: public
     matrixx_ne_mib:
