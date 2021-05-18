@@ -429,384 +429,88 @@ data:
         target_label: kubernetes_pod_name
   alert_rules.yml: |
     groups:
-      - name: kubernetes.rules
+      - name: blades.rules
         rules:
-        - alert: KubernetesNodeReady
-          expr: kube_node_status_condition{condition="Ready",status="true"} == 0
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes Node ready (instance {{ $labels.instance }})"
-            description: "Node {{ $labels.node }} has been unready for a long time\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesPersistentvolumeclaimPending
-          expr: kube_persistentvolumeclaim_status_phase{phase="Pending"} == 1
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Kubernetes PersistentVolumeClaim pending (instance {{ $labels.instance }})"
-            description: "PersistentVolumeClaim {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is pending\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"      
-        - alert: KubernetesJobFailed
-          expr: kube_job_status_failed > 0
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Kubernetes Job failed (instance {{ $labels.instance }})"
-            description: "Job {{$labels.namespace}}/{{$labels.exported_job}} failed to complete\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesCronjobSuspended
-          expr: kube_cronjob_spec_suspend != 0
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Kubernetes CronJob suspended (instance {{ $labels.instance }})"
-            description: "CronJob {{ $labels.namespace }}/{{ $labels.cronjob }} is suspended\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesVolumeFullInFourDays
-          expr: predict_linear(kubelet_volume_stats_available_bytes[6h], 4 * 24 * 3600) < 0
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes Volume full in four days (instance {{ $labels.instance }})"
-            description: "{{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is expected to fill up within four days. Currently {{ $value | humanize }}% is available.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesPersistentvolumeError
-          expr: kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes PersistentVolume error (instance {{ $labels.instance }})"
-            description: "Persistent volume is in bad state\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesHpaScaleCapability
-          expr: kube_hpa_status_desired_replicas >= kube_hpa_spec_max_replicas
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Kubernetes HPA scale capability (instance {{ $labels.instance }})"
-            description: "The maximum number of desired Pods has been hit\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesPodNotHealthy
-          expr: min_over_time(sum by (namespace, pod) (kube_pod_status_phase{phase=~"Pending|Unknown|Failed"})[1h:])
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes Pod not healthy (instance {{ $labels.instance }})"
-            description: "Pod has been in a non-ready state for longer than an hour.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesPodCrashLooping
-          expr: rate(kube_pod_container_status_restarts_total[15m]) * 60 * 5 > 5
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Kubernetes pod crash looping (instance {{ $labels.instance }})"
-            description: "Pod {{ $labels.pod }} is crash looping\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KubernetesStatefulsetDown
-          expr: (kube_statefulset_status_replicas_ready / kube_statefulset_status_replicas_current) != 1
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes StatefulSet down (instance {{ $labels.instance }})"
-            description: "A StatefulSet went down"
-        - alert: KubernetesMemoryPressure
-          expr: kube_node_status_condition{condition="MemoryPressure",status="true"} == 1
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes memory pressure (instance {{ $labels.instance }})"
-            description: "{{ $labels.node }} has MemoryPressure condition"
-        - alert: KubernetesDiskPressure
-          expr: kube_node_status_condition{condition="DiskPressure",status="true"} == 1
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kubernetes disk pressure (instance {{ $labels.instance }})"
-            description: "{{ $labels.node }} has DiskPressure condition"
-      - name: mongoDB.rules
-        rules:
-        - alert: MongodbNumberCursorsOpen
-          expr: mongodb_metrics_cursor_open{state="total_open"} > 10000
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "MongoDB number cursors open (instance {{ $labels.instance }})"
-            description: "Too many cursors opened by MongoDB for clients (> 10k)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MongodbCursorsTimeouts
-          expr: increase(mongodb_metrics_cursor_timed_out_total[10m]) > 100
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "MongoDB cursors timeouts (instance {{ $labels.instance }})"
-            description: "Too many cursors are timing out\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MongodbTooManyConnections
-          expr: mongodb_connections{state="current"} > 500
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "MongoDB too many connections (instance {{ $labels.instance }})"
-            description: "Too many connections\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MongodbVirtualMemoryUsage
-          expr: (sum(mongodb_memory{type="virtual"}) BY (ip) / sum(mongodb_memory{type="mapped"}) BY (ip)) > 3
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "MongoDB virtual memory usage (instance {{ $labels.instance }})"
-            description: "High memory usage\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MongodbReplicationLag
-          expr: avg(mongodb_replset_member_optime_date{state="PRIMARY"}) - avg(mongodb_replset_member_optime_date{state="SECONDARY"}) > 10
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication lag (instance {{ $labels.instance }})"
-            description: "Mongodb replication lag is more than 10s\n VALUE = {{ $value }}\n LABELS: {{ $labels }}"
-        - alert: MongodbReplicationHeadroom
-          expr: (avg(mongodb_replset_oplog_tail_timestamp - mongodb_replset_oplog_head_timestamp) - (avg(mongodb_replset_member_optime_date{state="PRIMARY"}) - avg(mongodb_replset_member_optime_date{state="SECONDARY"}))) <= 0
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication headroom (instance {{ $labels.instance }})"
-            description: "MongoDB replication headroom is <= 0\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MongodbReplicationStatus3
-          expr: mongodb_replset_member_state == 3
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication Status 3 (instance {{ $labels.instance }})"
-            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
-        - alert: MongodbReplicationStatus6
-          expr: mongodb_replset_member_state == 6
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication Status 6 (instance {{ $labels.instance }})"
-            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
-        - alert: MongodbReplicationStatus8
-          expr: mongodb_replset_member_state == 8
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication Status 8 (instance {{ $labels.instance }})"
-            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
-        - alert: MongodbReplicationStatus9
-          expr: mongodb_replset_member_state == 9
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication Status 9 (instance {{ $labels.instance }})"
-            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
-        - alert: MongodbReplicationStatus10
-          expr: mongodb_replset_member_state == 10
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "MongoDB replication Status 10 (instance {{ $labels.instance }})"
-            description: "MongoDB Replication set member either perform startup self-checks, or transition from completing a rollback or resync"
-      - name: minio.rules
-        rules:
-        - alert: MinioDiskOffline
-          expr: minio_offline_disks > 0
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Minio disk offline (instance {{ $labels.instance }})"
-            description: "Minio disk is offline\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: MinioStorageSpaceExhausted
-          expr: minio_disk_storage_free_bytes / 1024 / 1024 / 1024 < 10
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: "Minio storage space exhausted (instance {{ $labels.instance }})"
-            description: "Minio storage space is low (< 10 GB)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-      - name: kafka.rules
-        rules:
-        - alert: KafkaTopicsReplicas
-          expr: sum(kafka_topic_partition_in_sync_replica) by (topic) < 3
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kafka topics replicas (instance {{ $labels.instance }})"
-            description: "Kafka topic in-sync partition\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: KafkaConsumersGroup
-          expr: sum(kafka_consumergroup_lag) by (consumergroup) > 50
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Kafka consumers group (instance {{ $labels.instance }})"
-            description: "Kafka consumers group\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-      - name: mtx-attm-devx.rules
-        rules:
-        - alert: sysAgentShutDown
-          expr: sum(sysAgentShutdown) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "SNMP Agent is shutting down (instance {{ $labels.instance }})"
-            description: "SNMP Agent has gone into shutting down status"
-        - alert: sysAgentStart
-          expr: sum(sysAgentStart) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "SNMP Agent went to shutdown and start status (instance {{ $labels.instance }})"
-            description: "SNMP Agent is in start status"
-        - alert: sysServiceRestart
-          expr: sum(sysServiceRestart) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "SNMP Agent went has been restarted(instance {{ $labels.instance }})"
-            description: "SNMP Agent has been restarted"
-        - alert: sysServiceReboot
-          expr: sum(sysServiceReboot) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "SNMP Agent services has been rebooted(instance {{ $labels.instance }})"
-            description: "SNMP Agent service has been rebooted"
-        - alert: sysServerReboot
-          expr: sum(sysServerReboot) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "SNMP server rebooted(instance {{ $labels.instance }})"
-            description: "SNMP server has been rebooted"
-        - alert: sysServiceDown
-          expr: sum(sysServiceDown) != 0
+        - alert: ProcessingBladeStatus
+          expr: count(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 8) or absent(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"})
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Critical System Service has shutdown(instance {{ $labels.instance }})"
-            description: "Critical System Service has shutdown status"
-        - alert: sysProcessingErrorAlert
-          expr: sum(sysProcessingErrorAlert) != 0
-          for: 5m
-          labels:
-            severity: minor
-          annotations:
-            summary: "Processing error has ocurred(instance {{ $labels.instance }})"
-            description: "Processing error has ocurred"
-        - alert: sysThresholdCrossingAlert
-          expr: sum(sysThresholdCrossingAlert) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "Maximum response time reached(instance {{ $labels.instance }})"
-            description: "Maximum response time reached"
-        - alert: sysClusterNodeExited
-          expr: sum(sysClusterNodeExited) != 0
+            summary: "Engine is down or has an error"
+            description: "Engine is down or has an error"
+        - alert: ProcessingBladeStatusSites
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib", sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib", sysPeerClusterEngineId="2"} == 8
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Node has exited the cluster(instance {{ $labels.instance }})"
-            description: "Node has exited the cluster"
-        - alert: sysClusterNodeJoined
-          expr: sum(sysClusterNodeJoined) != 0
+            summary: "Both Engines are active"
+            description: "Both Engines are active"
+        - alert: pricingIMDBUsage
+          expr: sum by (job,subdomain)(txnDatabaseMemoryUsedKb{job="matrixx_mib"}) * 100 /(sum by (job,subdomain)(txnDatabaseMemoryUsedKb{job="matrixx_mib"}) + sum by (job,subdomain)(txnDatabaseMemoryFreeKb{job="matrixx_mib"})) > 60
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "In memory DB usage > 70%"
+            description: "In memory DB usage > 70% for {{ $labels.subdomain }}"
+        - alert: subDomainStatusDown
+          expr: count(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 6) or absent(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"})
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Node has joined the cluster(instance {{ $labels.instance }})"
-            description: "Node has joined the cluster"
-        - alert: sysClusterNodeServiceDown
-          expr: sum(sysClusterNodeServiceDown) != 0
+            summary: "{{ $labels.subdomain }} is down"
+            description: "{{ $labels.subdomain }} is down, {{ $labels.instance }}"
+        - alert: sysClusterNodeNotActive
+          expr: sysClusterMemberNodeState != 5
           for: 5m
           labels:
-            severity: major
+            severity: error
           annotations:
-            summary: "Cluster memeber not processing requests (instance {{ $labels.instance }})"
-            description: "Cluster memeber not processing requests"
-        - alert: sysClusterNodeServiceUp
-          expr: sum(sysClusterNodeServiceUp) != 0
-          for: 5m
-          labels:
-            severity: major
-          annotations:
-            summary: "Cluster memeber ready to process service requests (instance {{ $labels.instance }})"
-            description: "Cluster memeber ready to process service requests"
+            summary: "Not active node
+            description: "Not active node in {{ $labels.instance }}, {{ $labels.subdomain }}"
         - alert: sysClusterPeerActiveError
-          expr: sum(sysClusterPeerActiveError) != 0
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8 or sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" ,sysPeerClusterEngineId="2"} == 8
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Primary and Seconday clusters are both active (instance {{ $labels.instance }})"
-            description: "Primary and Seconday clusters are both active"
-        - alert: sysClusterPeerDisconnected
-          expr: sum(sysClusterPeerDisconnected) != 0
+            summary: "Both cluster status is active
+            description: "Both cluster status is active {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: engineOneStatusAlert
+          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 6
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Peer cluster has become disconnected (instance {{ $labels.instance }})"
-            description: "Peer cluster has become disconnected"
-        - alert: sysClusterPeerConnected
-          expr: sum(sysClusterPeerConnected) != 0
+            summary: "Engine 1 status is different to active and standBy"
+            description: "Engine 1 status is different to active and standBy {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: engineTwoStatusAlert
+          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 6
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Peer cluster has connected (instance {{ $labels.instance }})"
-            description: "Peer cluster has connected"
-        - alert: sysClusterHaStateChange
-          expr: sum(sysClusterHaStateChange) != 0
+            summary: "Engine 2 status is different to active and standBy"
+            description: "Engine 2 status is different to active and standBy {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: engineTwoStatusAlert
+          expr: org_apache_activemq_Broker_Active != 1
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "H/A state has changed (instance {{ $labels.instance }})"
-            description: "Sent when the H/A state of a cluster has changed"
-        - alert: sysClusterHaPeerActiveStateConflict
-          expr: sum(sysClusterHaPeerActiveStateConflict) != 0
+            summary: "ActiveMQ status not active"
+            description: "ActiveMQ status not active {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: rSGCamelEvents
+          expr: absent(camel_exchange_event_notifier_seconds_sum)
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "both peer clusters are in HA ACTIVE state(instance {{ $labels.instance }})"
-            description: "Sent when both peer clusters are in the H/A ACTIVE state, and a split-brain situation has occurred"
-        - alert: sysClusterHaPeerClusterIdReplayConflict
-          expr: sum(sysClusterHaPeerClusterIdReplayConflict) != 0
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            summary: "Two Stanby clusters hace same transaction replay source(instance {{ $labels.instance }})"
-            description: "Sent when two H/A STANDBY clusters have same transaction replay source"
-        - alert: sysMemoryAvailableThresholdMb
-          expr: sum(sysMemoryAvailableThresholdMb) < 50
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            summary: "Sent when the minimum available memory reached in MB {{ $labels.instance }})"
-            description: "Sent when the minimum available memory reached in MB."
+            summary: "No communication from camel"
+            description: "No communication from camel"
 kind: ConfigMap
 metadata:
   name: prometheus-config
