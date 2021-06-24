@@ -44,8 +44,8 @@ data:
       # honor_labels: true
       static_configs:
         - targets:
-          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
-          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-0.matrixx-prep-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prep-int.svc.cluster.local:14700
           # labels:                           
           #   subdomain: 'integration-1'
       metrics_path: /snmp
@@ -63,8 +63,8 @@ data:
       # honor_labels: true
       static_configs:
         - targets:
-          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
-          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-0.matrixx-prep-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prep-int.svc.cluster.local:14700
           # labels:                           
           #   subdomain: 'integration-1'
       metrics_path: /snmp
@@ -82,8 +82,8 @@ data:
       # honor_labels: true
       static_configs:
         - targets:
-          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
-          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-0.matrixx-prep-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prep-int.svc.cluster.local:14700
           # labels:                           
           #   subdomain: 'integration-1'
       metrics_path: /snmp
@@ -101,8 +101,8 @@ data:
       # honor_labels: true
       static_configs:
         - targets:
-          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
-          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-0.matrixx-prep-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prep-int.svc.cluster.local:14700
           # labels:                           
           #   subdomain: 'integration-1'
       metrics_path: /snmp
@@ -345,44 +345,23 @@ data:
         action: replace
         target_label: kubernetes_pod_name
         
-    - job_name: 'federate-sub1-tlt'
-      scrape_interval: 15s
-  
-      honor_labels: true
-      metrics_path: '/federate'
-  
-      params:
-        'match[]':
-          - '{job="matrixx_mib"}'
-          - '{job="matrixx_common_mib"}'
-          - '{job="matrixx_generalservice_mib"}'
-  
-      static_configs:
-        - targets:
-          - '10.237.31.190:9090'
-          - '10.237.47.79:9090'
-          - '10.237.31.86:9090'
-          - '10.237.47.87:9090'
-          
     - job_name: 'activemq'
       static_configs:
-        - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
+        - targets: ['activemq-1.matrixx-prep-int.svc.cluster.local:8080']
       metrics_path: /metrics
   
     - job_name: 'rsgateway'
       static_configs:
-        - targets: ['rsgateway-ag1.matrixx-prod-int.svc.cluster.local:8080']
+        - targets: ['rsgateway-ag1.matrixx-prep-int.svc.cluster.local:8080']
       metrics_path: /rsgateway/actuator/prometheus        
  
     - job_name: 'matrixx_ne_mib'
       static_configs:
       - targets:
         #TULTITLAN
-        - 10.237.31.200:14700
-        - 10.237.31.202:14700
+        - 10.237.29.200:14700
         #SPERTO
-        - 10.237.47.200:14700
-        - 10.237.47.202:14700
+        - 10.237.58.200:14700
         #labels:                           
         #    subdomain: 'subdomain-1'
       # ADD_MORE_MTX_BLADE_OR_REMOVE. Please check SNMP Agent listening port in configuration.
@@ -396,44 +375,6 @@ data:
           target_label: instance
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port
-    # - job_name: pricing-status
-    #   metrics_path: /api/checkPricing
-    #   scrape_interval: 5m
-    #   scrape_timeout: 1m
-    #   static_configs:
-    #     - targets:
-    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-    - job_name: mef-gap-status
-      metrics_path: /api/checkMefGaps
-      scrape_interval: 3m
-      scrape_timeout: 1m
-      static_configs:
-        - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-            
-    - job_name: event-load-repository
-      metrics_path: /api/checkEventLoadRepo
-      scrape_interval: 5m
-      scrape_timeout: 3m
-      static_configs:
-        - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-
-    - job_name: mef-backlog-status
-      metrics_path: /api/checkMefBacklog
-      scrape_interval: 2m
-      scrape_timeout: 1m
-      static_configs:
-        - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-
-    - job_name: latest-checkpoint-status
-      metrics_path: /api/checkLastCheckpointing
-      scrape_interval: 45m
-      scrape_timeout: 3m
-      static_configs:
-        - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'            
   alert_rules.yml: |
     groups:
       - name: blades.rules
@@ -447,7 +388,7 @@ data:
             summary: "{{ $labels.subdomain }} HA status is wrong"
             description: "Subdomain HA status is wrong"
         - alert: ProcessingBladeStatusSites
-          expr: sysPeerClusterClusterState{instance=~"proc-.*e1-0.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == ignoring (instance, sysPeerClusterEngineId) sysPeerClusterClusterState{instance=~"proc-.*e2-0.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8 or sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" ,sysPeerClusterEngineId="2"} == 8 or absent(sysPeerClusterClusterState)
           for: 5m
           labels:
             severity: critical
