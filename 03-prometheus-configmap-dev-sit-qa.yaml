@@ -58,7 +58,7 @@ data:
           - publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
           - publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'dev'
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
@@ -89,7 +89,7 @@ data:
           - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
           - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'dev'
       metrics_path: /snmp
       params:
         module: [matrixx_common_mib]
@@ -120,7 +120,7 @@ data:
           - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
           - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'dev'
       metrics_path: /snmp
       params:
         module: [matrixx_sysinfo_mib]
@@ -145,7 +145,7 @@ data:
           - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
           - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'dev'
       metrics_path: /snmp
       params:
         module: [matrixx_tra_mib]
@@ -176,7 +176,7 @@ data:
           - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
           - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'dev'
       metrics_path: /snmp
       params:
         module: [matrixx_generalservice_mib]
@@ -427,6 +427,19 @@ data:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
+    - job_name: 'federate-sub1'
+      scrape_interval: 15s
+
+      honor_labels: true
+      metrics_path: '/federate'
+
+      params:
+        'match[]':
+          - '{job="matrixx_mib"}'
+
+      static_configs:
+        - targets:
+          - '10.150.152.86:9090'
   alert_rules.yml: |
     groups:
       - name: blades.rules

@@ -23,7 +23,7 @@ data:
     #   alertmanagers:
     #   - static_configs:
     #     - targets:
-    #       - alertmanager:9093
+    #       - monitoring-prod-alertmanager-tl.mx.att.com
 
     # # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
     # rule_files:
@@ -44,11 +44,12 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1.matrixx-s1e1.svc.cluster.local:14700
+          - ckpt-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-2'
       metrics_path: /snmp
@@ -66,13 +67,14 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
+          - ckpt-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-2'
       metrics_path: /snmp
@@ -90,13 +92,14 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
+          - ckpt-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-2'
       metrics_path: /snmp
@@ -114,8 +117,8 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tralb-proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
+          - tralb-proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-2'
       metrics_path: /snmp
@@ -133,13 +136,14 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - proc-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - publ-s1e1.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-s1e1.svc.cluster.local:14700
+          - ckpt-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e1-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e1-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e1-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-2'
       metrics_path: /snmp

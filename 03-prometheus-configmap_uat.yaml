@@ -1,3 +1,10 @@
+#Author: OCC
+#Date: 10112020
+#Description: 
+#Name spaces has been updated from attmdev to attx-attm-dev
+#this was because MATRIXX has perform an upgrade to version 5201
+
+
 apiVersion: v1
 data:
   prometheus.yml: |
@@ -19,15 +26,15 @@ data:
     # default named port `https`. This works for single API server deployments as
     # well as HA API server deployments.
     # Alertmanager configuration
-    # alerting:
-    #   alertmanagers:
-    #   - static_configs:
-    #     - targets:
-    #       - monitoring-prod-alertmanager-tl.mx.att.com
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+          - alertmanager:9093
 
-    # # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-    # rule_files:
-    #     - "alert_rules.yml"
+    # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+    rule_files:
+        - "alert_rules.yml"
 
     scrape_configs:
     - job_name: 'node-exporter'
@@ -41,17 +48,15 @@ data:
         action: keep
 
     - job_name: 'matrixx_mib'
-      scrape_interval: 20s
-      scrape_timeout: 1m
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-2.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
+          - ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-1'
       metrics_path: /snmp
@@ -69,14 +74,18 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-2.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
+          - ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-1'
       metrics_path: /snmp
@@ -94,14 +103,18 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-2.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
+          - ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-1'
       metrics_path: /snmp
@@ -119,8 +132,12 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tralb-proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
+          - tralb-proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-1'
       metrics_path: /snmp
@@ -138,14 +155,18 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - proc-s1e1-2.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - publ-s1e1-1.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx-prod-sd01.svc.cluster.local:14700
+          - ckpt-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - ckpt-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-proc-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1.mtx-attm-dev.svc.cluster.local:14700
+          - tralb-publ-s1e1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-0.mtx-attm-dev.svc.cluster.local:14700
+          - tra-rt-ag1-1.mtx-attm-dev.svc.cluster.local:14700
           labels:                           
             subdomain: 'subdomain-1'
       metrics_path: /snmp
@@ -162,6 +183,37 @@ data:
     - job_name: 'kube-state-metrics'
       static_configs:
         - targets: ['kube-state-metrics.monitoring.svc.cluster.local:9092']
+    
+    - job_name: 'activemq'
+      static_configs:
+        - targets: ['activemq-1.mtx-attm-dev.svc.cluster.local:8080']
+      metrics_path: /metrics
+
+    - job_name: 'rsgateway'
+      static_configs:
+        - targets: ['rsgateway-ag1.mtx-attm-dev.svc.cluster.local:8080']
+      metrics_path: /rsgateway/actuator/prometheus
+
+    - job_name: 'matrixx_ne_mib'
+      static_configs:
+      - targets:
+        - 10.150.152.232:14700
+        - 10.150.152.233:14700
+        #labels:                           
+        #    subdomain: 'subdomain-1'
+      # ADD_MORE_MTX_BLADE_OR_REMOVE. Please check SNMP Agent listening port in configuration.
+      metrics_path: /snmp
+      params:
+        module: ['matrixx_ne_mib']
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port 
+
+
 
     # Scrape config for nodes (kubelet).
     #
@@ -387,6 +439,154 @@ data:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
+  alert_rules.yml: |
+    groups:
+      - name: blades.rules
+        rules:
+        - alert: subdomainHAStatus
+          expr: count(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 6) or absent(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "{{ $labels.subdomain }} HA status is wrong"
+            description: "Subdomain HA status is wrong"
+        - alert: ProcessingBladeStatusSites
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8 or sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" ,sysPeerClusterEngineId="2"} == 8 or absent(sysPeerClusterClusterState)
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Both Engines are active"
+            description: "Both Engines are active"
+        - alert: pricingIMDBUsage
+          expr: sum by (job,subdomain)(txnDatabaseMemoryUsedKb{job="matrixx_mib"}) * 100 /(sum by (job,subdomain)(txnDatabaseMemoryUsedKb{job="matrixx_mib"}) + sum by (job,subdomain)(txnDatabaseMemoryFreeKb{job="matrixx_mib"})) > 60
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "In memory DB usage > 70%"
+            description: "In memory DB usage > 70% for {{ $labels.subdomain }}"
+        - alert: memoryPoolClusterUsage
+          expr: (sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100) > 70
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "In memory DB usage > 70%"
+            description: "In memory DB usage > 70% for {{ $labels.subdomain }}"
+        - alert: engine1StatusDown
+          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 6 or absent(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Engine 1 of {{ $labels.subdomain }} is down"
+            description: "Engine 1 of {{ $labels.subdomain }} is down"
+        - alert: engine2StatusDown
+          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 6 or absent(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Engine 2 of {{ $labels.subdomain }} is down"
+            description: "Engine 2 of {{ $labels.subdomain }} is down"
+        - alert: sysClusterNodeNotActive
+          expr: sysClusterMemberNodeState != 5 or absent(sysClusterMemberNodeState )
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Not active node
+            description: "Not active node in {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: ckptContainerTerminatedAlert
+          expr: kube_pod_container_status_terminated{job="kube-state-metrics", namespace=~"mtx.*", pod=~"ckpt.*"} == 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Checkpointing pod terminated container for pod: {{ $labels.pod }}"
+            description: "Checkpointing pod terminated container"
+        - alert: publContainerTerminatedAlert
+          expr: kube_pod_container_status_terminated{job="kube-state-metrics", namespace=~"mtx.*", pod=~"publ.*"} == 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Publishing pod terminated container for pod: {{ $labels.pod }}"
+            description: "Publishing pod terminated container"
+        - alert: procContainerTerminatedAlert
+          expr: kube_pod_container_status_terminated{job="kube-state-metrics", namespace=~"mtx.*", pod=~"proc.*"} == 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Procesing pod terminated container for pod: {{ $labels.pod }}"
+            description: "Procesing pod terminated container"
+        - alert: procContainerTerminatedAlert porcSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"proc.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Procesing SNMP agent is down for Subdomain 1, Engine 1"
+            description: "Procesing SNMP agent is down for Subdomain 1, Engine 1"
+        - alert: publContainerTerminatedAlert porcSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"publ.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Publishing SNMP agent is down for Subdomain 1, Engine 1"
+            description: "Publishing SNMP agent is down for Subdomain 1, Engine 1"
+        - alert: ckptContainerTerminatedAlert porcSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Checkpointing SNMP agent is down for Subdomain 1, Engine 1"
+            description: "Checkpointing SNMP agent is down for Subdomain 1, Engine 1"
+        - alert: nodeHeartbeatMessages
+          expr: sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount * 100 > 1000 or absent(sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount)
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "NodeHeartbeat messages for instance {{ $labels.instance }}"
+            description: "NodeHeartbeat messages for instance {{ $labels.instance }}"
+        - alert: pricingLoaderFailedAlert
+          expr: count(kube_pod_info{namespace=~"matrixx.*", created_by_kind="Job", pod=~"pricing-loader-.*"}) > 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Failed Jobs for Pricing Loader"
+            description: "Failed Jobs for Pricing Loader for Subdomain 1, Engine 1"
+        - alert: procErrorsLimit
+          expr: increase(sysProcessingErrors{instance=~"proc-.*"}[4m]) > 1000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Processing Errors reachout the threshold"
+            description: "Processing Errors reachout the threshold for {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: systemDiskLocalUsage
+          expr: statSysInfoDiskUsedPct{statSysInfoDiskIdStr=~"local"}
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "System disk local usage > 70% "
+            description: "System disk local usage > 70% for {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: systemDiskSharedUsage
+          expr: statSysInfoDiskUsedPct{statSysInfoDiskIdStr=~"shared"}
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "System disk shared usage > 70% "
+            description: "System disk shared usage > 70% for {{ $labels.instance }}, {{ $labels.subdomain }}"
 kind: ConfigMap
 metadata:
   name: prometheus-config

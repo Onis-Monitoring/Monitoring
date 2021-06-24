@@ -361,6 +361,8 @@ data:
         - targets:
           - '10.237.31.190:9090'
           - '10.237.47.79:9090'
+          - '10.237.31.86:9090'
+          - '10.237.47.87:9090'
           
     - job_name: 'activemq'
       static_configs:
@@ -394,6 +396,34 @@ data:
           target_label: instance
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port
+    # - job_name: pricing-status
+    #   metrics_path: /api/checkPricing
+    #   scrape_interval: 5m
+    #   scrape_timeout: 1m
+    #   static_configs:
+    #     - targets:
+    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: mef-gap-status
+      metrics_path: /api/checkMefGaps
+      scrape_interval: 3m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: event-load-repository
+      metrics_path: /api/checkEventLoadRepo
+      scrape_interval: 5m
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: mef-backlog-status
+      metrics_path: /api/checkMefBacklog
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
   alert_rules.yml: |
     groups:
       - name: blades.rules
@@ -407,7 +437,7 @@ data:
             summary: "{{ $labels.subdomain }} HA status is wrong"
             description: "Subdomain HA status is wrong"
         - alert: ProcessingBladeStatusSites
-          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8 or sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" , sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="2" ,sysPeerClusterEngineId="2"} == 8 or absent(sysPeerClusterClusterState)
+          expr: sysPeerClusterClusterState{instance=~"proc-.*e1-0.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == ignoring (instance, sysPeerClusterEngineId) sysPeerClusterClusterState{instance=~"proc-.*e2-0.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8
           for: 5m
           labels:
             severity: critical
@@ -415,13 +445,13 @@ data:
             summary: "Both Engines are active"
             description: "Both Engines are active"
         - alert: memoryPoolClusterUsage
-          expr: sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100 > 60
+          expr: sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100 > 70
           for: 5m
           labels:
             severity: warning
           annotations:
-            summary: "Memory Pool Cluster usage > 60%"
-            description: "Memory Pool Cluster usage > 60% for {{ $labels.subdomain }}"
+            summary: "Memory Pool Cluster usage > 70% for {{ $labels.subdomain }}, {{$labels.instance}} "
+            description: "Memory Pool Cluster usage > 70%"
         - alert: engine1StatusDown
           expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 6 or absent(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"})
           for: 5m
