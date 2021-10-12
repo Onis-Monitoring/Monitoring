@@ -418,42 +418,106 @@ data:
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port
     - job_name: pricing-status
-      metrics_path: /api/checkPricing
       scrape_interval: 5m
       scrape_timeout: 1m
+      metrics_path: /api/checkPricing
       static_configs:
         - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
     - job_name: mef-gap-status
-      metrics_path: /api/checkMefGaps
       scrape_interval: 3m
       scrape_timeout: 1m
+      metrics_path: /api/checkMefGaps
       static_configs:
         - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-            
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
     - job_name: event-load-repository
-      metrics_path: /api/checkEventLoadRepo
       scrape_interval: 5m
       scrape_timeout: 3m
+      metrics_path: /api/checkEventLoadRepo
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: mef-backlog-status
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      metrics_path: /api/checkMefBacklog
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: latest-checkpoint-status
+      scrape_interval: 45m
+      scrape_timeout: 3m
+      metrics_path: /api/checkLastCheckpointing
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: validate-checkpoint-errors
+      scrape_interval: 45m
+      scrape_timeout: 3m
+      metrics_path: /api/validateCheckpointErrors
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: validate-mef-destination-status
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      metrics_path: /api/validateMefDestination
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: check-inter-site-latency
+      metrics_path: '/api/checkInterSiteLatency'
+      params:
+        remoteHost: [10.237.47.216]
+        remotePort: [4800]
+      scrape_interval: 15s
+      scrape_timeout: 15s
       static_configs:
         - targets:
             - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
 
-    - job_name: mef-backlog-status
-      metrics_path: /api/checkMefBacklog
-      scrape_interval: 2m
+    - job_name: validate-SFTP-Mefs-Number
+      scrape_interval: 5m
       scrape_timeout: 1m
+      metrics_path: /api/validateSFTPMefsNumber
       static_configs:
         - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-    - job_name: latest-checkpoint-status
-      metrics_path: /api/checkLastCheckpointing
-      scrape_interval: 45m
-      scrape_timeout: 3m
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: check-intersite-trace-path
+      params:
+        remoteHost: [10.237.47.216]
+      scrape_interval: 30s
+      scrape_timeout: 30s
+      metrics_path: /api/validateTracePath
       static_configs:
         - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'            
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: validate-snapshot
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      metrics_path: /api/validateSnapshot
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+          
+    - job_name: validate-volume-space
+      params:
+        volume: ['shared-logging-storage']
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      metrics_path: /api/validateVolumeSpace
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'            
   alert_rules.yml: |
     groups:
       - name: blades.rules
