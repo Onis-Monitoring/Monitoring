@@ -26,7 +26,7 @@ spec:
         #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/debian:9
         # image: mxtltqpeharbor.mx.att.com/matrixx_prep01/monitoring/debian:9
         #image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/debian:9
-        image: mxtlpdmharbor.mx.att.com/matrixx_lab01/debian:9
+        image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/debian:9
         
         imagePullPolicy: Always
         command: ["chown", "-R", "65534:65534", "/data"]
@@ -40,7 +40,7 @@ spec:
           #image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2
           #image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/quay.io/prometheus/prometheus:v2.15.2
           # image: mxtltqpeharbor.mx.att.com/matrixx_prep01/monitoring/quay.io/prometheus/prometheus:v2.15.2
-          image: mxtlpdmharbor.mx.att.com/matrixx_lab01/quay.io/prometheus/prometheus:v2.15.2          
+          image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/quay.io/prometheus/prometheus:v2.25.2         
           imagePullPolicy: "IfNotPresent"
           args:
             - --config.file=/etc/prometheus/prometheus.yml
@@ -68,10 +68,10 @@ spec:
           # Resource requests of `200m` of CPU and `1000Mi` of memory
           resources:
             requests:
-              cpu: 500m
-              memory: 2000Mi
+              cpu: 1000m
+              memory: 4000Mi
             limits:
-              memory: 2000Mi
+              memory: 4000Mi
           volumeMounts:
           - name: prometheus
             mountPath: /data

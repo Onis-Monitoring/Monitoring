@@ -22,10 +22,13 @@ spec:
         name: grafana
     spec:
       containers:
-      #- image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/grafana/grafana:6.5.3
-      - image: mxtlpdmharbor.mx.att.com/matrixx_lab01/grafana/grafana:6.5.3
+      - image: mxtlpdmharbor.mx.att.com/matrixx_lab01/grafana/grafana:7.1.1
+      #- image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/grafana/grafana:7.1.1
+      #- image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/grafana/grafana:7.1.1
         imagePullPolicy: IfNotPresent
         name: grafana
+        # securityContext:
+        #   fsGroup: 472
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -37,8 +40,8 @@ spec:
             cpu: 100m
             memory: 100Mi
         volumeMounts:
-        - mountPath: /var/lib/grafana
-          name: data
+        - name: grafana-storage
+          mountPath: /var/lib/grafana
         - mountPath: /etc/grafana/provisioning/datasources/
           name: datasources
         - mountPath: /grafana-dashboard-definitions/0/statefulset
@@ -48,11 +51,17 @@ spec:
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred
-      securityContext: {}
+      # hostAliases:
+      # - ip: 10.150.152.190
+      #   hostnames:
+      #   - sigmadev-provisioning-prereq-pronetheus.attmx-ne.local
+      securityContext:
+        fsGroup: 472
       terminationGracePeriodSeconds: 30
       volumes:
-      - emptyDir: {}
-        name: data
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-storage
       - configMap:
           name: grafana-datasources
         name: datasources
@@ -61,4 +70,4 @@ spec:
         name: grafana-dashboard-definitions
       - configMap:
           name: grafana-dashboards
-        name: grafana-dashboards
+        name: grafana-dashboards          

@@ -19,15 +19,15 @@ data:
     # default named port `https`. This works for single API server deployments as
     # well as HA API server deployments.
     # Alertmanager configuration
-    alerting:
-      alertmanagers:
-      - static_configs:
-        - targets:
-          - alertmanager:9093
+    # alerting:
+    #   alertmanagers:
+    #   - static_configs:
+    #     - targets:
+    #       - monitoring-prod-alertmanager-tl.mx.att.com
 
-    # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
-    rule_files:
-        - "alert_rules.yml"
+    # # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+    # rule_files:
+    #     - "alert_rules.yml"
 
     scrape_configs:
     - job_name: 'node-exporter'
@@ -44,14 +44,14 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
-          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - publ-s1e2-0.matrixx.svc.cluster.local:14700
+          - ckpt-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-2'
       metrics_path: /snmp
       params:
         module: [matrixx_mib]
@@ -67,20 +67,16 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
-          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - trart-0.matrixx.svc.cluster.local:14700
-          - trart-1.matrixx.svc.cluster.local:14700
+          - ckpt-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-2'
       metrics_path: /snmp
       params:
         module: [matrixx_common_mib]
@@ -96,20 +92,16 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
-          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - trart-0.matrixx.svc.cluster.local:14700
-          - trart-1.matrixx.svc.cluster.local:14700
+          - ckpt-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-2'
       metrics_path: /snmp
       params:
         module: [matrixx_sysinfo_mib]
@@ -125,14 +117,10 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - trart-0.matrixx.svc.cluster.local:14700
-          - trart-1.matrixx.svc.cluster.local:14700
+          - tralb-proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-2'
       metrics_path: /snmp
       params:
         module: [matrixx_tra_mib]
@@ -148,20 +136,16 @@ data:
       honor_labels: true
       static_configs:
         - targets:
-          - ckpt-s1e1-0.matrixx.svc.cluster.local:14700
-          - ckpt-s1e2-0.matrixx.svc.cluster.local:14700
-          - proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e1-0.matrixx.svc.cluster.local:14700
-          - tralb-proc-s1e2-0.matrixx.svc.cluster.local:14700
-          - tralb-publ-s1e2-0.matrixx.svc.cluster.local:14700
-          - trart-0.matrixx.svc.cluster.local:14700
-          - trart-1.matrixx.svc.cluster.local:14700
+          - ckpt-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - proc-s2e2-2.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - publ-s2e2-1.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-proc-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
+          - tralb-publ-s2e2-0.matrixx-prod-sd02.svc.cluster.local:14700
           labels:                           
-            subdomain: 'subdomain-1'
+            subdomain: 'subdomain-2'
       metrics_path: /snmp
       params:
         module: [matrixx_generalservice_mib]
@@ -401,26 +385,6 @@ data:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
-  alert_rules.yml: |
-    groups:
-      - name: blades.rules
-        rules:
-        - alert: ProcessingBladeStatus
-          expr: count(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 8) or absent(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"})
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Engine is down or has an error"
-            description: "Engine is down or has an error"
-        - alert: ProcessingBladeStatusSites
-          expr: sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib", sysPeerClusterEngineId="1"} == 8 and sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib", sysPeerClusterEngineId="2"} == 8
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            summary: "Both Engines are active"
-            description: "Both Engines are active"
 kind: ConfigMap
 metadata:
   name: prometheus-config

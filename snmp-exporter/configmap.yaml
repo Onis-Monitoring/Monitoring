@@ -3314,6 +3314,9 @@ data:
       - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.3.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.1.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.10.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.11.0
@@ -3356,6 +3359,9 @@ data:
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.3.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.1.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.10.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.11.0
@@ -3398,6 +3404,9 @@ data:
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2.0
       - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.1.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.2.0
+      - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.3.0
       metrics:
       - name: rcSubMdbInsertCallInProgress
         oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.1.1
@@ -3585,18 +3594,18 @@ data:
         help: 'Subscriber table: records erased during garbage collection since start
           of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.5.3'
       - name: rcSubMdbMainTotalNumberOfRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.1
         type: counter
-        help: 'Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.1'
+        help: 'Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.1'
       - name: rcSubMdbMainNumberOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.2
         type: counter
-        help: 'Subscriber table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.2'
+        help: 'Subscriber table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.2'
       - name: rcSubMdbMainPercentageOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.3
         type: counter
         help: 'Subscriber table: percentage [0-100] of available records in this table.
-          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.6.3'
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.1.7.3'
       - name: rcSesMdbInsertCallInProgress
         oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.1.1
         type: counter
@@ -3781,18 +3790,18 @@ data:
         help: 'Session table: records erased during garbage collection since start of
           RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.5.3'
       - name: rcSesMdbMainTotalNumberOfRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.1
         type: counter
-        help: 'Session table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.1'
+        help: 'Session table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.1'
       - name: rcSesMdbMainNumberOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.2
         type: counter
-        help: 'Session table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.2'
+        help: 'Session table: total number of available records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.2'
       - name: rcSesMdbMainPercentageOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.2.7.3
         type: counter
         help: 'Session table: percentage [0-100] of available records in this table. -
-          1.3.6.1.4.1.35838.1.3.1.2.1.2.6.3'
+          1.3.6.1.4.1.35838.1.3.1.2.1.2.7.3'
       - name: rcAdmnSubMdbInsertCallInProgress
         oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.1.1
         type: counter
@@ -3983,19 +3992,19 @@ data:
         help: 'Admin Subscriber table: records erased during garbage collection since
           start of RC. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.5.3'
       - name: rcAdmnSubMdbMainTotalNumberOfRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.1
         type: counter
-        help: 'Admin Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.1'
+        help: 'Admin Subscriber table: total number of records in this table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.1'
       - name: rcAdmnSubMdbMainNumberOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.2
         type: counter
         help: 'Admin Subscriber table: total number of available records in this table.
-          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.2'
+          - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.2'
       - name: rcAdmnSubMdbMainPercentageOfFreeRecords
-        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3
+        oid: 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.3
         type: counter
         help: 'Admin Subscriber table: percentage [0-100] of available records in this
-          table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.6.3'
+          table. - 1.3.6.1.4.1.35838.1.3.1.2.1.3.7.3'
       auth:
         community: public
     matrixx_web_mib:

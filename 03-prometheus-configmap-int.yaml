@@ -116,6 +116,25 @@ data:
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116
 
+    - job_name: 'matrixx_rc_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_rc_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
     - job_name: 'kube-state-metrics'
       static_configs:
         - targets: ['kube-state-metrics.monitoring.svc.cluster.local:9092']
@@ -363,11 +382,13 @@ data:
           - '10.237.47.79:9090'
           - '10.237.31.86:9090'
           - '10.237.47.87:9090'
+          - '10.237.31.47:9090'
+          - '10.237.47.191:9090'
           
-    - job_name: 'activemq'
-      static_configs:
-        - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
-      metrics_path: /metrics
+    # - job_name: 'activemq'
+    #   static_configs:
+    #     - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
+    #   metrics_path: /metrics
   
     - job_name: 'rsgateway'
       static_configs:
@@ -396,13 +417,13 @@ data:
           target_label: instance
         - target_label: __address__
           replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port
-    # - job_name: pricing-status
-    #   metrics_path: /api/checkPricing
-    #   scrape_interval: 5m
-    #   scrape_timeout: 1m
-    #   static_configs:
-    #     - targets:
-    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: pricing-status
+      metrics_path: /api/checkPricing
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
     - job_name: mef-gap-status
       metrics_path: /api/checkMefGaps
       scrape_interval: 3m
@@ -424,6 +445,69 @@ data:
       static_configs:
         - targets:
             - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: latest-checkpoint-status
+      metrics_path: /api/checkLastCheckpointing
+      scrape_interval: 45m
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-checkpoint-errors
+      metrics_path: /api/validateCheckpointErrors
+      scrape_interval: 45m
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-mef-destination-status
+      metrics_path: /api/validateMefDestination
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: check-inter-site-latency
+      metrics_path: '/api/checkInterSiteLatency'
+      params:
+        remoteHost: [10.237.47.216]
+        remotePort: [4800]
+      scrape_interval: 15s
+      scrape_timeout: 15s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-SFTP-Mefs-Number
+      metrics_path: /api/validateSFTPMefsNumber
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: check-intersite-trace-path
+      metrics_path: '/api/validateTracePath'
+      params:
+        remoteHost: [10.237.47.216]
+      scrape_interval: 30s
+      scrape_timeout: 30s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-snapshot
+      metrics_path: /api/validateSnapshot
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-volume-space
+      metrics_path: '/api/validateVolumeSpace'
+      params:
+        volume: ['shared-logging-storage']
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
   alert_rules.yml: |
     groups:
       - name: blades.rules
@@ -436,24 +520,24 @@ data:
           annotations:
             summary: "{{ $labels.subdomain }} HA status is wrong"
             description: "Subdomain HA status is wrong"
-        - alert: ProcessingBladeStatusSites
+        - alert: splitBrainAlert
           expr: sysPeerClusterClusterState{instance=~"proc-.*e1-0.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == ignoring (instance, sysPeerClusterEngineId) sysPeerClusterClusterState{instance=~"proc-.*e2-0.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Both Engines are active"
+            summary: "Both engine status is active for {{ $labels.subdomain }}"
             description: "Both Engines are active"
         - alert: memoryPoolClusterUsage
-          expr: sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100 > 70
+          expr: sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100 > 80
           for: 5m
           labels:
             severity: warning
           annotations:
-            summary: "Memory Pool Cluster usage > 70% for {{ $labels.subdomain }}, {{$labels.instance}} "
-            description: "Memory Pool Cluster usage > 70%"
+            summary: "Memory Pool Cluster usage > 80% for {{ $labels.subdomain }}, {{$labels.instance}} "
+            description: "Memory Pool Cluster usage > 80%"
         - alert: engine1StatusDown
-          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"}) != 6 or absent(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"})
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"} != 6 or absent(sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"})
           for: 5m
           labels:
             severity: critical
@@ -461,7 +545,7 @@ data:
             summary: "Engine 1 of {{ $labels.subdomain }} is down"
             description: "Engine 1 of {{ $labels.subdomain }} is down"
         - alert: engine2StatusDown
-          expr: avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 8 and avg(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"}) != 6 or absent(sysPeerClusterClusterState{instance=~"proc-s1.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"})
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"} != 6 or absent(sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"})
           for: 5m
           labels:
             severity: critical
@@ -477,29 +561,53 @@ data:
             summary: "Not active node"
             description: "Not active node in {{ $labels.instance }}, {{ $labels.subdomain }}"
         - alert: procSnmpAgentDown
-          expr: absent(snmp_scrape_duration_seconds{instance=~"proc.*", job="matrixx_generalservice_mib"})
+          expr: absent(snmp_scrape_duration_seconds{instance=~"proc-s1.*", job="matrixx_generalservice_mib"})
           for: 5m
           labels:
             severity: error
           annotations:
-            summary: "Procesing SNMP agent is down for Subdomain 1, Engine 1"
-            description: "Procesing SNMP agent is down for Subdomain 1, Engine 1"
+            summary: "Procesing SNMP agent is down for Subdomain 1"
+            description: "Procesing SNMP agent is down for Subdomain 1"
+        - alert: procSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"proc-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Procesing SNMP agent is down for Subdomain 3"
+            description: "Procesing SNMP agent is down for Subdomain 3"
         - alert: publSnmpAgentDown
-          expr: absent(snmp_scrape_duration_seconds{instance=~"publ.*", job="matrixx_generalservice_mib"})
+          expr: absent(snmp_scrape_duration_seconds{instance=~"publ-s1.*", job="matrixx_generalservice_mib"})
           for: 5m
           labels:
             severity: error
           annotations:
-            summary: "Publishing SNMP agent is down for Subdomain 1, Engine 1"
-            description: "Publishing SNMP agent is down for Subdomain 1, Engine 1"
+            summary: "Publishing SNMP agent is down for Subdomain 1"
+            description: "Publishing SNMP agent is down for Subdomain 1"
+        - alert: publSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"publ-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Publishing SNMP agent is down for Subdomain 3"
+            description: "Publishing SNMP agent is down for Subdomain 3"
         - alert: ckptSnmpAgentDown
-          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt.*", job="matrixx_generalservice_mib"})
+          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt-s1.*", job="matrixx_generalservice_mib"})
           for: 5m
           labels:
             severity: error
           annotations:
-            summary: "Checkpointing SNMP agent is down for Subdomain 1, Engine 1"
-            description: "Checkpointing SNMP agent is down for Subdomain 1, Engine 1"
+            summary: "Checkpointing SNMP agent is down for Subdomain 1"
+            description: "Checkpointing SNMP agent is down for Subdomain 1"
+        - alert: ckptSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Checkpointing SNMP agent is down for Subdomain 3"
+            description: "Checkpointing SNMP agent is down for Subdomain 3"
         - alert: nodeHeartbeatMessages
           expr: sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount * 100 > 1000 or absent(sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount)
           for: 5m
@@ -509,7 +617,7 @@ data:
             summary: "NodeHeartbeat messages for instance {{ $labels.instance }}"
             description: "NodeHeartbeat messages for instance {{ $labels.instance }}"
         - alert: procErrorsLimit
-          expr: increase(sysProcessingErrors{instance=~"proc-.*"}[4m]) > 1000
+          expr: increase(sysProcessingErrors{instance=~"proc-.*"}[4m]) > 500
           for: 5m
           labels:
             severity: warning
