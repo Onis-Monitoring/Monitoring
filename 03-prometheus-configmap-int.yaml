@@ -453,7 +453,63 @@ data:
       scrape_timeout: 3m
       static_configs:
         - targets:
-            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'            
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-checkpoint-errors
+      metrics_path: /api/validateCheckpointErrors
+      scrape_interval: 24h
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-mef-destination-status
+      metrics_path: /api/validateMefDestination
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: check-inter-site-latency
+      metrics_path: '/api/checkInterSiteLatency'
+      params:
+        remoteHost: [10.237.47.216]
+        remotePort: [4800]
+      scrape_interval: 15s
+      scrape_timeout: 15s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-trace-path
+      metrics_path: '/api/validateTracePath'
+      params:
+        remoteHost: [10.237.47.216]
+      scrape_interval: 30s
+      scrape_timeout: 30s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-SFTP-Mefs-Number
+      metrics_path: '/api/validateSFTPMefsNumber'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-snapshot
+      metrics_path: '/api/validateSnapshot'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    # - job_name: validate-volume-space
+    #   metrics_path: '/api/validateVolumeSpace'
+    #   params:
+    #     volume: ['shared-logging-storage']
+    #   scrape_interval: 5m
+    #   scrape_timeout: 1m
+    #   static_configs:
+    #     - targets:
+    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'            
   alert_rules.yml: |
     groups:
       - name: blades.rules

@@ -454,7 +454,7 @@ data:
             - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
     - job_name: validate-checkpoint-errors
       metrics_path: /api/validateCheckpointErrors
-      scrape_interval: 45m
+      scrape_interval: 24h
       scrape_timeout: 3m
       static_configs:
         - targets:
@@ -485,15 +485,29 @@ data:
       static_configs:
         - targets:
             - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
-    - job_name: validate-volume-space
-      metrics_path: '/api/validateVolumeSpace'
-      params:
-        volume: ['shared-logging-storage']
+    - job_name: validate-SFTP-Mefs-Number
+      metrics_path: '/api/validateSFTPMefsNumber'
       scrape_interval: 5m
       scrape_timeout: 1m
       static_configs:
         - targets:
             - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-snapshot
+      metrics_path: '/api/validateSnapshot'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    # - job_name: validate-volume-space
+    #   metrics_path: '/api/validateVolumeSpace'
+    #   params:
+    #     volume: ['shared-logging-storage']
+    #   scrape_interval: 5m
+    #   scrape_timeout: 1m
+    #   static_configs:
+    #     - targets:
+    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
   alert_rules.yml: |
     groups:
       - name: blades.rules
