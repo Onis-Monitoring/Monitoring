@@ -16,8 +16,8 @@ spec:
       containers:
       #  - image: infra-harbor-paas.attmx-ne.local/matrixx_lab01/prom/snmp-exporter:v0.18.0
       # - image: mxtltqpeharbor.mx.att.com/matrixx_prep01/monitoring/prom/snmp-exporter:v0.18.0
-      #  - image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/prom/snmp-exporter:v0.18.0
-        - image: mxtlpdmharbor.mx.att.com/matrixx_lab01/prom/snmp-exporter:v0.18.0
+        - image: mxtltppeharbor.mx.att.com/matrixx_prod01/monitoring/prom/snmp-exporter:v0.18.0
+        # - image: mxtlpdmharbor.mx.att.com/matrixx_lab01/prom/snmp-exporter:v0.18.0
           command: ["/bin/snmp_exporter"]
           args: ["--config.file=/etc/snmp_exporter/matrixx-snmp.yml"]
           name: snmp-exporter

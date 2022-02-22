@@ -19,15 +19,15 @@ metadata:
 spec:
   rules:
   #- host: monitoring-prod-prometheus.mx.att.com
-  - host: monitoring-prod-prometheus-qr.mx.att.com
+  - host: monitoring-prep-prometheus-qr.mx.att.com
     http:
       paths:
       - backend:
           serviceName: prometheus
-          servicePort: 80
+          servicePort: 9090
         path: /
   tls:
   - hosts:
     #- monitoring-prod-prometheus.mx.att.com
-    - monitoring-prod-prometheus-qr.mx.att.com
+    - monitoring-prep-prometheus-qr.mx.att.com
     secretName: default-server-secret

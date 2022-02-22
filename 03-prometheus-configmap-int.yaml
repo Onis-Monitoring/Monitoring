@@ -390,10 +390,10 @@ data:
     #     - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
     #   metrics_path: /metrics
   
-    - job_name: 'rsgateway'
-      static_configs:
-        - targets: ['rsgateway-ag1.matrixx-prod-int.svc.cluster.local:8080']
-      metrics_path: /rsgateway/actuator/prometheus        
+    # - job_name: 'rsgateway'
+    #   static_configs:
+    #     - targets: ['rsgateway-ag1.matrixx-prod-int.svc.cluster.local:8080']
+    #   metrics_path: /rsgateway/actuator/prometheus     
  
     - job_name: 'matrixx_ne_mib'
       static_configs:
