@@ -1,13 +1,15 @@
 apiVersion: v1
 data:
   matrixx-snmp.yml: |-
-    # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+    # WARNING: This file was auto-generated using snmp_exporter generator,
+    manual changes will be lost.
     matrixx_common_mib:
       walk:
       - 1.3.6.1.4.1.35838.1.1.1.1.2.1
       - 1.3.6.1.4.1.35838.1.4.1.1.1
       - 1.3.6.1.4.1.35838.1.1.1.1.2.2
       - 1.3.6.1.4.1.35838.1.4.1.1.2.4
+      - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1
       get:
       - 1.3.6.1.4.1.35838.1.1.1.1.1.1.0
       - 1.3.6.1.4.1.35838.1.1.1.1.1.10.0
@@ -43,75 +45,75 @@ data:
       - name: sysMemoryAvailableThresholdMb
         oid: 1.3.6.1.4.1.35838.1.4.1.1.1.5
         type: gauge
-        help: The minimum available memory notification threshold in MB. - 1.3.6.1.4.1.35838.1.1.1.1.1.5
+        help: The minimum available memory notification threshold in MB. - 1.3.6.1.4.1.35838.1.4.1.1.1.5
       - name: sysServiceStatsServiceId
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.1
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.1
         type: gauge
-        help: The service ID of a service process. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.1
+        help: The service ID of a service process. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.1
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceStatsPid
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.2
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.2
         type: gauge
-        help: The process ID of a service process. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.2
+        help: The process ID of a service process. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.2
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceStatsTimestamp
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.3
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.3
         type: counter
         help: The timestamp of the SysServiceStatsEntry record in Unix time milliseconds.
-          - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.3
+          - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.3
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceStatsCriticalErrors
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.4
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.4
         type: counter
-        help: The number of critical errors logged by the service. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.4
+        help: The number of critical errors logged by the service. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.4
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceStatsErrors
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.5
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.5
         type: counter
-        help: The number of major errors logged by the service. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.5
+        help: The number of major errors logged by the service. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.5
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceUserCpuTime
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.6
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.6
         type: counter
-        help: The service process user CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.6
+        help: The service process user CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.6
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceSystemCpuTime
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.7
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.7
         type: counter
-        help: The service process system CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.7
+        help: The service process system CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.7
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceTotalCpuTime
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.8
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.8
         type: counter
-        help: The service process total CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.8
+        help: The service process total CPU time in OS jiffies. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.8
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceVirtualMemorySizeKb
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.9
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.9
         type: counter
-        help: The service process virtual memory size in kilobytes. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.9
+        help: The service process virtual memory size in kilobytes. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.9
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
       - name: sysServiceResidentSetSizeKb
-        oid: 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.10
+        oid: 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.10
         type: counter
-        help: The service process resident set size in kilobytes. - 1.3.6.1.4.1.35838.1.1.1.1.2.1.1.10
+        help: The service process resident set size in kilobytes. - 1.3.6.1.4.1.35838.1.4.1.1.2.1.1.10
         indexes:
         - labelname: sysServiceStatsServiceId
           type: gauge
@@ -4283,4 +4285,3 @@ metadata:
     name: snmp-exporter-conf
   name: snmp-exporter-conf
   namespace: monitoring
-  # selfLink: /api/v1/namespaces/monitoring/configmaps/snmp-exporter-conf
