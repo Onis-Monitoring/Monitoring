@@ -1,30 +1,36 @@
 #Author: OCC
 #Date: 18022021
+  #Update: 26092023
 #Changes: 
 #ATT has released DNS 
 #Tultitlan: monitoring-prod-grafana-tl.mx.att.com
 #Sperto: monitoring-prod-grafana-qr.mx.att.com
+#Delete nginx annotations and added ingressClassName
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
+  # kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   name: grafana
   namespace: monitoring
 spec:
+  ingressClassName: nginx
   rules:
-  #- host: monitoring-prod-grafana.mx.att.com
+  #- host: monitoring-prod-grafana-tl.mx.att.com
   - host: monitoring-prod-grafana-qr.mx.att.com
     http:
       paths:
-      - backend:
-          serviceName: grafana
-          servicePort: 3000
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000
   tls:
   - hosts:
-    #- monitoring-prod-grafana.mx.att.com
+    #- monitoring-prod-grafana-tl.mx.att.com
     - monitoring-prod-grafana-qr.mx.att.com
     secretName: default-server-secret
