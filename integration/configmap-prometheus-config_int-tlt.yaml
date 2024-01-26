@@ -1,0 +1,832 @@
+apiVersion: v1
+data:
+  alert_rules.yml: |
+    groups:
+      - name: blades.rules
+        rules:
+        - alert: subdomainHAStatus
+          expr: count(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"} != 6) or absent(sysPeerClusterClusterState{instance=~"proc-.*", job="matrixx_mib"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "{{ $labels.subdomain }} HA status is wrong"
+            description: "Subdomain HA status is wrong"
+        - alert: splitBrainAlert
+          expr: sysPeerClusterClusterState{instance=~"proc-.*e1-0.*", sysPeerClusterClusterId="1" , sysPeerClusterEngineId="1"} == ignoring (instance, sysPeerClusterEngineId) sysPeerClusterClusterState{instance=~"proc-.*e2-0.*", sysPeerClusterClusterId="1" ,sysPeerClusterEngineId="2"} == 8
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Both engine status is active for {{ $labels.subdomain }}"
+            description: "Both Engines are active"
+        - alert: memoryPoolClusterUsage
+          expr: sysTotalMemoryPoolInUseMb / sysTotalMemoryPoolSizeMb * 100 > 50
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Memory Pool Cluster usage > 50% for {{ $labels.subdomain }}, {{$labels.instance}} "
+            description: "Memory Pool Cluster usage > 50%"
+        - alert: engine1StatusDown
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"} != 6 or absent(sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="1"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Engine 1 of {{ $labels.subdomain }} is down"
+            description: "Engine 1 of {{ $labels.subdomain }} is down"
+        - alert: engine2StatusDown
+          expr: sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"} != 8 and sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"} != 6 or absent(sysPeerClusterClusterState{instance=~"proc-.*", sysPeerClusterClusterId="1",sysPeerClusterEngineId="2"})
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Engine 2 of {{ $labels.subdomain }} is down"
+            description: "Engine 2 of {{ $labels.subdomain }} is down"
+        - alert: sysClusterNodeNotActive
+          expr: sysClusterMemberNodeState != 5 or absent(sysClusterMemberNodeState )
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Not active node"
+            description: "Not active node in {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: procSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"proc-s1.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Procesing SNMP agent is down for Subdomain 1"
+            description: "Procesing SNMP agent is down for Subdomain 1"
+        - alert: procSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"proc-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Procesing SNMP agent is down for Subdomain 3"
+            description: "Procesing SNMP agent is down for Subdomain 3"
+        - alert: publSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"publ-s1.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Publishing SNMP agent is down for Subdomain 1"
+            description: "Publishing SNMP agent is down for Subdomain 1"
+        - alert: publSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"publ-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Publishing SNMP agent is down for Subdomain 3"
+            description: "Publishing SNMP agent is down for Subdomain 3"
+        - alert: ckptSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt-s1.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Checkpointing SNMP agent is down for Subdomain 1"
+            description: "Checkpointing SNMP agent is down for Subdomain 1"
+        - alert: ckptSnmpAgentDown
+          expr: absent(snmp_scrape_duration_seconds{instance=~"ckpt-s3.*", job="matrixx_generalservice_mib"})
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Checkpointing SNMP agent is down for Subdomain 3"
+            description: "Checkpointing SNMP agent is down for Subdomain 3"
+        - alert: nodeHeartbeatMessages
+          expr: sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount * 100 > 1000 or absent(sysClusterNodeHeartbeatMsgReceivedCount  / sysClusterNodeHeartbeatMsgSentCount)
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "NodeHeartbeat messages for instance {{ $labels.instance }}"
+            description: "NodeHeartbeat messages for instance {{ $labels.instance }}"
+        - alert: procErrorsLimit
+          expr: increase(sysProcessingErrors{instance=~"proc-.*"}[4m]) > 500
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Processing Errors reachout the threshold"
+            description: "Processing Errors reachout the threshold for {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: systemDiskLocalUsage
+          expr: statSysInfoDiskUsedPct{statSysInfoDiskIdStr=~"local"} > 70
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "System disk local usage > 70% "
+            description: "System disk local usage > 70% for {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: systemDiskSharedUsage
+          expr: statSysInfoDiskUsedPct{statSysInfoDiskIdStr=~"shared"} > 70
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "System disk shared usage > 70% "
+            description: "System disk shared usage > 70% for {{ $labels.instance }}, {{ $labels.subdomain }}"
+        - alert: activeMQStatus
+          expr: org_apache_activemq_Broker_Active != 1 and absent(org_apache_activemq_Broker_Active)
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "ActiveMQ Broker is not Active"
+            description: "ActiveMQ Broker is not Active"
+        - alert: camelStatus
+          expr: absent(camel_exchange_event_notifier_seconds_sum)
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Camel is not Active"
+            description: "Camel is not Active"
+        - alert: networkEnabler200
+          expr: signallingNetworkState{job="matrixx_ne_mib",instance="10.237.31.200:14700"} != 3
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Signalling Network State is down"
+            description: "Signalling Network State 10.237.31.200 is down with ID: {{ $labels.signallingNetworkLinkId }}"
+        - alert: networkEnabler202
+          expr: signallingNetworkState{job="matrixx_ne_mib",instance="10.237.31.202:14700"} != 3
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Signalling Network State is down"
+            description: "Signalling Network State 10.237.31.202 is down with ID: {{ $labels.signallingNetworkLinkId }}"
+  prometheus.yml: >
+    # A scrape configuration for running Prometheus on a Kubernetes cluster.
+
+    # This uses separate scrape configs for cluster components (i.e. API server,
+    node)
+
+    # and services to allow each to use different authentication configs.
+
+    #
+
+    # Kubernetes labels will be added as Prometheus labels on metrics via the
+
+    # `labelmap` relabeling action.
+
+    #
+
+    # If you are using Kubernetes 1.7.2 or earlier, please take note of the
+    comments
+
+    # for the kubernetes-cadvisor job; you will need to edit or remove this job.
+
+
+    # Scrape config for API servers.
+
+    #
+
+    # Kubernetes exposes API servers as endpoints to the default/kubernetes
+
+    # service so this uses `endpoints` role and uses relabelling to only keep
+
+    # the endpoints associated with the default/kubernetes service using the
+
+    # default named port `https`. This works for single API server deployments
+    as
+
+    # well as HA API server deployments.
+
+    # Alertmanager configuration
+
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+          - alertmanager:9093
+
+    #Load rules once and periodically evaluate them according to the global
+    'evaluation_interval'.
+
+    rule_files:
+        - "alert_rules.yml"
+
+    global:
+
+    # How frequently to scrape targets by default.
+      scrape_interval: 30s
+
+    scrape_configs:
+
+    - job_name: 'node-exporter'
+      scrape_interval: 1m
+      scrape_timeout: 1m
+      kubernetes_sd_configs:
+        - role: endpoints
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_endpoints_name]
+        regex: 'node-exporter'
+        action: keep
+
+    - job_name: 'matrixx_sysinfo_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_sysinfo_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
+    - job_name: 'matrixx_tra_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_tra_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
+    - job_name: 'matrixx_generalservice_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_generalservice_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
+    - job_name: 'matrixx_common_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_common_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
+    - job_name: 'matrixx_rc_mib'
+      # honor_labels: true
+      static_configs:
+        - targets:
+          - tra-rt-ag1-0.matrixx-prod-int.svc.cluster.local:14700
+          - tra-rt-ag1-1.matrixx-prod-int.svc.cluster.local:14700
+          # labels:                           
+          #   subdomain: 'integration-1'
+      metrics_path: /snmp
+      params:
+        module: [matrixx_rc_mib]
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116
+
+    - job_name: 'kube-state-metrics'
+      static_configs:
+        - targets: ['kube-state-metrics.monitoring.svc.cluster.local:9092']
+
+    # Scrape config for nodes (kubelet).
+
+    #
+
+    # Rather than connecting directly to the node, the scrape is proxied though
+    the
+
+    # Kubernetes apiserver.  This means it will work if Prometheus is running
+    out of
+
+    # cluster, or can't connect to nodes for some other reason (e.g. because of
+
+    # firewalling).
+
+    - job_name: 'kubernetes-nodes'
+
+      # Default to scraping over https. If required, just disable this or change to
+      # `http`.
+      scheme: https
+
+      # This TLS & bearer token file config is used to connect to the actual scrape
+      # endpoints for cluster components. This is separate to discovery auth
+      # configuration because discovery & scraping are two separate concerns in
+      # Prometheus. The discovery auth config is automatic if Prometheus runs inside
+      # the cluster. Otherwise, more config options have to be provided within the
+      # <kubernetes_sd_config>.
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+      kubernetes_sd_configs:
+      - role: node
+
+      relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics
+
+    # Scrape config for Kubelet cAdvisor.
+
+    #
+
+    # This is required for Kubernetes 1.7.3 and later, where cAdvisor metrics
+
+    # (those whose names begin with 'container_') have been removed from the
+
+    # Kubelet metrics endpoint.  This job scrapes the cAdvisor endpoint to
+
+    # retrieve those metrics.
+
+    #
+
+    # In Kubernetes 1.7.0-1.7.2, these metrics are only exposed on the cAdvisor
+
+    # HTTP endpoint; use "replacement: /api/v1/nodes/${1}:4194/proxy/metrics"
+
+    # in that case (and ensure cAdvisor's HTTP server hasn't been disabled with
+
+    # the --cadvisor-port=0 Kubelet flag).
+
+    #
+
+    # This job is not necessary and should be removed in Kubernetes 1.6 and
+
+    # earlier versions, or it will cause the metrics to be scraped twice.
+
+    - job_name: 'kubernetes-cadvisor'
+
+      # Default to scraping over https. If required, just disable this or change to
+      # `http`.
+      scheme: https
+      # This TLS & bearer token file config is used to connect to the actual scrape
+      # endpoints for cluster components. This is separate to discovery auth
+      # configuration because discovery & scraping are two separate concerns in
+      # Prometheus. The discovery auth config is automatic if Prometheus runs inside
+      # the cluster. Otherwise, more config options have to be provided within the
+      # <kubernetes_sd_config>.
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+      kubernetes_sd_configs:
+      - role: node
+
+      relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+      - target_label: __address__
+        replacement: kubernetes.default.svc:443
+      - source_labels: [__meta_kubernetes_node_name]
+        regex: (.+)
+        target_label: __metrics_path__
+        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+
+    # Scrape config for service endpoints.
+
+    #
+
+    # The relabeling allows the actual service scrape endpoint to be configured
+
+    # via the following annotations:
+
+    #
+
+    # * `prometheus.io/scrape`: Only scrape services that have a value of `true`
+
+    # * `prometheus.io/scheme`: If the metrics endpoint is secured then you will
+    need
+
+    # to set this to `https` & most likely set the `tls_config` of the scrape
+    config.
+
+    # * `prometheus.io/path`: If the metrics path is not `/metrics` override
+    this.
+
+    # * `prometheus.io/port`: If the metrics are exposed on a different port to
+    the
+
+    # service then set this appropriately.
+
+    - job_name: 'kubernetes-service-endpoints'
+
+      kubernetes_sd_configs:
+      - role: endpoints
+
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+        action: replace
+        target_label: __scheme__
+        regex: (https?)
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+        action: replace
+        target_label: __address__
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+      - action: labelmap
+        regex: __meta_kubernetes_service_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_service_name]
+        action: replace
+        target_label: kubernetes_name
+
+    # Example scrape config for probing services via the Blackbox Exporter.
+
+    #
+
+    # The relabeling allows the actual service scrape endpoint to be configured
+
+    # via the following annotations:
+
+    #
+
+    # * `prometheus.io/probe`: Only probe services that have a value of `true`
+
+    - job_name: 'kubernetes-services'
+
+      metrics_path: /probe
+      params:
+        module: [http_2xx]
+
+      kubernetes_sd_configs:
+      - role: service
+
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]
+        action: keep
+        regex: true
+      - source_labels: [__address__]
+        target_label: __param_target
+      - target_label: __address__
+        replacement: blackbox-exporter.example.com:9115
+      - source_labels: [__param_target]
+        target_label: instance
+      - action: labelmap
+        regex: __meta_kubernetes_service_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_service_name]
+        target_label: kubernetes_name
+
+    # Example scrape config for probing ingresses via the Blackbox Exporter.
+
+    #
+
+    # The relabeling allows the actual ingress scrape endpoint to be configured
+
+    # via the following annotations:
+
+    #
+
+    # * `prometheus.io/probe`: Only probe services that have a value of `true`
+
+    - job_name: 'kubernetes-ingresses'
+
+      metrics_path: /probe
+      params:
+        module: [http_2xx]
+
+      kubernetes_sd_configs:
+        - role: ingress
+
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
+          action: keep
+          regex: true
+        - source_labels: [__meta_kubernetes_ingress_scheme,__address__,__meta_kubernetes_ingress_path]
+          regex: (.+);(.+);(.+)
+          replacement: ${1}://${2}${3}
+          target_label: __param_target
+        - target_label: __address__
+          replacement: blackbox-exporter.example.com:9115
+        - source_labels: [__param_target]
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_ingress_label_(.+)
+        - source_labels: [__meta_kubernetes_namespace]
+          target_label: kubernetes_namespace
+        - source_labels: [__meta_kubernetes_ingress_name]
+          target_label: kubernetes_name
+
+    # Example scrape config for pods
+
+    #
+
+    # The relabeling allows the actual pod scrape endpoint to be configured via
+    the
+
+    # following annotations:
+
+    #
+
+    # * `prometheus.io/scrape`: Only scrape pods that have a value of `true`
+
+    # * `prometheus.io/path`: If the metrics path is not `/metrics` override
+    this.
+
+    # * `prometheus.io/port`: Scrape the pod on the indicated port instead of
+    the
+
+    # pod's declared ports (default is a port-free target if none are declared).
+
+    - job_name: 'kubernetes-pods'
+
+      scrape_interval: 1m
+      scrape_timeout: 1m
+
+      kubernetes_sd_configs:
+      - role: pod
+
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
+        
+    - job_name: 'federate-sub1-tlt'
+      scrape_interval: 15s
+
+      honor_labels: true
+      metrics_path: '/federate'
+
+      params:
+        'match[]':
+          - '{job="matrixx_mib"}'
+          - '{job="matrixx_common_mib"}'
+          - '{job="matrixx_generalservice_mib"}'
+
+      static_configs:
+        - targets:
+          - '10.237.31.190:9090'
+          - '10.237.47.153:9090'
+          - '10.237.31.86:9090'
+          - '10.237.47.87:9090'
+          - '10.237.31.47:9090'
+          - '10.237.47.191:9090'
+          - '10.237.31.168:9090' #s4 tulti
+          - '10.237.47.167:9090' #s4 spr
+          - '10.237.31.170:9090' #s5 tulti
+          - '10.237.47.172:9090' #s5 spr
+          - '10.237.15.34:9090'  #s6 tulti
+          - '10.237.60.34:9090'  #s6 spr
+
+    # - job_name: 'activemq'
+
+    #   static_configs:
+
+    #     - targets: ['activemq-1.matrixx-prod-int.svc.cluster.local:8080']
+
+    #   metrics_path: /metrics
+
+
+    # - job_name: 'rsgateway'
+
+    #   static_configs:
+
+    #     - targets: ['rsgateway-ag1.matrixx-prod-int.svc.cluster.local:8080']
+
+    #   metrics_path: /rsgateway/actuator/prometheus     
+
+
+    - job_name: 'matrixx_ne_mib'
+      static_configs:
+      - targets:
+        #TULTITLAN
+        - 10.237.31.200:14700
+        - 10.237.31.202:14700
+        #SPERTO
+        - 10.237.47.200:14700
+        - 10.237.47.202:14700
+        #labels:                           
+        #    subdomain: 'subdomain-1'
+      # ADD_MORE_MTX_BLADE_OR_REMOVE. Please check SNMP Agent listening port in configuration.
+      metrics_path: /snmp
+      params:
+        module: ['matrixx_ne_mib']
+      relabel_configs:
+        - source_labels: [__address__]
+          target_label: __param_target
+        - source_labels: [__param_target]
+          target_label: instance
+        - target_label: __address__
+          replacement: snmp-exporter.monitoring.svc.cluster.local:9116     # The SNMP exporter's real hostname:port
+    - job_name: pricing-status
+      metrics_path: /api/checkPricing
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: mef-gap-status
+      metrics_path: /api/checkMefGaps
+      scrape_interval: 3m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: event-load-repository
+      metrics_path: /api/checkEventLoadRepo
+      scrape_interval: 5m
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    - job_name: mef-backlog-status
+      metrics_path: /api/checkMefBacklog
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: latest-checkpoint-status
+      metrics_path: /api/checkLastCheckpointing
+
+      scrape_interval: 45m
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-checkpoint-errors
+      metrics_path: /api/validateCheckpointErrors
+      scrape_interval: 24h
+      scrape_timeout: 3m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-mef-destination-status
+      metrics_path: /api/validateMefDestination
+      scrape_interval: 2m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: check-inter-site-latency
+      metrics_path: '/api/checkInterSiteLatency'
+      params:
+        remoteHost: [10.237.47.216]
+        remotePort: [4800]
+      scrape_interval: 15s
+      scrape_timeout: 15s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-trace-path
+      metrics_path: '/api/validateTracePath'
+      params:
+        remoteHost: [10.237.47.216]
+      scrape_interval: 30s
+      scrape_timeout: 30s
+      static_configs:
+        - targets:
+            - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-SFTP-Mefs-Number
+      metrics_path: '/api/validateSFTPMefsNumber'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+    - job_name: validate-snapshot
+      metrics_path: '/api/validateSnapshot'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+          - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    #- job_name: check-intersite-trace-path
+
+    #  params:
+
+    #    remoteHost: [10.237.47.216]
+
+    #  scrape_interval: 30s
+
+    #  scrape_timeout: 30s
+
+    #  metrics_path: /api/validateTracePath
+
+    #  static_configs:
+
+    #    - targets:
+
+    #      - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'
+
+    # - job_name: validate-volume-space
+
+    #   metrics_path: '/api/validateVolumeSpace'
+
+    #   params:
+
+    #     volume: ['shared-logging-storage']
+
+    #   scrape_interval: 5m
+
+    #   scrape_timeout: 1m
+
+    #   static_configs:
+
+    #     - targets:
+
+    #         - 'monitoring.matrixx-prod-int.svc.cluster.local:5000'      
+
+    - job_name: checkHPESAConnectionsTultitlan
+      metrics_path: '/api/checkHPESAConnectionsTultitlan'
+      scrape_interval: 15m
+      scrape_timeout: 15m
+      static_configs:
+        - targets:
+            - 'hpesaconn.monitoring.svc.cluster.local:5001'   
+    - job_name: intersitePingToolTlt
+      metrics_path: '/metrics'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - '10.237.31.200:9427'
+    - job_name: intersitePingToolSpr
+      metrics_path: '/metrics'
+      scrape_interval: 5m
+      scrape_timeout: 1m
+      static_configs:
+        - targets:
+            - '10.237.47.200:9427'
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
