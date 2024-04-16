@@ -54,3 +54,4 @@ kubectl create -f vmware-exporter/config.yml
 kubectl create -f vmware-exporter/vmware-exporter.yml
 
 kubectl get all -n monitoring
+# adap
